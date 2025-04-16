@@ -1,4 +1,4 @@
-const horoscopos = { //clave, valor: (aries, "hoy es un buen..."
+const horoscopos = {
     Aries: "Hoy es un buen día para tomar decisiones importantes.",
     Tauro: "La paciencia será clave hoy, mantén la calma.",
     Géminis: "Las conversaciones profundas te traerán claridad.",

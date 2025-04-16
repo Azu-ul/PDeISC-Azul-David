@@ -5,17 +5,17 @@ const ciudad = "Buenos Aires";
 
 export async function obtenerClima() {
   try {
-    const locRes = await fetch(`https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${API_KEY}&q=${ciudad}`); 
+    const locRes = await fetch(`https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${API_KEY}&q=${ciudad}&language=es`);
     const locData = await locRes.json();
     const locationKey = locData[0].Key;
 
-    const climaRes = await fetch(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${API_KEY}`);
+    const climaRes = await fetch(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${API_KEY}&language=es`);
     const climaData = await climaRes.json();
     const temp = climaData[0].Temperature.Metric.Value;
     const estado = climaData[0].WeatherText;
 
-    return { temp, estado }; // devolvemos los datos
+    return `En ${ciudad} está ${estado} y hacen ${temp}°C`;
   } catch (err) {
-    throw new Error("Hubo un error al obtener el clima");
+    return "No se pudo obtener el clima.";
   }
 }
