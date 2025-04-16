@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Azu-ul/PDeISC-Azul-David#readme",
   "description": "",
+  "type": "module",
   "dependencies": {
     "axios": "^1.8.4",
     "lodash": "^4.17.21",
