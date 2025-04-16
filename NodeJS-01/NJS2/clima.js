@@ -25,8 +25,8 @@ const server = createServer(async (req, res) => { // creamos servidor asíncrono
           <meta charset="UTF-8">
           <title>Clima</title>
           <style>
-            body { font-family: sans-serif; text-align: center; margin-top: 2rem; background: #e0f7fa; }
-            h1 { color: #00796b; }
+            body { font-family: sans-serif; text-align: center; margin-top: 2rem; background:rgb(255, 251, 234); }
+            h1 { color:rgb(194, 0, 129); }
           </style>
         </head>
         <body>
