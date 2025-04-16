@@ -5,9 +5,9 @@ import { obtenerHoroscopo } from './horoscopo.js';
 import { generarContraseña } from './contraseñas.js';
 
 // creamos el contenido HTML con los módulos
-const clima = obtenerClima();
+const clima = obtenerClima('Buenos Aires');
 const horoscopo = obtenerHoroscopo('Géminis');
-const contrasena = generarContraseña();
+const contrasena = generarContraseña(12);
 
 const contenidoHtml = `
 <!DOCTYPE html>
