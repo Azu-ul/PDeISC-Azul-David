@@ -6,6 +6,7 @@ import { generarContraseña } from './contraseñas.js';
 
 async function iniciarServidor() {
   const clima = await obtenerClima();
+  const signo = 'Géminis';
   const horoscopo = obtenerHoroscopo('Géminis');
   const contrasena = generarContraseña(12);
 
@@ -20,8 +21,8 @@ async function iniciarServidor() {
     <h1>🌤 Clima</h1>
     <p>${clima}</p>
 
-    <h1>🔮 Horóscopo</h1>
-    <p>${horoscopo}</p>
+     <h1>🔮 Horóscopo para ${signo}</h1>
+  <p>${horoscopo}</p>
 
     <h1>🔐 Contraseña Generada</h1>
     <p>${contrasena}</p>
@@ -29,7 +30,7 @@ async function iniciarServidor() {
   </html>
   `;
 
-  fs.writeFileSync('index.html', contenidoHtml); // guarda el HTML
+  fs.writeFileSync('index.html', contenidoHtml); // guarda el HTML  
 
   const server = createServer((req, res) => {
     fs.readFile('index.html', (err, data) => {
