@@ -20,20 +20,26 @@ function cambiarColor() {
 
 function agregarImagen() {
   const contenedor = document.getElementById('contenedor');
-  if (!document.getElementById('imagen')) {
+  if (!document.getElementById('imagen1') && !document.getElementById('imagen2')) {
     const img = document.createElement('img');
-    img.id = 'imagen';
+    img.id = 'imagen1';
     img.src = '/img/image1.jpeg';
     contenedor.appendChild(img);
   }
 }
 
 function cambiarImagen() {
-  const img = document.getElementById('imagen');
-  if (img) img.src = '/img/image2.jpg';
+  const img = document.getElementById('imagen1') || document.getElementById('imagen2');
+  if (img.id==='imagen1') {
+    img.id = 'imagen2';
+    img.src = '/img/image2.jpg';
+  } else {
+    img.id = 'imagen1';
+    img.src = '/img/image1.jpeg';
+  }
 }
 
 function cambiarTamanio() {
-  const img = document.getElementById('imagen');
+  const img = document.getElementById('imagen1') || document.getElementById('imagen2');
   if (img) img.style.width = '500px';
 }
