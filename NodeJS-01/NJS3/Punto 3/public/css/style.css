@@ -1,67 +1,113 @@
+/* Estilo general del body */
 body {
-    font-family: 'Georgia', serif;
-    background-color: #fef9f1;
-    text-align: center;
-    padding: 2rem;
-    margin: 0;
+  font-family: 'Press Start 2P', cursive, Arial, sans-serif;
+  background-image: url('/img/stardew.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Estilo de los botones */
+button {
+  padding: 16px 20px;
+  margin: 10px;
+  font-size: 1rem;
+  background-color: #ffcc66;
+  border: 2px solid #996600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 2px 2px 4px #999;
+}
+
+button:hover {
+  background-color: #ffdb85;
+  transform: scale(1.05);
+}
+
+/* Estilo específico del botón para contar los hijos */
+#countChildrenBtn {
+  background-color: #66cc66;
+  border-color: #338833;
+  color: white;
+  font-weight: bold;
+}
+
+#countChildrenBtn:hover {
+  background-color: #77d977;
+  transform: scale(1.05);
+}
+
+/* Estilo del nav y sus hijos */
+#navContainer {
+  margin-bottom: 20px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+nav a button {
+  width: auto;
+  font-size: 1rem;
+}
+
+/* Estilo de la imagen */
+img {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 3px solid #444;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  margin: 20px auto;
+  display: block;
+}
+
+/* Estilo para mensaje de conteo de hijos */
+#childrenCountMsg {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #d8ffd8;
+  text-shadow: #444;
+  background-color: #338833;
+}
+
+/* Estilos para hacer la página responsive */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 2rem;
   }
-  
-  button, input {
-    margin: 0.5rem;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: none;
-    background-color: #d4c0a1;
-    color: #2d1e0f;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+
+  button {
+    font-size: 1.2rem;
+    width: 100%;
+    max-width: 320px;
   }
-  
-  button:hover, input:hover {
-    background-color: #bfa07d;
-  }
-  
+
   img {
-    margin-top: 1rem;
-    max-width: 100%;
-    height: auto;
-    border: 3px solid #333;
-    border-radius: 8px;
-    transition: transform 0.3s;
+    height: 200px;
   }
-  
-  img:hover {
-    transform: scale(1.05);
+
+  nav {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  #mensajeForm {
-    margin-top: 1rem;
-    font-weight: bold;
-    color: green;
+
+  #childrenCountMsg {
+    font-size: 1.5rem;
   }
-  
-  /* Contenedor general */
-  #contenedor {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  /* Responsive para pantallas pequeñas */
-  @media (max-width: 600px) {
-    body {
-      padding: 1rem;
-    }
-  
-    button, input {
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 1rem;
-    }
-  
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
-  
+}

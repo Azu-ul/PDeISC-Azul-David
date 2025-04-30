@@ -2,31 +2,30 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Eventos en JS</title>
+  <title>Inicio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <h1>Demostración de Eventos</h1>
   
-  <div id="contenedor">
-    <button id="btnClick">Click</button>
-    <button id="btnDblClick">Doble click</button>
-    <input id="keyInput" placeholder="Escribí algo" />
-    <img id="hoverImg" src="/img/image1.jpg" alt="hover" width="200">
-    
-    <form id="formulario">
-      <input type="text" required placeholder="Tu nombre" />
-      <button type="submit">Enviar</button>
-    </form>
+  <h1>Eventos en JavaScript</h1>
   
-    <p id="textoDobleClick"> </p>
-    <p id="teclaPresionada">Tecla presionada: </p>
-    <p id="mensajeForm"></p>
+  <div id="navContainer"> <!-- Contenedor del nav -->
+    <nav>
+      <a href="/click"><button>Click</button></a>
+      <a href="/dblclick"><button>Doble Click</button></a>
+      <a href="/keydown"><button>Teclado</button></a>
+      <a href="/hover"><button>Hover</button></a>
+      <a href="/submit"><button>Submit</button></a>
+    </nav>
   </div>
-  
-  <button onclick="contarHijos()">Contar hijos</button>
-  <p id="resultado"></p>
 
-  <script src="/js/script.js"></script>
+  <!-- Botón para contar los hijos -->
+  <button id="countChildrenBtn">Presiona para saber cuántos hijos tiene este nav</button>
+
+  <!-- Mensaje para mostrar el número de hijos -->
+  <p id="childrenCountMsg"></p>
+
+  <script src="/js/main.js"></script>
 </body>
 </html>

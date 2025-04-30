@@ -1,81 +1,87 @@
+/* Estilo general del body */
 body {
-    font-family: 'Press Start 2P', cursive, Arial, sans-serif;
-    background-image: url('/img/stardew.jpg'); /* Cambiá esto por el nombre de tu imagen */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: #2e3b2c;
-    text-align: center;
-    padding: 20px;
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
+  font-family: 'Press Start 2P', cursive, Arial, sans-serif;
+  background-image: url('/img/stardew.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Estilo de los botones */
+button {
+  padding: 16px 20px;
+  margin: 10px;
+  font-size: 1rem;
+  background-color: #ffcc66;
+  border: 2px solid #996600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 2px 2px 4px #999;
+}
+
+button:hover {
+  background-color: #ffdb85;
+  transform: scale(1.05);
+}
+
+/* Estilo del nav y sus hijos */
+#navContainer {
+  margin-bottom: 20px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+nav a button {
+  width: auto;
+  font-size: 1rem;
+}
+
+/* Estilo de la imagen */
+img {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 3px solid #444;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  margin: 20px auto;
+  display: block;
+}
+
+
+/* Estilos para hacer la página responsive */
+@media (max-width: 400px) {
   h1 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 0 #fff;
+    font-size: 2rem;
   }
-  
+
   button {
-    padding: 16px 20px;
-    margin: 10px;
-    font-size: 1rem;
-    background-color: #ffcc66;
-    border: 2px solid #996600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    box-shadow: 2px 2px 4px #999;
-  }
-  
-  button:hover {
-    background-color: #ffdb85;
-  }
-  
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  img {
+    font-size: 1.2rem;
     width: 100%;
-    max-width: 300px;
-    height: 300px;
-    object-fit: cover; /* Corta la imagen si no entra */
-    border-radius: 10px;
-    border: 3px solid #444;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
-    margin: 20px auto;
-    display: block;
+    max-width: 320px;
   }
-  
-  /* ✅ Estilos especiales para teléfonos */
-  @media (max-width: 600px) {
-    h1 {
-      font-size: 2rem;
-    }
-  
-    button {
-      font-size: 1.2rem;
-      width: 100%;
-      max-width: 320px;
-    }
-  
-    img {
-      height: 200px;
-      object-fit: cover;
-    }
-  
-    nav {
-      flex-direction: column;
-      align-items: center;
-    }
+
+  img {
+    height: 200px;
   }
-  
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+}
