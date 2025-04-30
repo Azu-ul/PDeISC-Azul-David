@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-image: url('/img/Celeste.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+
+.zona-derecha {
+  min-height: 300px;
+}
+
+
+.contenedor {
+  display: flex;
+  flex-direction: row;
+  max-width: 1200px;
+  width: 100%;
+  gap: 20px;
+}
+
+.zona-izquierda, .zona-derecha {
+  background-color: #2f2f45;
+  padding: 20px;
+  border-radius: 12px;
+  flex: 1;
+}
+
+button {
+  background-color: #4e9cea;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  margin: 10px 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #3a7cd4;
+}
+
+a {
+  display: block;
+  margin: 10px 0;
+  color: #ffc857;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+@media (max-width: 768px) {
+
+  body {
+    background-position: top;
+    background-size: auto 100vh; /* se corta verticalmente en móviles */
+    background-attachment: scroll;
+  }
+
+  .contenedor {
+    flex-direction: column;
+  }
+
+  .zona-derecha {
+    margin-top: 20px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
