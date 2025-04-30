@@ -1,3 +1,4 @@
+//lista de enlaces originales
 const enlacesOriginales = [
   { texto: 'Google', href: 'https://www.google.com' },
   { texto: 'Wikipedia', href: 'https://es.wikipedia.org' },
@@ -5,7 +6,7 @@ const enlacesOriginales = [
   { texto: 'GitHub', href: 'https://github.com' },
   { texto: 'OpenAI', href: 'https://openai.com' }
 ];
-
+//lista de enlaces nuevos
 const enlacesNuevos = [
   { texto: 'DuckDuckGo', href: 'https://duckduckgo.com' },
   { texto: 'Britannica', href: 'https://www.britannica.com' },
@@ -14,13 +15,15 @@ const enlacesNuevos = [
   { texto: 'DeepMind', href: 'https://deepmind.com' }
 ];
 
+//creacion de variables 
 const enlacesContainer = document.getElementById('enlacesContainer');
 const log = document.getElementById('cambiosLog');
 
 let enlacesCreados = false;
 
+//creamos enlanes
 document.getElementById('crearEnlaces').addEventListener('click', () => {
-  enlacesContainer.innerHTML = '';
+  enlacesContainer.innerHTML = ''; //limpiamos container
   enlacesOriginales.forEach((enlace, i) => {
     const a = document.createElement('a');
     a.textContent = enlace.texto;
@@ -32,6 +35,7 @@ document.getElementById('crearEnlaces').addEventListener('click', () => {
   enlacesCreados = true;
 });
 
+//caso de que no se hayan creado los enlaces y se intenten modificar
 document.getElementById('modificarEnlaces').addEventListener('click', () => {
   if (!enlacesCreados) {
     const li = document.createElement('li');
@@ -40,6 +44,7 @@ document.getElementById('modificarEnlaces').addEventListener('click', () => {
     return;
   }
 
+// modificar enlaces
   enlacesNuevos.forEach((nuevo, i) => {
     const link = document.getElementById(`link-${i}`);
     if (link) {

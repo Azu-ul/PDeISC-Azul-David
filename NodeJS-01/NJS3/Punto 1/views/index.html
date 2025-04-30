@@ -2,21 +2,26 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Manipulación DOM</title>
+  <title>Manipulación dom</title>
+  <!-- link al css principal -->
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <h1 id="titulo">Manipulando el DOM</h1>
+  <!-- título principal al que podemos cambiar texto o estilo -->
+  <h1 id="titulo">Manipulando el dom</h1>
 
-  <button onclick="agregarH1()">Agregar H1</button>
+  <!-- botones que llaman funciones js para modificar el dom -->
+  <button onclick="agregarH1()">Agregar h1</button>
   <button onclick="cambiarTexto()">Cambiar texto</button>
   <button onclick="cambiarColor()">Cambiar color</button>
   <button onclick="agregarImagen()">Agregar imagen</button>
   <button onclick="cambiarImagen()">Cambiar imagen</button>
   <button onclick="cambiarTamanio()">Cambiar tamaño</button>
 
+  <!-- contenedor donde se insertan elementos dinámicos -->
   <div id="contenedor"></div>
 
+  <!-- script con todas las funciones de manipulación -->
   <script src="/js/script.js"></script>
 </body>
 </html>
