@@ -1,67 +1,78 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: 'Georgia', serif;
-    background-color: #fef9f1;
-    text-align: center;
-    padding: 2rem;
-    margin: 0;
+  font-family: 'Georgia', serif;
+  background-color: #fef9f1;
+  text-align: center;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+button, input {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #999;
+}
+
+button:hover {
+  background-color: #f0e0c0;
+  cursor: pointer;
+}
+
+img {
+  margin-top: 1rem;
+  max-width: 100%;
+  height: auto;
+  border: 3px solid #333;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
+#mensajeForm {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: green;
+}
+
+form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Responsive ajustes */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
   }
-  
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
   button, input {
-    margin: 0.5rem;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: none;
-    background-color: #d4c0a1;
-    color: #2d1e0f;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    font-size: 0.9rem;
+    padding: 0.5rem;
   }
-  
-  button:hover, input:hover {
-    background-color: #bfa07d;
-  }
-  
-  img {
-    margin-top: 1rem;
-    max-width: 100%;
-    height: auto;
-    border: 3px solid #333;
-    border-radius: 8px;
-    transition: transform 0.3s;
-  }
-  
-  img:hover {
-    transform: scale(1.05);
-  }
-  
-  #mensajeForm {
-    margin-top: 1rem;
-    font-weight: bold;
-    color: green;
-  }
-  
-  /* Contenedor general */
-  #contenedor {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  /* Responsive para pantallas pequeñas */
-  @media (max-width: 600px) {
-    body {
-      padding: 1rem;
-    }
-  
-    button, input {
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 1rem;
-    }
-  
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
-  
+}
