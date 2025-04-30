@@ -1,0 +1,118 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000;
+    background-image: url('/img/fondo.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    margin: 0;
+    padding: 30px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 500px;
+    max-height: 600px;     /* límite de alto */
+  overflow: hidden;  
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px 5px #fff3a2;
+  }
+
+  .container form {
+    flex: 1 1 auto;        /* toma el espacio disponible */
+    overflow-y: auto;      /* y si sobra contenido, scroll interno */
+  }
+  
+  /* evitamos que el título se comprima */
+  .container h1 {
+    flex: 0 0 auto;
+  }
+  
+  h1 {
+    margin: 0;
+    text-align: center;
+    color: #e0f7fa;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 0;
+  }
+  
+  label {
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  
+  input,
+  select,
+  textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: #1a1a1a;
+    color: #fff;
+  }
+  
+  input[type="radio"],
+  input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+  }
+  
+  button {
+    background-color: #4fc3f7;
+    color: #000;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #81d4fa;
+  }
+  
+  .resultado {
+    margin: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 0 0 10px #f79b4f;
+    word-wrap: break-word;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .container {
+      height: auto;
+      padding: 20px;
+    }
+  
+    input,
+    select,
+    textarea {
+      font-size: 0.95em;
+    }
+  
+    h1 {
+      font-size: 1.5em;
+    }
+  }
+  
