@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="page-container">
+    <div class="container">
+      <div class="login-container">
+        <h2>Iniciar sesión</h2>
+        <form id="login-form" action="/login" method="POST">
+          <label for="username">Usuario:</label>
+          <input type="text" id="username" name="username" required pattern="[a-zA-Z0-9]+" title="Solo letras y números.">
+          
+          <label for="password">Contraseña:</label>
+          <input type="password" id="password" name="password" required minlength="6" title="Mínimo 6 caracteres.">
+          
+          <button style="font-size: 16px;" type="submit">Entrar</button>
+        </form>
+      </div>
+    
+      <div class="list-container">
+        <h2 style="color: rgb(66, 27, 0);">Usuarios registrados</h2>
+        <ul id="user-list"></ul>
+      </div>
+    </div>   
+  </div>
+
+  <script src="/js/login.js"></script>
+</body>
+</html>
+
