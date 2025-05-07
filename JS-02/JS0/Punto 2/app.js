@@ -10,8 +10,10 @@ app.get('/' , (req, res) => {
     res.sendFile(path.join(__dirname , 'views' , 'index.html'));
 })
 
+//creamos array para guardar registros con personas
 const personas = [];
 
+//definimos persona y la agregamos al array
 app.post('/guardar' , (req, res) => {
     const persona = req.body;
     personas.push(persona);
