@@ -1,50 +1,91 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro Medieval</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Formulario con varios campos</title>
 </head>
 <body>
-  <div class="container">
-    <div class="form-container">
-      <h2>Registro de Personas</h2>
-      <form id="person-form">
-        <label>Nombre:<input type="text" name="nombre" required></label>
-        <label>Apellido:<input type="text" name="apellido" required></label>
-        <label>Edad:<input type="number" name="edad" min="0" required></label>
-        <label>Fecha de nacimiento:<input type="date" name="fecha" required></label>
-        <label>Sexo:
-          <select name="sexo" required>
-            <option value="">Seleccionar</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Femenino">Femenino</option>
-          </select>
-        </label>
-        <label>Documento:<input type="text" name="documento" pattern="\d+" required></label>
-        <label>Estado civil:<input type="text" name="estado" required></label>
-        <label>Nacionalidad:<input type="text" name="nacionalidad" required></label>
-        <label>Teléfono:<input type="tel" name="telefono" pattern="\d{7,15}" required></label>
-        <label>Mail:<input type="email" name="mail" required></label>
-        <label>¿Tiene hijos?
-          <select name="tieneHijos" id="tieneHijos" required>
-            <option value="">Seleccionar</option>
-            <option value="Si">Sí</option>
-            <option value="No">No</option>
-          </select>
-        </label>
-        <label id="cantidadHijosLabel" style="display:none;">¿Cuántos?:<input type="number" name="cantidadHijos" min="1"></label>
-
-        <button type="submit">Guardar</button>
-        <p id="mensaje"></p>
-      </form>
-    </div>
-    <div class="list-container">
-      <h2>Personas Almacenadas</h2>
-      <ul id="lista-personas"></ul>
-    </div>
+  <div class="contenedor-principal">
+    <form id="formulario" action="/guardar" method="POST">
+      <h2>Formulario de Registro</h2>
+    
+      <label>
+        Nombre:
+        <input type="text" name="nombre" placeholder="Nombre" required>
+      </label><br>
+    
+      <label>
+        Apellido:
+        <input type="text" name="apellido" placeholder="Apellido" required>
+      </label><br>
+    
+      <label>
+        Edad:
+        <input type="number" name="edad" placeholder="Edad" required>
+      </label><br>
+    
+      <label>
+        Fecha de nacimiento:
+        <input type="date" name="fecha-nac" required>
+      </label><br>
+    
+      <label>Sexo:</label><br>
+      <label><input type="radio" name="sexo" value="masculino" required> Masculino</label>
+      <label><input type="radio" name="sexo" value="femenino"> Femenino</label>
+      <label><input type="radio" name="sexo" value="masculino" required> Otro</label><br>
+    
+      <label>
+        Documento (DNI o similar):
+        <input type="text" name="documento" placeholder="Número de documento" required>
+      </label><br>
+    
+      <label>
+        Estado civil:
+        <select name="estado-civil" required>
+          <option value="">Seleccioná</option>
+          <option value="soltero">Soltero/a</option>
+          <option value="casado">Casado/a</option>
+          <option value="divorciado">Divorciado/a</option>
+          <option value="viudo">Viudo/a</option>
+        </select>
+      </label><br>
+    
+      <label>
+        Nacionalidad:
+        <input type="text" name="nacionalidad" placeholder="Ej: Argentina" required>
+      </label><br>
+    
+      <label>
+        Teléfono:
+        <input type="tel" name="telefono" placeholder="Ej: 1123456789" required>
+      </label><br>
+    
+      <label>
+        Mail:
+        <input type="email" name="email" placeholder="tu@mail.com" required>
+      </label><br>
+    
+      <label>
+        ¿Tiene hijos?
+        <input type="checkbox" name="tiene-hijos">
+      </label><br>
+    
+      <label>
+        ¿Cuántos hijos? (completar solo si tiene)
+        <input type="number" name="cantidad-hijos" min="0">
+      </label><br>
+      <p id="mensaje"></p>
+      <button type="submit">Enviar</button>
+    </form>
   </div>
-  <script src="js/script.js"></script>
+    
+      <div class="contenedor-lista">
+        <h2>Lista de personas registradas:</h2>
+        <ul id="lista-personas"></ul>
+      </div>
+
+  <script src="/js/script.js"> </script>
 </body>
 </html>

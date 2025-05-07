@@ -1,0 +1,101 @@
+/* Este es el que tenés en public/css/style.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f0ff;
+    color: #4a004a;
+    margin: 0;
+    padding: 20px;
+    font-style: italic;
+    display: flex;
+    gap: 3rem;
+  }
+  
+  .contenedor-principal {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  
+  form {
+    background-color: #f2e6ff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #cccccc;
+    max-width: 400px;
+    flex: 1;
+  }
+  
+  .contenedor-lista {
+    flex: 1;
+    max-width: 400px;
+    background-color: #fdf4ff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(160, 0, 160, 0.2);
+  }
+  
+  h2 {
+    color: #6a0dad;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 1rem;
+    color: #4b0082;
+  }
+
+  input, select, button {
+    width: 90%;
+    padding: 0.6rem;
+    margin-top: 0.3rem;
+    border: 1px solid #c4a8ff;
+    border-radius: 5px;
+    font-style: italic;
+    background-color: #fffaff;
+    color: #4b0082;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+  }
+
+  button {
+    background-color: #a366ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background-color: #8c4dd3;
+  }
+
+  #mensaje {
+    margin-top: 1rem;
+    color: #006600;
+    font-weight: bold;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  ul li {
+    background-color: #e9d6ff;
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 6px;
+  }
+  
+  @media (max-width: 768px) {
+    body {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
