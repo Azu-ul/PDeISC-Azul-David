@@ -6,32 +6,44 @@
     <title>Libro: push()</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
+    <div class="libro">
+      <div class="pagina">
         <div class="titulo">Libro: <code>push()</code></div>
+  
         <form id="form-frutas">
-            <input type="text" placeholder="Fruta 1" name="fruta1" required>
-            <input type="text" placeholder="Fruta 2" name="fruta2" required>
-            <input type="text" placeholder="Fruta 3" name="fruta3" required>
-            <button type="submit">Guardar frutas</button>
+          <input type="text" placeholder="Fruta 1" name="fruta1" required>
+          <input type="text" placeholder="Fruta 2" name="fruta2" required>
+          <input type="text" placeholder="Fruta 3" name="fruta3" required>
+          <button type="submit">Guardar frutas</button>
         </form>
         <p id="resultado-frutas"></p>
+  
         <form id="form-amigos">
-            <input type="text" placeholder="Amigo 1" name="amigo1" required>
-            <input type="text" placeholder="Amigo 2" name="amigo2" required>
-            <input type="text" placeholder="Amigo 3" name="amigo3" required>
-            <button type="submit">Guardar amigos</button>
+          <input type="text" placeholder="Amigo 1" name="amigo1" required>
+          <input type="text" placeholder="Amigo 2" name="amigo2" required>
+          <input type="text" placeholder="Amigo 3" name="amigo3" required>
+          <button type="submit">Guardar amigos</button>
         </form>
         <p id="resultado-amigos"></p>
+      </div>
+  
+      <div class="linea-centro"></div>
+  
+      <div class="pagina">
         <form id="form-numeros">
-            <input type="number" id="nuevo-numero" required>
-            <button type="submit">Agregar número</button>
+          <input type="number" id="nuevo-numero" required>
+          <button type="submit">Agregar número</button>
         </form>
         <div id="resultado-numeros" class="resultado-mano"></div>
         <p id="error-numeros"></p>
+      </div>
+    </div>
+  
     <a href="/" class="boton-volver">← Volver a la biblioteca</a>
-
-    <script src="/js/script.js"></script>
-</body>
+  
+    <script src="/js/push.js"></script>
+  </body>
+  
 
 </html>

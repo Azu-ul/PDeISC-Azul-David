@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Libro: pop()</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div class="libro">
+    <div class="pagina">
+      <div class="titulo">Libro: <code>pop()</code></div>
+
+      <form id="form-animales">
+        <input type="text" placeholder="Animal 1" name="animal1" required>
+        <input type="text" placeholder="Animal 2" name="animal2" required>
+        <input type="text" placeholder="Animal 3" name="animal3" required>
+        <button type="submit">Crear lista de animales</button>
+      </form>
+      <p id="resultado-animales" class="resultado-mano"></p>
+
+      <form id="form-compras">
+        <input type="text" placeholder="Producto 1" name="producto1" required>
+        <input type="text" placeholder="Producto 2" name="producto2" required>
+        <input type="text" placeholder="Producto 3" name="producto3" required>
+        <button type="submit">Crear lista de compras</button>
+      </form>
+      <p id="resultado-compras" class="resultado-mano"></p>
+    </div>
+
+    <div class="linea-centro"></div>
+
+    <div class="pagina">
+      <form id="form-vaciar">
+        <input type="text" id="elemento-vaciar" placeholder="Elemento" required>
+        <button type="submit">Agregar a lista para vaciar</button>
+      </form>
+      <div id="lista-vaciar" class="resultado-mano"></div>
+      <button id="vaciar-lista" style="margin-top: 1rem;">Vaciar lista con while</button>
+      <p id="resultado-vaciar" class="resultado-mano"></p>
+    </div>
+  </div>
+
+  <a href="/" class="boton-volver">← Volver a la biblioteca</a>
+
+  <script src="/js/pop.js"></script>
+</body>
+
+</html>

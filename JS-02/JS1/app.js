@@ -8,10 +8,6 @@ app.use(express.static(path.join(__dirname, "views")));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
-//push
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + '/views/push.html');
-});
 
 const PORT = 3000;
 app.listen(PORT, () => {

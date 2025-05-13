@@ -1,3 +1,156 @@
+.biblioteca-body {
+    font-family: 'Georgia', serif;
+    background-color: #f9f4e7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden; /* Evita que se haga scroll horizontal */
+}
+
+.biblioteca-titulo {
+    margin: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
+    color: #5a3e1b;
+    font-weight: bold;
+}
+
+/* Estantería de libros (grilla) */
+.estanteria-biblioteca {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas por defecto */
+    margin-top: 2rem; /* Reducido el margen superior */
+    max-width: 1050px;
+    width: 100%;
+    justify-items: center; /* Centra los libros dentro de la grilla */
+    overflow-x: auto; /* Permite el scroll horizontal si es necesario */
+}
+
+/* Estilos para los libros en la biblioteca */
+.libro-biblioteca {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%; /* Ocupa todo el espacio disponible en su celda */
+    max-width: 160px; /* Tamaño máximo de los libros */
+    height: 120px;
+    background: #fdf6e3;
+    border: 3px solid #d4b483;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    text-decoration: none;
+    color: #5a3e1b;
+    font-weight: bold;
+    font-size: 1.1rem;
+    font-family: 'Georgia', serif;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0.5rem; /* Reducido el margen */
+}
+
+.libro-biblioteca:hover {
+    transform: scale(1.05);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.libro-biblioteca::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 10px;
+    background: linear-gradient(to right, #d4b483, #e8d3a1);
+    border-right: 1px solid #a67c52;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+/* Texto dentro del libro */
+.libro-biblioteca span {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #5a3e1b;
+    font-weight: bold;
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 1200px) {
+    .estanteria-biblioteca {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+    }
+    .libro-biblioteca {
+        width: 100%;
+        height: 220px; /* Aumentar el tamaño de los libros */
+    }
+}
+
+@media (max-width: 900px) {
+    .estanteria-biblioteca {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas más pequeñas */
+    }
+    .libro-biblioteca {
+        width: 100%;
+        height: 240px; /* Aumentar aún más el tamaño de los libros */
+    }
+}
+
+@media (max-width: 600px) {
+    .estanteria-biblioteca {
+        grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
+    }
+    .libro-biblioteca {
+        width: 100%;
+        height: 260px; /* Aumentamos más el tamaño de los libros en pantallas pequeñas */
+    }
+}
+
+
+/* Texto dentro del libro */
+.libro-biblioteca span {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #5a3e1b;
+    font-weight: bold;
+}
+
+/* Estilo para el enlace "volver a la biblioteca" */
+.boton-volver-biblioteca {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.5rem 1rem;
+    background-color: #d4b483;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.boton-volver-biblioteca:hover {
+    background-color: #b89562;
+    transform: scale(1.05);
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .estanteria-biblioteca {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .libro-biblioteca {
+        width: 100px;
+        height: 140px;
+    }
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -12,85 +165,52 @@ body {
     margin: 2rem;
     font-size: 2rem;
     text-align: center;
-}
-
-.estanteria {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    padding: 2rem;
+    color: #5a3e1b;
+    font-weight: bold;
 }
 
 .libro {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 120px;
-    height: 160px;
-    background: #fdf6e3;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    max-width: 1000px;
+    background: rgba(255, 248, 230, 0.95);
     border: 3px solid #d4b483;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    text-decoration: none;
-    color: #5a3e1b;
-    font-weight: bold;
-    font-size: 1.1rem;
-    font-family: 'Georgia', serif;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 2rem;
+    margin-top: 2rem;
 }
 
-.libro:hover {
-    transform: scale(1.05);
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
-}
-
-.libro::before {
-    content: "";
+.linea-centro {
+    width: 2px;
+    background-color: #a67c52;
     position: absolute;
-    left: 0;
+    left: 50%;
     top: 0;
-    height: 100%;
-    width: 10px;
-    background: linear-gradient(to right, #d4b483, #e8d3a1);
-    border-right: 1px solid #a67c52;
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
+    bottom: 0;
 }
 
-
-.boton-volver {
-    display: inline-block;
-    margin: 1.5rem;
-    padding: 0.5rem 1rem;
-    background-color: #d4b483;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-family: 'Georgia', serif;
-    font-weight: bold;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.boton-volver:hover {
-    background-color: #b89562;
-    transform: scale(1.05);
+.pagina {
+    width: 48%;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 form {
     background: #fffdf5;
     background: radial-gradient(circle, #fffdf5 0%, #fdf6e3 100%);
     padding: 2rem;
-    margin: 2rem auto;
+    margin: 2rem 0;
     border: 1.5px solid #bfa777;
     border-radius: 12px;
-    box-shadow:
-        inset 0 0 20px rgba(230, 204, 160, 0.5),
-        4px 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 20px rgba(230, 204, 160, 0.5), 4px 4px 15px rgba(0, 0, 0, 0.1);
     font-family: 'Georgia', serif;
-    max-width: 600px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
 }
 
@@ -119,6 +239,20 @@ form input[type="number"] {
     font-size: 1rem;
     box-sizing: border-box;
     box-shadow: inset 0 0 5px rgba(200, 175, 135, 0.2);
+}
+
+button {
+    background-color: #d4b483;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 2px 2px 5px rgba(150, 120, 90, 0.2);
 }
 
 form button {
@@ -166,5 +300,23 @@ p {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-  }
-  
+}
+
+.boton-volver {
+    display: inline-block;
+    margin: 2rem 0;
+    padding: 0.5rem 1rem;
+    background-color: #d4b483;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.boton-volver:hover {
+    background-color: #b89562;
+    transform: scale(1.05);
+}

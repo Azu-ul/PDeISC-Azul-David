@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Libro: shift()</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="libro">
+        <div class="pagina">
+            <div class="titulo">Libro: <code>shift()</code></div>
+            <form id="form-numeros">
+                <input type="number" id="numero" required>
+                <button type="submit">Agregar número</button>
+            </form>
+            <p id="resultado-numeros"></p>
+            <button id="quitar-numero">Quitar primer número</button>
+
+            <form id="form-chat">
+                <input type="text" id="mensaje" required placeholder="Escribe un mensaje">
+                <button type="submit">Agregar mensaje</button>
+            </form>
+            <p id="resultado-chat"></p>
+            <button id="quitar-mensaje">Quitar primer mensaje</button>
+        </div>
+        <div class="linea-centro"></div>
+
+        <div class="pagina">
+            <h3>Simulador de cola de atención al cliente</h3>
+            <form id="form-cola">
+                <input type="text" id="cliente" required placeholder="Nombre del cliente">
+                <button type="submit">Agregar cliente</button>
+            </form>
+            <button id="atender-cliente">Atender primer cliente</button>
+            <p id="resultado-cola"></p>
+        </div>
+    </div>
+
+    <a href="/" class="boton-volver">← Volver a la biblioteca</a>
+
+    <script src="/js/shift.js"></script>
+</body>
+</html>
