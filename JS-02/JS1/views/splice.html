@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>splice()</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="libro">
+    <div class="pagina">
+      <div class="titulo">Libro: <code>splice()</code></div>
+
+      <!-- Letras -->
+      <form id="form-letras">
+        <input type="text" placeholder="Letra 1" name="letra1" required>
+        <input type="text" placeholder="Letra 2" name="letra2" required>
+        <input type="text" placeholder="Letra 3" name="letra3" required>
+        <button type="submit">Eliminar letras</button>
+      </form>
+      <p id="resultado-letras"></p>
+
+      <!-- Nombres -->
+      <form id="form-nombre">
+        <input type="text" placeholder="Nuevo nombre" name="nombre" required>
+        <button type="submit">Insertar nombre</button>
+      </form>
+      <p id="resultado-nombres"></p>
+    </div>
+
+    <div class="linea-centro"></div>
+
+    <div class="pagina">
+      <!-- Reemplazar elementos -->
+      <form id="form-reemplazar">
+        <input type="text" placeholder="Elemento nuevo 1" name="nuevo1" required>
+        <input type="text" placeholder="Elemento nuevo 2" name="nuevo2" required>
+        <button type="submit">Reemplazar elementos</button>
+      </form>
+      <p id="resultado-elementos"></p>
+    </div>
+  </div>
+
+  <a href="/" class="boton-volver">← Volver a la biblioteca</a>
+
+  <script src="/js/splice.js"></script>
+</body>
+</html>
