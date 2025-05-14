@@ -1,0 +1,25 @@
+<!-- public/views/simon.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simón Dice</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <h1>Simón Dice</h1>
+  <button id="startGame">Comenzar Juego</button>
+  <div id="gameBoard" style="display:none;">
+    <h2>Sigue la secuencia:</h2>
+    <div id="colorButtons">
+      <button class="color-btn" data-color="rojo" style="background-color: red;">Rojo</button>
+      <button class="color-btn" data-color="verde" style="background-color: green;">Verde</button>
+      <button class="color-btn" data-color="azul" style="background-color: blue;">Azul</button>
+      <button class="color-btn" data-color="amarillo" style="background-color: yellow;">Amarillo</button>
+    </div>
+  </div>
+  <div id="result" style="margin-top:20px;"></div>
+  <script src="../js/simon.js"></script>
+</body>
+</html>

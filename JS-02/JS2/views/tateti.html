@@ -1,0 +1,47 @@
+<!-- public/views/tateti.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaTeTi / Tres en Línea</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <h1>TaTeTi / Tres en Línea</h1>
+  
+  <!-- Selección de modo -->
+  <div id="modeSelection">
+    <h2>Selecciona el modo de juego</h2>
+    <button id="mode1v1">1 vs 1</button>
+    <button id="mode1vMaquina">1 vs Maquina</button>
+  </div>
+  
+  <!-- Formulario para nombres -->
+  <div id="nameForm" style="display:none;">
+    <form id="playerForm">
+      <div id="playerInputs"></div>
+      <button type="submit">Iniciar Juego</button>
+    </form>
+  </div>
+  
+  <!-- Tablero de juego -->
+  <div id="gameBoard" style="display:none;">
+    <h2>Tablero TaTeTi</h2>
+    <div id="board">
+      <button class="cell" data-index="0"></button>
+      <button class="cell" data-index="1"></button>
+      <button class="cell" data-index="2"></button>
+      <button class="cell" data-index="3"></button>
+      <button class="cell" data-index="4"></button>
+      <button class="cell" data-index="5"></button>
+      <button class="cell" data-index="6"></button>
+      <button class="cell" data-index="7"></button>
+      <button class="cell" data-index="8"></button>
+    </div>
+    <div id="gameResult" style="margin-top:20px;"></div>
+  </div>
+  
+  <script src="../js/tateti.js"></script>
+</body>
+</html>

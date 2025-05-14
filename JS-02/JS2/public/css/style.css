@@ -1,0 +1,52 @@
+/* public/css/styles.css */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 20px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.game-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#colorButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.color-btn {
+  width: 80px;
+  height: 80px;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
+.color-btn.active {
+  opacity: 0.5;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-gap: 5px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#board .cell {
+  width: 80px;
+  height: 80px;
+  font-size: 24px;
+}
