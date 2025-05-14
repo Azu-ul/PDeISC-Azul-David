@@ -12,6 +12,8 @@ document.getElementById("form-animales").addEventListener("submit", function (e)
   
     document.getElementById("resultado-animales").textContent =
       `El animal eliminado fue: ${eliminado}. Lista actual: [${animales.join(", ")}]`;
+      this.reset();
+
   });
   
   // eliminar el último producto de compras
@@ -28,6 +30,8 @@ document.getElementById("form-animales").addEventListener("submit", function (e)
   
     document.getElementById("resultado-compras").textContent =
       `Se eliminó: ${eliminado}. Lista actual: [${compras.join(", ")}]`;
+      this.reset();
+
   });
   
   // vaciar array con pop() y bucle while
@@ -54,6 +58,7 @@ document.getElementById("form-animales").addEventListener("submit", function (e)
   
     document.getElementById("resultado-vaciar").textContent =
       `Elementos eliminados con pop(): ${eliminados.join(", ")}`;
+      
     mostrarListaActual();
   });
   

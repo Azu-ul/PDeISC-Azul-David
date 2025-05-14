@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>reverse()</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <a href="/" class="boton-volver">← Volver a la biblioteca</a>
+  <div class="libro">
+    <div class="pagina">
+      <div class="titulo">Libro: <code>reverse()</code></div>
+      <form id="form-letras-reverse">
+        <h3>Invertir array de letras</h3>
+        <input type="text" placeholder="Letra 1" required>
+        <input type="text" placeholder="Letra 2" required>
+        <input type="text" placeholder="Letra 3" required>
+        <button type="submit">Invertir</button>
+      </form>
+      <div id="resultado-letras-reverse" class="resultado-mano"></div>
+      <hr>
+
+      <form id="form-numeros-reverse">
+        <h3>Invertir array de números</h3>
+        <input type="number" placeholder="Número 1" required>
+        <input type="number" placeholder="Número 2" required>
+        <input type="number" placeholder="Número 3" required>
+        <button type="submit">Invertir</button>
+      </form>
+      <div id="resultado-numeros-reverse" class="resultado-mano"></div>
+    </div>
+    <div class="linea-centro"></div>
+
+    <div class="pagina">
+      <form id="form-string-reverse">
+        <h3>Invertir texto</h3>
+        <input type="text" placeholder="Escribí una palabra o frase" required>
+        <button type="submit">Invertir</button>
+      </form>
+      <div id="resultado-string-reverse" class="resultado-mano"></div>
+    </div>
+  </div>
+  <script src="/js/reverse.js"></script>
+</body>
+
+</html>

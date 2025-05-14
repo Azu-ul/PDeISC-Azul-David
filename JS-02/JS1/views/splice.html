@@ -1,47 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <title>splice()</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
+  <a href="/" class="boton-volver">← Volver a la biblioteca</a>
   <div class="libro">
     <div class="pagina">
       <div class="titulo">Libro: <code>splice()</code></div>
 
+      <!-- Crear array de letras -->
+      <div class="crear-array" id="div-crear-letras">
+        <p>Crear array de letras:</p>
+        <form id="form-crear-letras">
+          <input type="text" placeholder="Letra 1" name="letra1" required>
+          <input type="text" placeholder="Letra 2" name="letra2" required>
+          <input type="text" placeholder="Letra 3" name="letra3" required>
+          <button type="submit">Crear array de letras</button>
+        </form>
+        <div id="array-letras"></div>
+        <button id="btn-eliminar-letras" style="display: none;">Eliminar dos elementos desde posición 1</button>
+        <div id="resultado-letras" class="resultado-mano"></div>
+      </div>
+
       <!-- Letras -->
-      <form id="form-letras">
+      <form id="form-letras" style="display: none;">
         <input type="text" placeholder="Letra 1" name="letra1" required>
         <input type="text" placeholder="Letra 2" name="letra2" required>
         <input type="text" placeholder="Letra 3" name="letra3" required>
         <button type="submit">Eliminar letras</button>
       </form>
-      <p id="resultado-letras"></p>
 
-      <!-- Nombres -->
-      <form id="form-nombre">
-        <input type="text" placeholder="Nuevo nombre" name="nombre" required>
-        <button type="submit">Insertar nombre</button>
-      </form>
-      <p id="resultado-nombres"></p>
+      <!-- Crear array de nombres -->
+      <div class="crear-array" id="div-crear-nombres">
+        <h4>Crear array de nombres:</h4>
+        <form id="form-crear-nombres">
+          <input type="text" placeholder="Nombre 1" name="nombre1" required>
+          <input type="text" placeholder="Nombre 2" name="nombre2" required>
+          <input type="text" placeholder="Nombre 3" name="nombre3" required>
+          <button type="submit">Crear array de nombres</button>
+        </form>
+        <div id="array-nombres"></div>
+        <div id="form-insertar-nombre" style="display: none;">
+          <form action="">
+            <input type="text" placeholder="Nuevo nombre" id="nuevo-nombre" required>
+            <button id="btn-insertar-nombre">Insertar nombre en posición 1</button>
+          </form>
+        </div>
+        <div id="resultado-nombres" class="resultado-mano"></div>
+      </div>
     </div>
 
     <div class="linea-centro"></div>
 
     <div class="pagina">
-      <!-- Reemplazar elementos -->
-      <form id="form-reemplazar">
-        <input type="text" placeholder="Elemento nuevo 1" name="nuevo1" required>
-        <input type="text" placeholder="Elemento nuevo 2" name="nuevo2" required>
-        <button type="submit">Reemplazar elementos</button>
-      </form>
-      <p id="resultado-elementos"></p>
+      <!-- Crear array de elementos -->
+      <div class="crear-array" id="div-crear-elementos">
+        <h4>Crear array de elementos:</h4>
+        <form id="form-crear-elementos">
+          <input type="text" placeholder="Elemento 1" name="elemento1" required>
+          <input type="text" placeholder="Elemento 2" name="elemento2" required>
+          <input type="text" placeholder="Elemento 3" name="elemento3" required>
+          <button type="submit">Crear array de elementos</button>
+        </form>
+        <div id="array-elementos"></div>
+        <div id="form-reemplazar" style="display: none;">
+          <form action="">
+            <input type="text" placeholder="Elemento nuevo 1" id="nuevo-elemento1" required>
+            <input type="text" placeholder="Elemento nuevo 2" id="nuevo-elemento2" required>
+            <button id="btn-reemplazar">Reemplazar elementos desde posición 1</button>
+          </form>
+        </div>
+        <div id="resultado-elementos" class="resultado-mano"></div>
+      </div>
     </div>
   </div>
 
-  <a href="/" class="boton-volver">← Volver a la biblioteca</a>
-
   <script src="/js/splice.js"></script>
 </body>
+
 </html>

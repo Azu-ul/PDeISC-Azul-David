@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<a href="/" class="boton-volver">← Volver a la biblioteca</a>
     <div class="libro">
         <div class="pagina">
             <div class="titulo">Libro: <code>shift()</code></div>
@@ -13,7 +14,7 @@
                 <input type="number" id="numero" required>
                 <button type="submit">Agregar número</button>
             </form>
-            <p id="resultado-numeros"></p>
+            <div id="resultado-numeros" class="resultado-mano"s></div>
             <button id="quitar-numero">Quitar primer número</button>
 
             <form id="form-chat">
@@ -23,7 +24,7 @@
             <p id="resultado-chat"></p>
             <button id="quitar-mensaje">Quitar primer mensaje</button>
         </div>
-        <div class="linea-centro"></div>
+        <div class="linea-centro" class="resultado-mano"></div>
 
         <div class="pagina">
             <h3>Simulador de cola de atención al cliente</h3>
@@ -32,12 +33,9 @@
                 <button type="submit">Agregar cliente</button>
             </form>
             <button id="atender-cliente">Atender primer cliente</button>
-            <p id="resultado-cola"></p>
+            <div id="resultado-cola" class="resultado-mano"></div>
         </div>
     </div>
-
-    <a href="/" class="boton-volver">← Volver a la biblioteca</a>
-
     <script src="/js/shift.js"></script>
 </body>
 </html>

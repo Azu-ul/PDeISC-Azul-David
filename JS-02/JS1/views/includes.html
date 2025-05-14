@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>includes()</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<a href="/" class="boton-volver">← Volver a la biblioteca</a>
+  <div class="libro">
+    <div class="pagina">
+      <div class="titulo">Libro: <code>includes()</code></div>
+      <p>1. Completá 3 palabras. Vamos a buscar <strong>"admin"</strong>.</p>
+      <!-- Formulario para comprobar "admin" en un array -->
+<form id="form-admin">
+  <input type="text" name="user1" placeholder="Usuario 1" required />
+  <input type="text" name="user2" placeholder="Usuario 2" required />
+  <input type="text" name="user3" placeholder="Usuario 3" required />
+  <button type="submit">Verificar si "admin" está en el array</button>
+</form>
+<div id="resultado-admin" class="resultado-mano"></div>
+
+      <hr>
+
+      <p>2. Completá 3 colores. Vamos a buscar <strong>"verde"</strong>.</p>
+      <form id="form-colores">
+  <input type="text" name="color1" placeholder="Color 1" required />
+  <input type="text" name="color2" placeholder="Color 2" required />
+  <input type="text" name="color3" placeholder="Color 3" required />
+  <button type="submit">Verificar si "verde" está en el array</button>
+</form>
+<div id="resultado-colores" class="resultado-mano"></div>
+    </div>
+
+    <div class="linea-centro"></div>
+
+    <div class="pagina">
+      <p>3. Completá 3 numeros. Vamos a verificar el numero antes de sumarlo al array</p>
+      <form id="form-numeros">
+  <input type="number" name="num1" placeholder="Número 1" required />
+  <input type="number" name="num2" placeholder="Número 2" required />
+  <input type="number" name="num3" placeholder="Número 3" required />
+  <input type="number" name="numeroAAgregar" placeholder="Número a agregar" required />
+  <button type="submit">Verificar número antes de agregarlo</button>
+</form>
+<div id="resultado-numeros" class="resultado-mano"></div>
+    </div>
+  </div>
+  <script src="/js/includes.js"></script>
+</body>
+</html>

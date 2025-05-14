@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>forEach()</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<a href="/" class="boton-volver">← Volver a la biblioteca</a>
+  <div class="libro">
+    <div class="pagina">
+     <div class="titulo">Libro: <code>forEach()</code></div>
+      <form id="form-nombres">
+    <p>Nombres con saludo</p>
+    <label for="nombre1">Nombre 1: </label><input type="text" id="nombre1" required><br>
+    <label for="nombre2">Nombre 2: </label><input type="text" id="nombre2" required><br>
+    <label for="nombre3">Nombre 3: </label><input type="text" id="nombre3" required><br>
+    <button type="submit">Mostrar Saludos</button>
+  </form>
+<div id="resultado-nombres" class="resultado-mano"></div>
+      <hr>
+
+       <form id="form-numeros">
+    <p>Doble de los números</p>
+    <label for="numero1">Número 1: </label><input type="number" id="numero1" required><br>
+    <label for="numero2">Número 2: </label><input type="number" id="numero2" required><br>
+    <label for="numero3">Número 3: </label><input type="number" id="numero3" required><br>
+    <button type="submit">Mostrar Dobles</button>
+  </form>
+
+  <div id="resultado-numeros" class="resultado-mano"></div>
+</div>
+    <div class="linea-centro"></div>
+
+    <div class="pagina">
+<form id="form-objetos">
+    <p>Nombres con Edad</p>
+    <label for="nombreEdad1">Nombre 1: </label><input type="text" id="nombreEdad1" required>
+    <label for="edad1">Edad 1: </label><input type="number" id="edad1" required><br>
+
+    <label for="nombreEdad2">Nombre 2: </label><input type="text" id="nombreEdad2" required>
+    <label for="edad2">Edad 2: </label><input type="number" id="edad2" required><br>
+
+    <label for="nombreEdad3">Nombre 3: </label><input type="text" id="nombreEdad3" required>
+    <label for="edad3">Edad 3: </label><input type="number" id="edad3" required><br>
+
+    <button type="submit">Mostrar Edades</button>
+  </form>
+
+  <div id="resultado-objetos" class="resultado-mano"></div> 
+    </div>
+    
+  </div>
+  <script src="/js/forEach.js"></script>
+</body>
+</html>

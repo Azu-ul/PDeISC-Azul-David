@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>filter()</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<a href="/" class="boton-volver">← Volver a la biblioteca</a>
+  <div class="libro">
+    <div class="pagina">
+     <div class="titulo">Libro: <code>filter()</code></div>
+       <form id="form-numeros">
+    <p>Filtrar números mayores a 10</p>
+    <label for="numero1">Número 1: </label><input type="number" id="numero1" required><br>
+    <label for="numero2">Número 2: </label><input type="number" id="numero2" required><br>
+    <label for="numero3">Número 3: </label><input type="number" id="numero3" required><br>
+    <button type="submit">Filtrar números mayores a 10</button>
+  </form>
+
+  <div id="resultado-numeros" class="resultado-mano"></div>
+      <hr>
+
+        <form id="form-palabras">
+    <p>Filtrar palabras con más de 5 letras</p>
+    <label for="palabra1">Palabra 1: </label><input type="text" id="palabra1" required><br>
+    <label for="palabra2">Palabra 2: </label><input type="text" id="palabra2" required><br>
+    <label for="palabra3">Palabra 3: </label><input type="text" id="palabra3" required><br>
+    <button type="submit">Filtrar palabras</button>
+  </form>
+
+  <div id="resultado-palabras" class="resultado-mano"></div>
+</div>
+    <div class="linea-centro"></div>
+
+    <div class="pagina">
+  <form id="form-usuarios">
+    <p>Filtrar usuarios activos</p>
+    <label for="usuario1">Usuario 1: </label><input type="text" id="usuario1" required><br>
+    <label for="activo1">Activo (sí/no): </label><input type="text" id="activo1" required><br><br>
+
+    <label for="usuario2">Usuario 2: </label><input type="text" id="usuario2" required><br>
+    <label for="activo2">Activo (sí/no): </label><input type="text" id="activo2" required><br><br>
+
+    <label for="usuario3">Usuario 3: </label><input type="text" id="usuario3" required><br>
+    <label for="activo3">Activo (sí/no): </label><input type="text" id="activo3" required><br><br>
+
+    <button type="submit">Filtrar usuarios activos</button>
+  </form>
+
+  <div id="resultado-usuarios" class="resultado-mano"></div>
+    </div>
+    
+  </div>
+  <script src="/js/filter.js"></script>
+</body>
+</html>

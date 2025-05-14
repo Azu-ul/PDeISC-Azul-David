@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>map()</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<a href="/" class="boton-volver">← Volver a la biblioteca</a>
+  <div class="libro">
+    <div class="pagina">
+     <div class="titulo">Libro: <code>map()</code></div>
+      <form id="form-numeros">
+    <p>Multiplicar números por 3</p>
+    <label for="numero1">Número 1: </label><input type="number" id="numero1" required><br>
+    <label for="numero2">Número 2: </label><input type="number" id="numero2" required><br>
+    <label for="numero3">Número 3: </label><input type="number" id="numero3" required><br>
+    <button type="submit">Multiplicar por 3</button>
+  </form>
+
+  <div id="resultado-numeros" class="resultado-mano"></div>
+      <hr>
+
+       <form id="form-nombres">
+    <p>Convertir nombres a mayúsculas</p>
+    <label for="nombre1">Nombre 1: </label><input type="text" id="nombre1" required><br>
+    <label for="nombre2">Nombre 2: </label><input type="text" id="nombre2" required><br>
+    <label for="nombre3">Nombre 3: </label><input type="text" id="nombre3" required><br>
+    <button type="submit">Convertir a Mayúsculas</button>
+  </form>
+
+  <div id="resultado-nombres" class="resultado-mano"></div>
+</div>
+    <div class="linea-centro"></div>
+
+    <div class="pagina">
+  <form id="form-precios">
+    <p>Agregar IVA a precios</p>
+    <label for="precio1">Precio 1: </label><input type="number" id="precio1" required><br>
+    <label for="precio2">Precio 2: </label><input type="number" id="precio2" required><br>
+    <label for="precio3">Precio 3: </label><input type="number" id="precio3" required><br>
+    <button type="submit">Agregar IVA</button>
+  </form>
+
+  <div id="resultado-precios" class="resultado-mano"></div>
+    </div>
+    
+  </div>
+  <script src="/js/map.js"></script>
+</body>
+</html>

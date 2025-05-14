@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>slice()</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<a href="/" class="boton-volver">← Volver a la biblioteca</a>
+  <div class="libro">
+    <div class="pagina">
+      <div class="titulo">Libro: <code>slice()</code></div>
+      
+      <!-- Formulario para crear array de números -->
+      <div class="crear-array">
+        <h3>Crear array de números</h3>
+        <form action="">
+          <input type="number" id="num1" placeholder="Número 1" required>
+        <input type="number" id="num2" placeholder="Número 2" required>
+        <input type="number" id="num3" placeholder="Número 3" required>
+        <input type="number" id="num4" placeholder="Número 4" required>
+        <input type="number" id="num5" placeholder="Número 5" required>
+        <button type="submit" id="crear-numeros">Crear array</button>
+        <p id="array-numeros"></p>
+        </form>
+      </div>
+
+      <form id="form-numeros">
+        <button type="submit">Copiar primeros 3 números</button>
+      </form>
+      <div id="resultado-numeros" class="resultado-mano"></div>
+      
+      <!-- Formulario para crear array de películas -->
+      <div class="crear-array">
+        <h3>Crear array de películas</h3>
+        <form action="">
+<input type="text" id="pelicula1" placeholder="Película 1" required>
+        <input type="text" id="pelicula2" placeholder="Película 2" required>
+        <input type="text" id="pelicula3" placeholder="Película 3" required>
+        <input type="text" id="pelicula4" placeholder="Película 4" required>
+        <input type="text" id="pelicula5" placeholder="Película 5" required>
+        <button type="submit" id="crear-peliculas">Crear array</button>
+        <p id="array-peliculas"></p>
+        </form>
+        
+      </div>
+
+      <form id="form-peliculas">
+        <button type="submit" >Copiar películas de la posición 2 a la 4</button>
+      </form>
+      <div id="resultado-peliculas" class="resultado-mano"></div>
+    </div>
+    <div class="linea-centro"></div>
+    <div class="pagina">
+      <!-- Formulario para crear array de elementos -->
+      <div class="crear-array">
+        <h3>Crear array de elementos</h3>
+        <form action="">
+<input type="text" id="elemento1" placeholder="Elemento 1" required>
+        <input type="text" id="elemento2" placeholder="Elemento 2" required>
+        <input type="text" id="elemento3" placeholder="Elemento 3" required>
+        <input type="text" id="elemento4" placeholder="Elemento 4"required>
+        <input type="text" id="elemento5" placeholder="Elemento 5" required>
+        <button type="submit" id="crear-elementos">Crear array</button>
+        <p id="array-elementos"></p>
+        </form>
+        
+      </div>
+
+      <form id="form-ultimos">
+        <button type="submit" >Copiar últimos 3 elementos</button>
+      </form>
+      <div id="resultado-ultimos" class="resultado-mano"></div>
+    </div>
+  </div>
+  <script src="/js/slice.js"></script>
+</body>
+</html>

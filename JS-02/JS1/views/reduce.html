@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>reduce()</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<a href="/" class="boton-volver">← Volver a la biblioteca</a>
+  <div class="libro">
+    <div class="pagina">
+     <div class="titulo">Libro: <code>reduce()</code></div>
+      <form id="form-suma">
+      <p>Suma de elementos</p>
+      <input type="number" placeholder="Número 1" required>
+      <input type="number" placeholder="Número 2" required>
+      <input type="number" placeholder="Número 3" required>
+      <button type="submit">Sumar</button>
+    </form>
+    <div id="resultado-suma" class="resultado-mano"></div>
+      <hr>
+
+        <form id="form-multiplicacion">
+      <p>Multiplicación de elementos</p>
+      <input type="number" placeholder="Número 1" required>
+      <input type="number" placeholder="Número 2" required>
+      <input type="number" placeholder="Número 3" required>
+      <button type="submit">Multiplicar</button>
+    </form>
+    <div id="resultado-multiplicacion" class="resultado-mano"></div>
+</div>
+    <div class="linea-centro"></div>
+
+    <div class="pagina">
+ <form id="form-precios">
+      <p>Total de precios</p>
+      <input type="number" placeholder="Precio 1" required>
+      <input type="number" placeholder="Precio 2" required>
+      <input type="number" placeholder="Precio 3" required>
+      <button type="submit">Calcular total</button>
+    </form>
+    <div id="resultado-precios" class="resultado-mano"></div>
+    </div>
+    
+  </div>
+  <script src="/js/reduce.js"></script>
+</body>
+</html>

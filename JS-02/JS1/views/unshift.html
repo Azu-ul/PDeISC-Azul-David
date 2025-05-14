@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <a href="/" class="boton-volver">← Volver a la biblioteca</a>
     <div class="libro">
         <!-- Página 1: Agregar colores al principio de un array vacío -->
         <div class="pagina">
@@ -17,7 +18,7 @@
                 <input type="text" placeholder="Color 3" name="color3" required>
                 <button type="submit">Agregar colores</button>
             </form>
-            <p id="resultado-colores"></p>
+            <div id="resultado-colores" class="resultado-mano"></div>
         </div>
 
         <!-- Línea central que simula el libro abierto -->
@@ -37,10 +38,9 @@
                 <input type="text" placeholder="Usuario conectado" name="usuario" required>
                 <button type="submit">Agregar usuario</button>
             </form>
-            <p id="resultado-usuarios"></p>
+            <p div="resultado-usuarios" class="resultado-mano"></div>
         </div>
     </div>
-    <a href="/" class="boton-volver">← Volver a la biblioteca</a>
     <script src="/js/unshift.js"></script>
 </body>
 </html>
