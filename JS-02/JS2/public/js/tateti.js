@@ -59,7 +59,8 @@ function iniciarJuego() {
   turno = quienEmpezo; // Usar el valor de quién empieza
   overlayEleccionFicha.classList.add('oculto');
   crearTablero();
-  
+  mostrarTurno();
+
   // Si le toca a la máquina comenzar
   if (contraMaquina && turno !== simboloHumano) {
     setTimeout(jugadaMaquina, 500);
@@ -131,6 +132,7 @@ function verificarFinJuego() {
 // Cambiar turno
 function cambiarTurno() {
   turno = (turno === 'X') ? 'O' : 'X';
+  mostrarTurno();
   if (contraMaquina && turno !== simboloHumano) {
     setTimeout(jugadaMaquina, 500);
   }
@@ -198,11 +200,13 @@ function reiniciar() {
   
   overlayResultado.classList.add('oculto');
   crearTablero();
+  mostrarTurno();
 
   // Si le toca a la máquina comenzar
   if (contraMaquina && turno !== simboloHumano) {
     setTimeout(jugadaMaquina, 500);
   }
+  
 }
 
 // Nueva partida (desde cero, eligiendo modo)
@@ -220,6 +224,8 @@ function nuevaPartida() {
   quienEmpezo = 'X';
   inputX.value = '';
   inputO.value = '';
+  document.getElementById('turno-actual').textContent = 'Turno: ';
+
 }
 
 // Eventos formulario
@@ -230,8 +236,25 @@ formNombres.addEventListener('submit', e => {
   turno = quienEmpezo;
   overlayNombre.classList.add('oculto');
   crearTablero();
+  mostrarTurno();
 });
+
+function mostrarTurno() {
+  let texto = 'Turno: ';
+  if (contraMaquina) {
+    const esMaquina = turno !== simboloHumano;
+    texto += esMaquina ? `Máquina (${turno})` : `Vos (${turno})`;
+  } else {
+    const nombre = (turno === 'X') ? jugadorX : jugadorO;
+    texto += `${nombre} (${turno})`;
+  }
+  document.getElementById('turno-actual').textContent = texto;
+}
 
 // Botones reinicio y nueva partida
 btnReiniciar.addEventListener('click', reiniciar);
 btnNuevaPartida.addEventListener('click', nuevaPartida);
+
+document.getElementById('btn-volver-inicio').addEventListener('click', () => {
+  window.location.href = 'index.html';
+});

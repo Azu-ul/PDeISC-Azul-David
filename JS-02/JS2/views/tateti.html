@@ -40,8 +40,7 @@
 
   </div>
 </div>
-
-<p id="turno-actual" style="grid-area: turno; font-weight: bold; font-size: 1.3rem;">Turno: X</p>
+<p id="turno-actual" class="turno-actual">Turno: </p>
 <div class="tablero">
   <div class="casilla" data-fila="0" data-col="0"></div>
   <div class="casilla" data-fila="0" data-col="1"></div>
@@ -56,6 +55,7 @@
   <div class="casilla" data-fila="2" data-col="2"></div>
 </div>
 
+<button id="btn-volver-inicio">Volver al inicio</button>
 
 
   <div id="overlay" class="overlay oculto">
@@ -63,7 +63,7 @@
     <h2>Ganador: </h2>
     <button id="reiniciar">Volver a intentar</button>
     <button id="nueva-partida">Nueva partida</button>
-
+    <button onclick="window.location.href='index.html'">Salir</button>
   </div>
 </div>
 

@@ -235,5 +235,8 @@ document.getElementById('nueva-partida').addEventListener('click', () => {
   });
 });
 
+document.getElementById('btn-volver-inicio').addEventListener('click', () => {
+  window.location.href = 'index.html';
+});
 
 });

@@ -2,7 +2,7 @@ body, html {
   background-image: url('../img/Fondo.png');
   margin: 0;
   padding: 0;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Comic Sans MS', cursive;
   height: 100%;
   width: 100%;
   overflow-x: hidden;
@@ -91,61 +91,6 @@ body, html {
   border: 3px solid white;
 }
 
-/* Ranking */
-.ranking {
-  grid-area: ranking;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 14px;
-  padding: 16px;
-  box-shadow: 0 0 12px #00ffffbb;
-  color: #00ffff;
-  font-size: 0.9rem;
-  max-width: 100%;
-}
-
-.ranking h2 {
-  margin-top: 0;
-  margin-bottom: 12px;
-  font-size: 1.2rem;
-}
-
-#tabla-ranking {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-#tabla-ranking th,
-#tabla-ranking td {
-  padding: 6px 8px;
-  border: 1px solid #00ffff55;
-  text-align: center;
-  font-weight: normal;
-}
-
-#tabla-ranking th {
-  background: rgba(0, 255, 255, 0.2);
-}
-
-#tabla-ranking td {
-  background: rgba(0, 255, 255, 0.1);
-}
-
-#limpiar-ranking {
-  margin-top: 10px;
-  width: 100%;
-  padding: 8px 0;
-  font-size: 0.9rem;
-  background-color: #ff4444;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#limpiar-ranking:hover {
-  background-color: #cc0000;
-}
 
 /* Responsive para móviles */
 @media (max-width: 700px) {
@@ -237,12 +182,45 @@ body, html {
   border-radius: 12px;
   cursor: pointer;
   color: black;
-  box-shadow: 0 0 10px #0ff;
+  box-shadow: 0 0 5px #0ff;
   transition: background-color 0.3s;
 }
 
 .mensaje button:hover {
   background-color: #00c4cc;
+}
+
+#btn-volver-inicio {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: 2px solid #00f0ff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 0 10px #00f0ff88;
+}
+
+#btn-volver-inicio:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.turno-actual {
+  font-size: 1.4rem;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #ffffff33;
+  padding: 10px 20px;
+  border-radius: 12px;
+  text-align: center;
+  width: fit-content;
+  margin: 20px auto;
+  box-shadow: 0 0 10px #00f0ff88;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
 }
 
 .color {
@@ -278,4 +256,14 @@ body, html {
 
 #form-nombre button:hover {
   background-color: #00c4cc;
+}
+
+#overlay .mensaje button {
+  display: block;
+  width: 180px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }

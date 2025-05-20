@@ -2,7 +2,7 @@ body, html {
   background-image: url('../img/Fondo.png');
   margin: 0;
   padding: 0;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Comic Sans MS', cursive;
   height: 100%;
   width: 100%;
   overflow-x: hidden;
@@ -22,16 +22,16 @@ body, html {
 
 /* Layout principal */
 .contenedor {
-  display: grid;
+   display: grid;
   grid-template-areas:
-    "turno"
-    "tablero";
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
-  gap: 20px;
-  justify-items: center; /* centra horizontalmente los elementos */
+    "nivel nivel"
+    "tablero ranking";
+  grid-template-columns: auto 260px;
+  gap: 60px;
+  align-items: start;
+  justify-content: center;
   width: 100%;
-  max-width: 500px; /* menos ancho para que quede centrado y no tan ancho */
+  max-width: 1000px;
   padding: 0 30px;
 }
 
@@ -217,7 +217,7 @@ body, html {
   border-radius: 12px;
   cursor: pointer;
   color: black;
-  box-shadow: 0 0 10px #0ff;
+  box-shadow: 0 0 5px #0ff;
   transition: background-color 0.3s;
 }
 
@@ -231,6 +231,23 @@ body, html {
 
 .activo-juego .color:active {
   transform: scale(0.9);
+}
+#btn-volver-inicio {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: 2px solid #00f0ff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 0 10px #00f0ff88;
+}
+
+#btn-volver-inicio:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
 }
 
 #input-nombre {
@@ -276,3 +293,16 @@ body, html {
 #limpiar-ranking:hover {
   background-color: #e60000;
 }
+
+#overlay .mensaje button {
+  display: block;
+  width: 180px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+
