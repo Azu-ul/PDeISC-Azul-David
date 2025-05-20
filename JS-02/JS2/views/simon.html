@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simón Dice Galáctico</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    
+    <h1 class="titulo-simon">🛰️ Simón Dice Galáctico</h1>
+  <div class="contenedor-simon">
+<div class="ranking-simon">
+  <h2>Ranking</h2>
+  <table id="tabla-ranking-simon">
+  <thead>
+    <tr><th>Nombre</th><th>Nivel</th></tr>
+  </thead>
+  <tbody>
+    <!-- Aquí se insertan las filas con JS -->
+  </tbody>
+</table>
+
+  <button id="limpiar-ranking-simon">Limpiar ranking</button>
+</div>
+
+    <div class="tablero-simon">
+      <button class="color-simon rojo-simon" data-color="rojo"></button>
+      <button class="color-simon verde-simon" data-color="verde"></button>
+      <button class="color-simon azul-simon" data-color="azul"></button>
+      <button class="color-simon amarillo-simon" data-color="amarillo"></button>
+    </div>
+    <p class="nivel-simon" id="nivel-simon">Nivel: 0</p>
+  </div>
+<div id="overlay-nombre-simon" class="overlay-simon">
+  <div class="mensaje-simon">
+    <h2>Bienvenido a Simón Dice Galáctico</h2>
+    <form id="form-nombre-simon">
+      <input type="text" id="input-nombre-simon" placeholder="Tu nombre" required minlength="2" />
+      <button type="submit">Empezar</button>
+    </form>
+  </div>
+</div>
+<div id="overlay-cuenta-simon" class="overlay-simon oculto-simon">
+  <div class="mensaje-simon">
+    <h2 id="cuenta-regresiva-simon">3</h2>
+  </div>
+</div>
+
+  <div id="overlay-simon" class="overlay-simon oculto-simon">
+  <div class="mensaje-simon">
+    <h2>¡Perdiste!</h2>
+    <button id="reiniciar-simon">Volver a intentar</button>
+    <button id="nueva-partida-simon">Nueva partida</button>
+
+  </div>
+</div>
+
+
+  <script src="/js/simon.js"></script>
+</body>
+</html>
