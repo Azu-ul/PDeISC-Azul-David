@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let secuenciaSimon = [];
   let secuenciaUsuario = [];
   let juegoActivo = false;
-  const contenedor = document.querySelector('.contenedor-simon');
+  const contenedor = document.querySelector('.contenedor');
 
   let nombreJugador = '';
 
-const overlayNombre = document.getElementById('overlay-nombre-simon');
-const formNombre = document.getElementById('form-nombre-simon');
-const inputNombre = document.getElementById('input-nombre-simon');
+const overlayNombre = document.getElementById('overlay-nombre');
+const formNombre = document.getElementById('form-nombre');
+const inputNombre = document.getElementById('input-nombre');
 
 formNombre.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -22,15 +22,15 @@ formNombre.addEventListener('submit', (e) => {
   }
 
   nombreJugador = nombre;
-  overlayNombre.classList.add('oculto-simon');  // oculta el formulario
+  overlayNombre.classList.add('oculto');  // oculta el formulario
 
   // Mostrar la cuenta regresiva
   let cuenta = 3;
-  const overlayCuenta = document.getElementById('overlay-cuenta-simon');
-  const cuentaElemento = document.getElementById('cuenta-regresiva-simon');
+  const overlayCuenta = document.getElementById('overlay-cuenta');
+  const cuentaElemento = document.getElementById('cuenta-regresiva');
 
   cuentaElemento.textContent = cuenta;
-  overlayCuenta.classList.remove('oculto-simon');
+  overlayCuenta.classList.remove('oculto');
 
   const intervalo = setInterval(() => {
     cuenta--;
@@ -38,20 +38,20 @@ formNombre.addEventListener('submit', (e) => {
       cuentaElemento.textContent = cuenta;
     } else {
       clearInterval(intervalo);
-      overlayCuenta.classList.add('oculto-simon');
+      overlayCuenta.classList.add('oculto');
 
       // Arrancamos el juego recién acá
       secuenciaSimon = [];
       secuenciaUsuario = [];
       juegoActivo = true;
-      document.querySelector('.contenedor-simon').classList.add('activo-simon-juego');
+      document.querySelector('.contenedor').classList.add('activo-juego');
       agregarColorASimon();
     }
   }, 1000);
 });
 
 
-  const colores = ['rojo-simon', 'verde-simon', 'azul-simon', 'amarillo-simon'];
+  const colores = ['rojo', 'verde', 'azul', 'amarillo'];
 
   function agregarColorASimon() {
     const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
@@ -72,9 +72,9 @@ formNombre.addEventListener('submit', (e) => {
   function iluminarColor(color) {
     const boton = document.querySelector(`.${color}`);
     if (!boton) return;
-    boton.classList.add('activo-simon');
+    boton.classList.add('activo');
     setTimeout(() => {
-      boton.classList.remove('activo-simon');
+      boton.classList.remove('activo');
     }, 300);
   }
 
@@ -98,32 +98,32 @@ formNombre.addEventListener('submit', (e) => {
 
 
   function actualizarNivel() {
-    const nivelTexto = document.getElementById('nivel-simon');
+    const nivelTexto = document.getElementById('nivel');
     nivelTexto.textContent = `Nivel: ${secuenciaSimon.length}`;
   }
 
 
   // Listeners para los botones de colores
-  document.querySelectorAll('.color-simon').forEach(boton => {
+  document.querySelectorAll('.color').forEach(boton => {
     boton.addEventListener('click', () => {
-      const color = boton.classList[1]; // rojo-simon, verde-simon, etc.
+      const color = boton.classList[1]; // rojo, verde, etc.
       manejarClickUsuario(color);
     });
   });
 
   function perder() {
   juegoActivo = false;
-  document.querySelector('.contenedor-simon').classList.remove('activo-simon-juego');
+  document.querySelector('.contenedor').classList.remove('activo-juego');
 
-  const overlay = document.getElementById('overlay-simon');
+  const overlay = document.getElementById('overlay');
   const mensaje = overlay.querySelector('h2');
 
   mensaje.textContent = `¡Perdiste, ${nombreJugador}!`;
 
-  overlay.classList.remove('oculto-simon');
+  overlay.classList.remove('oculto');
 
-  document.querySelectorAll('.color-simon').forEach(boton => boton.disabled = true);
-  const btnIniciar = document.getElementById('iniciar-simon');
+  document.querySelectorAll('.color').forEach(boton => boton.disabled = true);
+  const btnIniciar = document.getElementById('iniciar');
   if (btnIniciar) btnIniciar.disabled = true;
 
   guardarPuntaje(nombreJugador, secuenciaSimon.length);
@@ -152,7 +152,7 @@ function guardarPuntaje(nombre, nivel) {
 
 function mostrarRanking() {
   const ranking = JSON.parse(localStorage.getItem('rankingSimon')) || [];
-  const tbody = document.querySelector('#tabla-ranking-simon tbody');
+  const tbody = document.querySelector('#tabla-ranking tbody');
   tbody.innerHTML = '';
 
   ranking
@@ -163,24 +163,24 @@ function mostrarRanking() {
       tbody.appendChild(fila);
     });
 }
-document.getElementById('limpiar-ranking-simon').addEventListener('click', () => {
+document.getElementById('limpiar-ranking').addEventListener('click', () => {
   localStorage.removeItem('rankingSimon');
   mostrarRanking();
 });
 
 
-document.getElementById('reiniciar-simon').addEventListener('click', () => {
+document.getElementById('reiniciar').addEventListener('click', () => {
   // Ocultar overlay de perdiste
-  const overlay = document.getElementById('overlay-simon');
-  overlay.classList.add('oculto-simon');
+  const overlay = document.getElementById('overlay');
+  overlay.classList.add('oculto');
 
   // Mostrar cuenta regresiva
   let cuenta = 3;
-  const overlayCuenta = document.getElementById('overlay-cuenta-simon');
-  const cuentaElemento = document.getElementById('cuenta-regresiva-simon');
+  const overlayCuenta = document.getElementById('overlay-cuenta');
+  const cuentaElemento = document.getElementById('cuenta-regresiva');
 
   cuentaElemento.textContent = cuenta;
-  overlayCuenta.classList.remove('oculto-simon');
+  overlayCuenta.classList.remove('oculto');
 
   const intervalo = setInterval(() => {
     cuenta--;
@@ -188,10 +188,10 @@ document.getElementById('reiniciar-simon').addEventListener('click', () => {
       cuentaElemento.textContent = cuenta;
     } else {
       clearInterval(intervalo);
-      overlayCuenta.classList.add('oculto-simon');
+      overlayCuenta.classList.add('oculto');
 
       // Habilitar botones
-      document.querySelectorAll('.color-simon').forEach(boton => {
+      document.querySelectorAll('.color').forEach(boton => {
         boton.disabled = false;
       });
 
@@ -202,7 +202,7 @@ document.getElementById('reiniciar-simon').addEventListener('click', () => {
       actualizarNivel();
 
       // Mostrar animación de juego activo
-      contenedor.classList.add('activo-simon-juego');
+      contenedor.classList.add('activo-juego');
 
       // Iniciar nueva secuencia
       agregarColorASimon();
@@ -210,14 +210,14 @@ document.getElementById('reiniciar-simon').addEventListener('click', () => {
   }, 1000);
 });
 
-document.getElementById('nueva-partida-simon').addEventListener('click', () => {
+document.getElementById('nueva-partida').addEventListener('click', () => {
   // Ocultar overlay de perdiste
-  const overlay = document.getElementById('overlay-simon');
-  overlay.classList.add('oculto-simon');
+  const overlay = document.getElementById('overlay');
+  overlay.classList.add('oculto');
 
   // Mostrar formulario de nombre
-  const overlayNombre = document.getElementById('overlay-nombre-simon');
-  overlayNombre.classList.remove('oculto-simon');
+  const overlayNombre = document.getElementById('overlay-nombre');
+  overlayNombre.classList.remove('oculto');
 
   // Limpiar input y nivel
   inputNombre.value = '';
@@ -227,10 +227,10 @@ document.getElementById('nueva-partida-simon').addEventListener('click', () => {
   actualizarNivel();
 
   // Resetear clases
-  contenedor.classList.remove('activo-simon-juego');
+  contenedor.classList.remove('activo-juego');
 
   // Habilitar botones
-  document.querySelectorAll('.color-simon').forEach(boton => {
+  document.querySelectorAll('.color').forEach(boton => {
     boton.disabled = false;
   });
 });
