@@ -85,7 +85,7 @@ formNombre.addEventListener('submit', (e) => {
   const indice = secuenciaUsuario.length - 1;
 
   if (secuenciaUsuario[indice] !== secuenciaSimon[indice]) {
-    perder();
+    perderDirectamente();
     return;
   }
 
@@ -111,132 +111,208 @@ formNombre.addEventListener('submit', (e) => {
     });
   });
 
-  function perder() {
-  juegoActivo = false;
-  document.querySelector('.contenedor').classList.remove('activo-juego');
-
-  const overlay = document.getElementById('overlay');
-  const mensaje = overlay.querySelector('h2');
-
-  mensaje.textContent = `¡Perdiste, ${nombreJugador}!`;
-
-  overlay.classList.remove('oculto');
-
-  document.querySelectorAll('.color').forEach(boton => boton.disabled = true);
-  const btnIniciar = document.getElementById('iniciar');
-  if (btnIniciar) btnIniciar.disabled = true;
-
-  guardarPuntaje(nombreJugador, secuenciaSimon.length);
-  mostrarRanking();
-
-}
-function guardarPuntaje(nombre, nivel) {
-  const ranking = JSON.parse(localStorage.getItem('rankingSimon')) || [];
-
-  // Buscar si ya existe un puntaje para ese jugador
-  const jugadorExistente = ranking.find(j => j.nombre === nombre);
-
-  if (jugadorExistente) {
-    // Si el nuevo nivel es mayor, actualizarlo
-    if (nivel > jugadorExistente.nivel) {
-      jugadorExistente.nivel = nivel;
-    }
-  } else {
-    // Si no existe, agregar nuevo jugador
-    ranking.push({ nombre, nivel });
+  function mostrarSecuenciaCorrectaAlPerder() {
+    return new Promise((resolve) => {
+      // Desactivar todos los botones para evitar clics durante la demostración
+      document.querySelectorAll('.color').forEach(boton => {
+        boton.disabled = true;
+      });
+      
+      // Muestra la secuencia completa con una pausa entre cada color
+      let index = 0;
+      const mostrarSiguienteColor = () => {
+        if (index < secuenciaSimon.length) {
+          const color = secuenciaSimon[index];
+          iluminarColor(color);
+          index++;
+          setTimeout(mostrarSiguienteColor, 600);
+        } else {
+          resolve(); // Termina la secuencia
+        }
+      };
+      
+      // Empieza a mostrar la secuencia después de una breve pausa
+      setTimeout(mostrarSiguienteColor, 500);
+    });
   }
 
-  localStorage.setItem('rankingSimon', JSON.stringify(ranking));
-}
-
-
-function mostrarRanking() {
-  const ranking = JSON.parse(localStorage.getItem('rankingSimon')) || [];
-  const tbody = document.querySelector('#tabla-ranking tbody');
-  tbody.innerHTML = '';
-
-  ranking
-    .sort((a, b) => b.nivel - a.nivel) // orden descendente
-    .forEach(({ nombre, nivel }) => {
-      const fila = document.createElement('tr');
-      fila.innerHTML = `<td>${nombre}</td><td>${nivel}</td>`;
-      tbody.appendChild(fila);
-    });
-}
-document.getElementById('limpiar-ranking').addEventListener('click', () => {
-  localStorage.removeItem('rankingSimon');
-  mostrarRanking();
-});
-
-
-document.getElementById('reiniciar').addEventListener('click', () => {
-  // Ocultar overlay de perdiste
-  const overlay = document.getElementById('overlay');
-  overlay.classList.add('oculto');
-
-  // Mostrar cuenta regresiva
-  let cuenta = 3;
-  const overlayCuenta = document.getElementById('overlay-cuenta');
-  const cuentaElemento = document.getElementById('cuenta-regresiva');
-
-  cuentaElemento.textContent = cuenta;
-  overlayCuenta.classList.remove('oculto');
-
-  const intervalo = setInterval(() => {
-    cuenta--;
-    if (cuenta > 0) {
-      cuentaElemento.textContent = cuenta;
-    } else {
-      clearInterval(intervalo);
-      overlayCuenta.classList.add('oculto');
-
-      // Habilitar botones
-      document.querySelectorAll('.color').forEach(boton => {
-        boton.disabled = false;
-      });
-
-      // Reiniciar variables
-      secuenciaSimon = [];
-      secuenciaUsuario = [];
-      juegoActivo = true;
-      actualizarNivel();
-
-      // Mostrar animación de juego activo
-      contenedor.classList.add('activo-juego');
-
-      // Iniciar nueva secuencia
-      agregarColorASimon();
+  function crearTextoSecuencia() {
+    // Convierte la secuencia de colores en un texto más compacto
+    const simbolosColores = {
+      'rojo': '🔴',
+      'verde': '🟢',
+      'azul': '🔵',
+      'amarillo': '🟡'
+    };
+    
+    // Dividir la secuencia en grupos de 5 para hacerla más compacta
+    const secuenciaFormateada = [];
+    for (let i = 0; i < secuenciaSimon.length; i += 5) {
+      const grupo = secuenciaSimon.slice(i, i + 5);
+      const textoGrupo = grupo.map((color, idx) => 
+        `<span class="color-item">${i + idx + 1}: ${simbolosColores[color]}</span>`
+      ).join(' ');
+      secuenciaFormateada.push(textoGrupo);
     }
-  }, 1000);
-});
+    
+    return secuenciaFormateada.join('<br>');
+  }
 
-document.getElementById('nueva-partida').addEventListener('click', () => {
-  // Ocultar overlay de perdiste
-  const overlay = document.getElementById('overlay');
-  overlay.classList.add('oculto');
+  function perderDirectamente() {
+    juegoActivo = false;
+    document.querySelector('.contenedor').classList.remove('activo-juego');
+    
+    // Mostrar directamente el overlay de perdiste sin reproducir la secuencia
+    const overlay = document.getElementById('overlay');
+    const mensaje = overlay.querySelector('h2');
+    const secuenciaCorrecta = document.getElementById('secuencia-correcta');
+    
+    mensaje.textContent = `¡Perdiste, ${nombreJugador}!`;
+    secuenciaCorrecta.innerHTML = crearTextoSecuencia();
+    
+    overlay.classList.remove('oculto');
+    
+    document.querySelectorAll('.color').forEach(boton => boton.disabled = true);
+    const btnIniciar = document.getElementById('iniciar');
+    if (btnIniciar) btnIniciar.disabled = true;
+    
+    guardarPuntaje(nombreJugador, secuenciaSimon.length);
+    mostrarRanking();
+  }
+  
+  // Mantenemos la función original por si queremos usarla en el futuro
+  function perder() {
+    juegoActivo = false;
+    document.querySelector('.contenedor').classList.remove('activo-juego');
+    
+    // Primero mostrar la secuencia correcta
+    mostrarSecuenciaCorrectaAlPerder().then(() => {
+      const overlay = document.getElementById('overlay');
+      const mensaje = overlay.querySelector('h2');
+      const secuenciaCorrecta = document.getElementById('secuencia-correcta');
+      
+      mensaje.textContent = `¡Perdiste, ${nombreJugador}!`;
+      secuenciaCorrecta.innerHTML = crearTextoSecuencia();
+      
+      overlay.classList.remove('oculto');
+      
+      document.querySelectorAll('.color').forEach(boton => boton.disabled = true);
+      const btnIniciar = document.getElementById('iniciar');
+      if (btnIniciar) btnIniciar.disabled = true;
+      
+      guardarPuntaje(nombreJugador, secuenciaSimon.length);
+      mostrarRanking();
+    });
+  }
 
-  // Mostrar formulario de nombre
-  const overlayNombre = document.getElementById('overlay-nombre');
-  overlayNombre.classList.remove('oculto');
+  function guardarPuntaje(nombre, nivel) {
+    const ranking = JSON.parse(localStorage.getItem('rankingSimon')) || [];
 
-  // Limpiar input y nivel
-  inputNombre.value = '';
-  nombreJugador = '';
-  secuenciaSimon = [];
-  secuenciaUsuario = [];
-  actualizarNivel();
+    // Buscar si ya existe un puntaje para ese jugador
+    const jugadorExistente = ranking.find(j => j.nombre === nombre);
 
-  // Resetear clases
-  contenedor.classList.remove('activo-juego');
+    if (jugadorExistente) {
+      // Si el nuevo nivel es mayor, actualizarlo
+      if (nivel > jugadorExistente.nivel) {
+        jugadorExistente.nivel = nivel;
+      }
+    } else {
+      // Si no existe, agregar nuevo jugador
+      ranking.push({ nombre, nivel });
+    }
 
-  // Habilitar botones
-  document.querySelectorAll('.color').forEach(boton => {
-    boton.disabled = false;
+    localStorage.setItem('rankingSimon', JSON.stringify(ranking));
+  }
+
+
+  function mostrarRanking() {
+    const ranking = JSON.parse(localStorage.getItem('rankingSimon')) || [];
+    const tbody = document.querySelector('#tabla-ranking tbody');
+    tbody.innerHTML = '';
+
+    ranking
+      .sort((a, b) => b.nivel - a.nivel) // orden descendente
+      .forEach(({ nombre, nivel }) => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `<td>${nombre}</td><td>${nivel}</td>`;
+        tbody.appendChild(fila);
+      });
+  }
+  
+  document.getElementById('limpiar-ranking').addEventListener('click', () => {
+    localStorage.removeItem('rankingSimon');
+    mostrarRanking();
   });
-});
 
-document.getElementById('btn-volver-inicio').addEventListener('click', () => {
-  window.location.href = 'index.html';
-});
+
+  document.getElementById('reiniciar').addEventListener('click', () => {
+    // Ocultar overlay de perdiste
+    const overlay = document.getElementById('overlay');
+    overlay.classList.add('oculto');
+
+    // Mostrar cuenta regresiva
+    let cuenta = 3;
+    const overlayCuenta = document.getElementById('overlay-cuenta');
+    const cuentaElemento = document.getElementById('cuenta-regresiva');
+
+    cuentaElemento.textContent = cuenta;
+    overlayCuenta.classList.remove('oculto');
+
+    const intervalo = setInterval(() => {
+      cuenta--;
+      if (cuenta > 0) {
+        cuentaElemento.textContent = cuenta;
+      } else {
+        clearInterval(intervalo);
+        overlayCuenta.classList.add('oculto');
+
+        // Habilitar botones
+        document.querySelectorAll('.color').forEach(boton => {
+          boton.disabled = false;
+        });
+
+        // Reiniciar variables
+        secuenciaSimon = [];
+        secuenciaUsuario = [];
+        juegoActivo = true;
+        actualizarNivel();
+
+        // Mostrar animación de juego activo
+        contenedor.classList.add('activo-juego');
+
+        // Iniciar nueva secuencia
+        agregarColorASimon();
+      }
+    }, 1000);
+  });
+
+  document.getElementById('nueva-partida').addEventListener('click', () => {
+    // Ocultar overlay de perdiste
+    const overlay = document.getElementById('overlay');
+    overlay.classList.add('oculto');
+
+    // Mostrar formulario de nombre
+    const overlayNombre = document.getElementById('overlay-nombre');
+    overlayNombre.classList.remove('oculto');
+
+    // Limpiar input y nivel
+    inputNombre.value = '';
+    nombreJugador = '';
+    secuenciaSimon = [];
+    secuenciaUsuario = [];
+    actualizarNivel();
+
+    // Resetear clases
+    contenedor.classList.remove('activo-juego');
+
+    // Habilitar botones
+    document.querySelectorAll('.color').forEach(boton => {
+      boton.disabled = false;
+    });
+  });
+
+  document.getElementById('btn-volver-inicio').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
 
 });

@@ -4,7 +4,6 @@ body, html {
   padding: 0;
   font-family: 'Comic Sans MS', cursive;
   height: 100%;
-  width: 100%;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -304,5 +303,43 @@ body, html {
   transition: all 0.3s ease;
 }
 
+/* Agregar al archivo CSS existente */
+
+.secuencia-correcta {
+  margin: 5px 0 10px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  text-align: center;
+  max-height: 80px;
+  overflow-y: auto;
+  line-height: 1.2;
+  font-size: 0.85em;
+}
+
+.secuencia-title {
+  margin: 5px 0;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.color-item {
+  display: inline-block;
+  margin: 2px 3px;
+  white-space: nowrap;
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 400px) {
+  .secuencia-correcta {
+    font-size: 0.8em;
+    padding: 4px;
+    max-height: 70px;
+  }
+  
+  .color-item {
+    margin: 1px 2px;
+  }
+}
 
 

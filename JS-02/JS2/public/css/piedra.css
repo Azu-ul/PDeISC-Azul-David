@@ -1,0 +1,182 @@
+body, html {
+  background-image: url('../img/Fondo.png');
+  margin: 0;
+  padding: 0;
+  font-family: 'Comic Sans MS', cursive;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+    .titulo {
+      font-size: 3rem;
+      color: #00f0ff;
+      text-align: center;
+      margin: 30px 0 10px;
+      text-shadow: 0 0 10px #00f0ff80;
+    }
+
+    .boton-iniciar {
+      padding: 12px 30px;
+      background-color: #00f0ff;
+      color: black;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 0 15px #0ff;
+      margin: 40px;
+      transition: background-color 0.3s;
+    }
+
+    .boton-iniciar:hover {
+      background-color: #00c4cc;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .oculto {
+      display: none !important;
+    }
+
+    .mensaje {
+      background-color: #111;
+      border: 3px solid #00f0ff;
+      border-radius: 15px;
+      padding: 40px 60px;
+      text-align: center;
+      color: #00f0ff;
+      font-size: 2rem;
+      box-shadow: 0 0 20px #0ff;
+    }
+
+    .mensaje button {
+      margin-top: 25px;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      background-color: #00f0ff;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      color: black;
+      box-shadow: 0 0 10px #0ff;
+      transition: background-color 0.3s;
+    }
+
+    .mensaje button:hover {
+      background-color: #00c4cc;
+    }
+
+    #form-nombres input {
+      padding: 10px;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 20px;
+      width: 80%;
+      box-sizing: border-box;
+    }
+
+    /* Cuenta regresiva */
+    #cuenta-regresiva {
+      font-size: 3rem;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      margin: 40px 0;
+      user-select: none;
+    }
+
+    /* Zona de juego */
+    #zona-juego {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      max-width: 800px;
+      margin-top: 30px;
+    }
+
+    .jugador {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .nombre-jugador {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .botones-jugador {
+      display: flex;
+      gap: 20px;
+      margin: 40px;
+    }
+
+    .botones-jugador button {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      padding: 20px;
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      border: 2px solid #00f0ff;
+      background: radial-gradient(circle, #001f33 0%, #000 100%);
+      color: #00f0ff;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00f0ff55;
+      transition: transform 0.2s;
+    }
+
+    .botones-jugador button:hover:not(:disabled) {
+      transform: scale(1.1);
+      background-color: #00305a;
+    }
+
+    .botones-jugador button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .botones-jugador button .tecla {
+      font-size: 0.8rem;
+      color: #ccc;
+      margin-top: 6px;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #zona-juego {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .mensaje {
+        padding: 20px 30px;
+        font-size: 1.5rem;
+      }
+    }

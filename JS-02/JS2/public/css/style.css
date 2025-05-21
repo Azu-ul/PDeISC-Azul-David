@@ -4,21 +4,14 @@ body, html {
   padding: 0;
   font-family: 'Comic Sans MS', cursive;
   height: 100%;
-  width: 100%;
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 10px;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .fondo-estelar {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

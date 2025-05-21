@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Piedra, Papel o Tijera</title>
+  <link rel="stylesheet" href="/css/piedra.css" />
+</head>
+<body>
+  <h1 class="titulo">Piedra, Papel o Tijera</h1>
+  
+  <!-- Overlay de modo de juego -->
+  <div id="overlay-modo" class="overlay">
+    <div class="mensaje">
+      <h2>¿Cómo querés jugar?</h2>
+      <button id="modo-vs-persona">Contra otra persona</button>
+      <button id="modo-vs-maquina">Contra la máquina</button>
+      <br />
+      <button id="salir-modo">Salir</button>
+    </div>
+  </div>
+  
+  <!-- Overlay de nombres -->
+  <div id="overlay-nombres" class="overlay oculto">
+    <form id="form-nombres" class="mensaje">
+      <div id="nombres-persona">
+        <label for="nombre1">Jugador 1:</label>
+        <input type="text" id="nombre1" name="nombre1" placeholder="Nombre jugador 1" required />
+        <label for="nombre2">Jugador 2:</label>
+        <input type="text" id="nombre2" name="nombre2" placeholder="Nombre jugador 2" required />
+      </div>
+      <div id="nombres-maquina" class="oculto">
+        <label for="nombre1solo">Tu nombre:</label>
+        <input type="text" id="nombre1solo" name="nombre1solo" placeholder="Tu nombre" required />
+      </div>
+      <button type="submit">Aceptar</button>
+    </form>
+  </div>
+  
+  <!-- Botón de iniciar partida -->
+  <div id="inicio-partida" class="oculto">
+    <button id="btn-iniciar" class="boton-iniciar">Iniciar Partida</button>
+    <div id="cuenta-regresiva"></div>
+  </div>
+  
+  <!-- Zona de juego -->
+  <div id="zona-juego" class="oculto">
+    <!-- Jugador 1 vs Jugador 2 -->
+    <div class="jugador">
+      <div id="jugador1-nombre" class="nombre-jugador"></div>
+      <div id="jugador1-botones" class="botones-jugador">
+        <button data-jugada="piedra">
+          ⛰️
+          <span class="tecla">A</span>
+        </button>
+        <button data-jugada="papel">
+          📄
+          <span class="tecla">S</span>
+        </button>
+        <button data-jugada="tijera">
+          ✂️
+          <span class="tecla">D</span>
+        </button>
+      </div>
+    </div>
+    <div class="jugador">
+      <div id="jugador2-nombre" class="nombre-jugador"></div>
+      <div id="jugador2-botones" class="botones-jugador">
+        <button data-jugada="piedra">
+          ⛰️
+          <span class="tecla">J</span>
+        </button>
+        <button data-jugada="papel">
+          📄
+          <span class="tecla">K</span>
+        </button>
+        <button data-jugada="tijera">
+          ✂️
+          <span class="tecla">L</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Botones Jugador vs Máquina -->
+    <div class="jugador">
+      <div id="botones-vs-maquina" class="botones-jugador oculto">
+        <button data-jugada="piedra">
+          ⛰️
+          <span class="tecla">A</span>
+        </button>
+        <button data-jugada="papel">
+          📄
+          <span class="tecla">S</span>
+        </button>
+        <button data-jugada="tijera">
+          ✂️
+          <span class="tecla">D</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Overlay de resultado -->
+  <div id="overlay-final" class="overlay oculto">
+    <div class="mensaje">
+      <h2 id="mensaje-ganador">Ganador: </h2>
+      <button id="reiniciar">Volver a intentar</button>
+      <button id="nueva-partida">Nueva partida</button>
+      <button id="salir">Salir</button>
+    </div>
+  </div>
+  <script src="/js/piedra.js"></script>
+</body>
+</html>
