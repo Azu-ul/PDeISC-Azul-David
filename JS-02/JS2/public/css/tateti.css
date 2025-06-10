@@ -91,35 +91,72 @@ body, html {
   border: 3px solid white;
 }
 
-
-/* Responsive para móviles */
+/* Mejoras responsive adicionales sin cambiar clases ni estructura */
 @media (max-width: 700px) {
-  .contenedor {
-    grid-template-areas:
-      "nivel"
-      "tablero"
-      "ranking";
-    grid-template-columns: 1fr;
-    justify-items: center;
+  html, body {
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .titulo {
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 0 10px;
   }
 
   .tablero {
-    grid-template-columns: repeat(2, 90px);
-    grid-template-rows: repeat(2, 90px);
-    gap: 12px;
+    grid-template-columns: repeat(3, 70px);
+    grid-template-rows: repeat(3, 70px);
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .casilla {
+    font-size: 2.5rem;
+    border-width: 1.5px;
+  }
+
+  .mensaje {
+    font-size: 2rem;
+    padding: 30px 20px;
+  }
+
+  .mensaje button,
+  #form-nombre button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    width: 90%;
+    max-width: 250px;
+  }
+
+  #btn-volver-inicio {
+    width: 90%;
+    max-width: 250px;
+    font-size: 1rem;
+  }
+
+  .turno-actual {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+
+  #jugadorX, #jugadorO {
+    font-size: 1rem;
+    padding: 8px;
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .nivel {
+    font-size: 1.2rem;
   }
 
   .color {
-    width: 90px;
-    height: 90px;
-  }
-
-  .ranking {
-    width: 90vw;
-    max-width: 400px;
-    margin-top: 20px;
+    width: 80px;
+    height: 80px;
   }
 }
+
 
 .rojo { background-color: #ff4d4d; }
 .verde { background-color: #4dff4d; }

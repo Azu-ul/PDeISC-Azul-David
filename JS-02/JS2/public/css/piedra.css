@@ -169,14 +169,77 @@ body, html {
     }
 
     /* Responsive */
-    @media (max-width: 768px) {
-      #zona-juego {
-        flex-direction: column;
-        gap: 30px;
-      }
+/* Mejora responsive sin alterar clases ni estructura existente */
+@media (max-width: 768px) {
+  html, body {
+    padding: 10px;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
 
-      .mensaje {
-        padding: 20px 30px;
-        font-size: 1.5rem;
-      }
-    }
+  .titulo {
+    font-size: 2rem;
+    margin: 20px 0 10px;
+    padding: 0 10px;
+  }
+
+  .boton-iniciar {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin: 20px;
+  }
+
+  .mensaje {
+    padding: 20px;
+    font-size: 1.5rem;
+  }
+
+  .mensaje button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    width: 90%;
+    max-width: 240px;
+  }
+
+  #form-nombres input {
+    font-size: 1rem;
+    padding: 8px;
+    width: 90%;
+    max-width: 300px;
+  }
+
+  #cuenta-regresiva {
+    font-size: 2.2rem;
+    margin: 30px 0;
+  }
+
+  #zona-juego {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    max-width: 95%;
+  }
+
+  .botones-jugador {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px;
+  }
+
+  .botones-jugador button {
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+    padding: 15px;
+  }
+
+  .botones-jugador button .tecla {
+    font-size: 0.7rem;
+    margin-top: 4px;
+  }
+
+  .nombre-jugador {
+    font-size: 1rem;
+  }
+}
