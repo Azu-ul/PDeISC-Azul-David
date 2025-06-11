@@ -1,0 +1,13 @@
+=== RESULTADOS DEL FILTRADO ===
+
+Números que empiezan y terminan con el mismo dígito (ordenados):
+1, 2, 3, 5, 66, 121, 131, 151, 222, 234432
+
+=== ESTADÍSTICAS ===
+Total de números procesados: 12
+Números útiles: 10
+Números no útiles: 2
+Porcentaje de números útiles: 83.33%
+
+=== NÚMEROS NO ÚTILES ===
+345665, 124325

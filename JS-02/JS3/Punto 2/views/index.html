@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtro de Números</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔢 Filtro de Números</h1>
+            <p>Sube un archivo .txt con números y filtra los que empiezan y terminan con el mismo dígito</p>
+        </div>
+
+        <div class="content">
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📁</div>
+                    <h3>Arrastra tu archivo aquí o haz clic para seleccionar</h3>
+                    <p>Solo archivos .txt permitidos</p>
+                    <input type="file" id="fileInput" class="file-input" accept=".txt">
+                </div>
+                <button class="btn" id="uploadBtn" disabled>Procesar Archivo</button>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Procesando archivo...</p>
+            </div>
+
+            <div class="results" id="results">
+                <h2>📊 Resultados del Análisis</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalNumbers">0</div>
+                        <div class="stat-label">Total de Números</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="usefulNumbers">0</div>
+                        <div class="stat-label">Números Útiles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="unusefulNumbers">0</div>
+                        <div class="stat-label">Números No Útiles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="percentage">0%</div>
+                        <div class="stat-label">Porcentaje Útiles</div>
+                    </div>
+                </div>
+
+                <div class="numbers-section">
+                    <h3>✅ Números que empiezan y terminan igual (ordenados)</h3>
+                    <div class="numbers-list" id="usefulNumbersList"></div>
+                </div>
+
+                <div class="download-section">
+                    <h3>💾 Descargar Resultados</h3>
+                    <p>Los resultados completos se han guardado en un archivo .txt</p>
+                    <button class="btn" id="downloadBtn">Descargar Archivo de Resultados</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

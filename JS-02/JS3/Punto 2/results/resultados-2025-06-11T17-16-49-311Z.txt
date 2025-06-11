@@ -1,0 +1,13 @@
+=== RESULTADOS DEL FILTRADO ===
+
+Números que empiezan y terminan con el mismo dígito (ordenados):
+121, 343
+
+=== ESTADÍSTICAS ===
+Total de números procesados: 10
+Números útiles: 2
+Números no útiles: 8
+Porcentaje de números útiles: 20.00%
+
+=== NÚMEROS NO ÚTILES ===
+12, 145, 15, 167, 143, 1324, 13466, 234

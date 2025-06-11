@@ -1,0 +1,13 @@
+=== RESULTADOS DEL FILTRADO ===
+
+Números que empiezan y terminan con el mismo dígito (ordenados):
+
+
+=== ESTADÍSTICAS ===
+Total de números procesados: 0
+Números útiles: 0
+Números no útiles: 0
+Porcentaje de números útiles: 0%
+
+=== NÚMEROS NO ÚTILES ===
+

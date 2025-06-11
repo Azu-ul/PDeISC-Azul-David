@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso de Números</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ingreso de Números</h1>
+        
+        <div class="input-section">
+            <div class="input-group">
+                <input type="number" id="numeroInput" placeholder="Ingrese un número" step="any">
+                <button class="btn-agregar" onclick="agregarNumero()">Agregar</button>
+                <button class="btn-limpiar" onclick="limpiarTodo()">Limpiar</button>
+            </div>
+        </div>
+
+        <div class="contador">
+            <span id="contador">0</span> / 20 números ingresados
+            <div style="margin-top: 10px; font-size: 14px; color: #888;">
+                Mínimo: 10 números | Máximo: 20 números
+            </div>
+        </div>
+
+        <div class="numeros-container">
+            <div class="numeros-grid" id="numerosGrid">
+                <div style="text-align: center; color: #999; grid-column: 1 / -1; padding: 40px; font-style: italic;">
+                    Los números aparecerán aquí a medida que los ingreses...
+                </div>
+            </div>
+        </div>
+
+        <div class="estadisticas" id="estadisticas">
+            <h3>📈 Estadísticas</h3>
+            <div class="estadisticas-grid">
+                <div class="estadistica-item">
+                    <div class="estadistica-valor" id="suma">0</div>
+                    <div class="estadistica-label">Suma Total</div>
+                </div>
+                <div class="estadistica-item">
+                    <div class="estadistica-valor" id="promedio">0</div>
+                    <div class="estadistica-label">Promedio</div>
+                </div>
+                <div class="estadistica-item">
+                    <div class="estadistica-valor" id="maximo">-</div>
+                    <div class="estadistica-label">Máximo</div>
+                </div>
+                <div class="estadistica-item">
+                    <div class="estadistica-valor" id="minimo">-</div>
+                    <div class="estadistica-label">Mínimo</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-guardar" id="btnGuardar" onclick="guardarArchivo()" disabled>
+            💾 Guardar en Archivo TXT
+        </button>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <span style="margin-left: 10px;">Guardando archivo...</span>
+        </div>
+
+        <div id="mensajes"></div>
+    </div>
+<script src="/js/script.js"> </script>
+</body>
+</html>
