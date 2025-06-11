@@ -1,0 +1,116 @@
+*{
+  
+  cursor:url(src/assets/img/CursorNave.png),auto;
+  
+}
+.body{
+  background-image: url('src/assets/img/Fondo.png');
+  font-family: 'Comic Sans MS', cursive;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden; 
+}
+
+.cursor{
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  position: absolute;
+  transition-duration: 55ms;
+  transition-timing-function: ease-out;
+}
+
+.fondo-estelar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.titulo-principal {
+  color: #ffffff;
+  font-size: 3rem;
+  margin-bottom: 100px;
+  text-shadow: 0 0 15px #00f0ff;
+}
+
+.menu-galactico {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+  justify-content: center;
+}
+
+.boton-planeta {
+  width: 120px;
+  height: 120px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  image-rendering: pixelated;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+
+.boton-planeta:hover {
+  transform: scale(1.1);
+}
+
+.planeta1 {
+  background-image: url('src/assets/img/Simon.gif');
+}
+
+.planeta2 {
+  background-image: url('src/assets/img/TaTeTi.gif'); 
+}
+
+.planeta3 {
+  background-image: url('src/assets/img/Piedra.gif');
+}
+
+.boton-planeta {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+}
+
+.texto-curvo {
+  position: absolute;
+  top: -45px; /* Lo subimos bien para que quede encima del planeta */
+  left: -20px;
+  width: 200px;
+  height: 160px; /* Más alto para no cortar nada */
+  pointer-events: none;
+  font-size:  25px;
+  fill: white;
+  text-shadow: 0 0 15px #ff2200;
+}
+
+
+
+
+
+@media (max-width: 600px) {
+  .boton-planeta {
+    width: 120px;
+    height: 120px;
+  }
+
+  .titulo-principal {
+    font-size: 40px;
+  }
+  .texto-curvo {
+  position: absolute;
+  left: -35px;
+}
+
+}

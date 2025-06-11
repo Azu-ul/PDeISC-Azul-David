@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TaTeTi</title>
+  <link rel="stylesheet" href="../css/tateti.css" />
+</head>
+<body>
+    
+    <h1 class="titulo">TaTeTi</h1>
+<div id="overlay-modo" class="overlay">
+  <div class="mensaje">
+    <h2>¿Cómo querés jugar?</h2>
+    <button id="modo-vs-persona">Contra otra persona</button>
+    <button id="modo-vs-maquina">Contra la máquina</button>
+    <br>
+    <button onclick="window.location.href='/'">Salir</button>
+
+  </div>
+</div>
+
+<div id="overlay-eleccion-ficha" class="overlay oculto">
+  <div class="mensaje">
+    <h2>Elegí tu ficha</h2>
+    <button id="elegir-x">Ser X</button>
+    <button id="elegir-o">Ser O</button>
+  </div>
+</div>
+
+<div id="overlay-nombre" class="overlay oculto">
+  <div class="mensaje">
+    <h2>Bienvenido a TaTeTi</h2>
+    <form id="form-nombre">
+  <label for="jugadorX">Jugador X: </label>
+  <input type="text" id="jugadorX" name="jugadorX" placeholder="Nombre jugador X" required />
+
+  <label for="jugadorO">Jugador O: </label>
+  <input type="text" id="jugadorO" name="jugadorO" placeholder="Nombre jugador O" required />
+
+  <button type="submit">Empezar</button>
+</form>
+
+  </div>
+</div>
+
+<p id="turno-actual" class="turno-actual">Turno: </p>
+<div class="tablero">
+  <div class="casilla" data-fila="0" data-col="0"></div>
+  <div class="casilla" data-fila="0" data-col="1"></div>
+  <div class="casilla" data-fila="0" data-col="2"></div>
+
+  <div class="casilla" data-fila="1" data-col="0"></div>
+  <div class="casilla" data-fila="1" data-col="1"></div>
+  <div class="casilla" data-fila="1" data-col="2"></div>
+
+  <div class="casilla" data-fila="2" data-col="0"></div>
+  <div class="casilla" data-fila="2" data-col="1"></div>
+  <div class="casilla" data-fila="2" data-col="2"></div>
+</div>
+
+<button id="btn-volver-inicio">Volver al inicio</button>
+
+
+  <div id="overlay" class="overlay oculto">
+  <div class="mensaje">
+    <h2>Ganador: </h2>
+    <button id="reiniciar">Volver a intentar</button>
+    <button id="nueva-partida">Nueva partida</button>
+    <button onclick="window.location.href='/'">Salir</button>
+  </div>
+</div>
+
+
+  <script src="../js/tateti.js"></script>
+</body>
+</html>

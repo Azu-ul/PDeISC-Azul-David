@@ -1,0 +1,306 @@
+body, html {
+  background-image: url('../img/Fondo.png');
+  margin: 0;
+  padding: 0;
+  font-family: 'Comic Sans MS', cursive;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.titulo {
+  margin: 20px 0;
+  font-size: 2rem;
+  text-align: center;
+  color: #00c4cc;
+}
+
+/* Layout principal */
+.contenedor {
+  display: grid;
+  grid-template-areas:
+    "nivel nivel"
+    "tablero ranking";
+  grid-template-columns: auto 260px;
+  gap: 60px;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 30px;
+}
+
+/* Nivel */
+.nivel {
+  grid-area: nivel;
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+  color: #00ffff;
+}
+
+.tablero {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 5px;
+  justify-content: center;
+  margin: 20px auto;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px 5px #00f0ff80;
+}
+
+.casilla {
+  background: radial-gradient(circle at center, #001f33 0%, #000 100%);
+  border: 2px solid #00f0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s, transform 0.2s;
+  color: #00f0ff;
+  box-shadow: inset 0 0 10px #00f0ff55;
+  border-radius: 12px;
+}
+
+.casilla:hover {
+  background-color: #003344;
+  transform: scale(1.05);
+}
+
+.color {
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+  width: 120px;
+  height: 120px;
+}
+
+.color:hover {
+  opacity: 1;
+  border: 3px solid white;
+}
+
+/* Mejoras responsive adicionales sin cambiar clases ni estructura */
+@media (max-width: 700px) {
+  html, body {
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .titulo {
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .tablero {
+    grid-template-columns: repeat(3, 70px);
+    grid-template-rows: repeat(3, 70px);
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .casilla {
+    font-size: 2.5rem;
+    border-width: 1.5px;
+  }
+
+  .mensaje {
+    font-size: 2rem;
+    padding: 30px 20px;
+  }
+
+  .mensaje button,
+  #form-nombre button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    width: 90%;
+    max-width: 250px;
+  }
+
+  #btn-volver-inicio {
+    width: 90%;
+    max-width: 250px;
+    font-size: 1rem;
+  }
+
+  .turno-actual {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+
+  #jugadorX, #jugadorO {
+    font-size: 1rem;
+    padding: 8px;
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .nivel {
+    font-size: 1.2rem;
+  }
+
+  .color {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+
+.rojo { background-color: #ff4d4d; }
+.verde { background-color: #4dff4d; }
+.azul { background-color: #4d4dff; }
+.amarillo { background-color: #ffff4d; }
+
+.boton-iniciar {
+  padding: 10px 20px;
+  background-color: #00f0ff;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 10px #0ff;
+  margin-bottom: 10px;
+}
+
+.activo {
+  opacity: 1 !important;
+  box-shadow: 0 0 20px 5px #0ff;
+}
+
+/* Overlay para el mensaje de perder */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.oculto {
+  display: none;
+}
+
+.mensaje {
+  background-color: #111;
+  border: 3px solid #00f0ff;
+  border-radius: 15px;
+  padding: 40px 60px;
+  text-align: center;
+  color: #00f0ff;
+  font-size: 2.5rem;
+  box-shadow: 0 0 20px #0ff;
+}
+
+.mensaje button {
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #00f0ff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: black;
+  box-shadow: 0 0 5px #0ff;
+  transition: background-color 0.3s;
+}
+
+.mensaje button:hover {
+  background-color: #00c4cc;
+}
+
+#btn-volver-inicio {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: 2px solid #00f0ff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 0 10px #00f0ff88;
+}
+
+#btn-volver-inicio:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.turno-actual {
+  font-size: 1.4rem;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #ffffff33;
+  padding: 10px 20px;
+  border-radius: 12px;
+  text-align: center;
+  width: fit-content;
+  margin: 20px auto;
+  box-shadow: 0 0 10px #00f0ff88;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.color {
+  transition: transform 0.1s ease;
+}
+
+.activo-juego .color:active {
+  transform: scale(0.9);
+}
+
+#jugadorX , #jugadorO {
+  padding: 10px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 20px;
+  width: 80%;
+  box-sizing: border-box;
+}
+
+#form-nombre button {
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #00f0ff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: black;
+  box-shadow: 0 0 10px #0ff;
+  transition: background-color 0.3s;
+}
+
+#form-nombre button:hover {
+  background-color: #00c4cc;
+}
+
+#overlay .mensaje button {
+  display: block;
+  width: 180px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}

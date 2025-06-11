@@ -1,0 +1,392 @@
+body, html {
+  background-image: url('../img/Fondo.png');
+  margin: 0;
+  padding: 0;
+  font-family: 'Comic Sans MS', cursive;
+  height: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.titulo {
+  margin: 20px 0;
+  font-size: 2rem;
+  text-align: center;
+  color: #00c4cc;
+  text-shadow: 0 0 8px rgba(0, 196, 204, 0.7);
+}
+
+/* Layout principal */
+.contenedor {
+  display: grid;
+  grid-template-areas:
+    "nivel nivel"
+    "tablero ranking";
+  grid-template-columns: auto 260px;
+  gap: 60px;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 30px;
+}
+
+/* Nivel */
+.nivel {
+  grid-area: nivel;
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+  color: #00ffff;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+}
+
+/* Tablero */
+.tablero {
+  grid-area: tablero;
+  display: grid;
+  grid-template-columns: repeat(2, 120px);
+  grid-template-rows: repeat(2, 120px);
+  gap: 14px;
+  justify-content: center;
+}
+
+.color {
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+  width: 120px;
+  height: 120px;
+}
+
+.color:hover {
+  opacity: 1;
+  border: 3px solid white;
+}
+
+/* Ranking */
+.ranking {
+  grid-area: ranking;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 0 12px #00ffffbb;
+  color: #00ffff;
+  font-size: 0.9rem;
+  max-width: 100%;
+}
+
+.ranking h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+#tabla-ranking {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#tabla-ranking th,
+#tabla-ranking td {
+  padding: 6px 8px;
+  border: 1px solid #00ffff55;
+  text-align: center;
+  font-weight: normal;
+}
+
+#tabla-ranking th {
+  background: rgba(0, 255, 255, 0.2);
+}
+
+#tabla-ranking td {
+  background: rgba(0, 255, 255, 0.1);
+}
+
+#limpiar-ranking {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  background-color: #ff4444;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#limpiar-ranking:hover {
+  background-color: #cc0000;
+}
+
+/* Colores */
+.rojo { background-color: #ff4d4d; }
+.verde { background-color: #4dff4d; }
+.azul { background-color: #4d4dff; }
+.amarillo { background-color: #ffff4d; }
+
+.boton-iniciar {
+  padding: 10px 20px;
+  background-color: #00f0ff;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 10px #0ff;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+
+.boton-iniciar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #0ff;
+}
+
+.activo {
+  opacity: 1 !important;
+  box-shadow: 0 0 20px 5px #0ff;
+}
+
+/* Overlays - Modificado para ser más pequeño y responsive */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.mensaje {
+  background-color: #111;
+  border: 3px solid #00f0ff;
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  color: #00f0ff;
+  font-size: 1.5rem;
+  box-shadow: 0 0 20px #0ff;
+  max-width: 90%;
+  width: 400px;
+  margin: 20px;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px #0ff;
+  }
+  to {
+    box-shadow: 0 0 20px #0ff, 0 0 30px #0ff;
+  }
+}
+
+.mensaje h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+}
+
+.mensaje button {
+  margin: 15px 10px 0;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #00f0ff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: black;
+  box-shadow: 0 0 5px #0ff;
+  transition: all 0.3s;
+  display: inline-block;
+  min-width: 120px;
+}
+
+.mensaje button:hover {
+  background-color: #00c4cc;
+  transform: scale(1.05);
+}
+
+.oculto {
+  display: none;
+}
+
+.color {
+  transition: transform 0.1s ease;
+}
+
+.activo-juego .color:active {
+  transform: scale(0.9);
+}
+
+#btn-volver-inicio {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: 2px solid #00f0ff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 0 10px #00f0ff88;
+}
+
+#btn-volver-inicio:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+#input-nombre {
+  padding: 10px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 20px;
+  width: 80%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#form-nombre button {
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #00f0ff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: black;
+  box-shadow: 0 0 10px #0ff;
+  transition: background-color 0.3s;
+}
+
+#form-nombre button:hover {
+  background-color: #00c4cc;
+}
+
+/* Secuencia correcta */
+.secuencia-correcta {
+  margin: 5px 0 10px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  text-align: center;
+  max-height: 80px;
+  overflow-y: auto;
+  line-height: 1.2;
+  font-size: 0.85em;
+}
+
+.secuencia-title {
+  margin: 5px 0;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.color-item {
+  display: inline-block;
+  margin: 2px 3px;
+  white-space: nowrap;
+}
+
+/* Responsive para móviles */
+@media (max-width: 700px) {
+  .contenedor {
+    grid-template-areas:
+      "nivel"
+      "tablero"
+      "ranking";
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 30px;
+  }
+
+  .tablero {
+    grid-template-columns: repeat(2, 90px);
+    grid-template-rows: repeat(2, 90px);
+    gap: 12px;
+  }
+
+  .color {
+    width: 90px;
+    height: 90px;
+  }
+
+  .ranking {
+    width: 90vw;
+    max-width: 400px;
+    margin-top: 20px;
+  }
+
+  .titulo {
+    font-size: 1.5rem;
+    margin: 15px 0;
+  }
+
+  .nivel {
+    font-size: 1.2rem;
+  }
+
+  /* Overlays en móviles */
+  .mensaje {
+    padding: 20px;
+    font-size: 1.2rem;
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .mensaje h2 {
+    font-size: 1.5rem;
+  }
+
+  .mensaje button {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    min-width: 100px;
+    margin: 10px 5px 0;
+  }
+
+  #input-nombre {
+    font-size: 1rem;
+    width: 90%;
+  }
+
+  #form-nombre button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 400px) {
+  .secuencia-correcta {
+    font-size: 0.8em;
+    padding: 4px;
+    max-height: 70px;
+  }
+  
+  .color-item {
+    margin: 1px 2px;
+  }
+
+  .mensaje {
+    padding: 15px;
+  }
+
+  .mensaje h2 {
+    font-size: 1.3rem;
+  }
+}
