@@ -1,0 +1,169 @@
+*,
+*::before,
+*::after {
+    box-sizing: inherit; /* 🔄 hace que todo respete el tamaño real sin salirse */
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #ffd4e3, #ffbbd2);
+
+    display: flex;
+    flex-direction: column; /* apila los contenedores */
+    align-items: center;     /* centra horizontalmente */
+    justify-content: center; /* centra verticalmente si hay espacio */
+    gap: 20px;                /* separa entre contenedores */
+
+    overflow-x: hidden;  /* 🔒 evita el scroll horizontal */
+    box-sizing: border-box;
+}
+
+
+.container {
+    background-color: #fffafaee;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(255, 192, 203, 0.3);
+    width: 100%;
+    max-width: 480px;
+    border: 2px dashed #f8bbd0;
+}
+
+
+h1, h2 {
+    color: #c2185b;
+    text-shadow: 1px 1px 2px #f8bbd0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ad1457;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #f8bbd0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #fff0f5;
+}
+
+button {
+    background-color: #f06292;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px 5px 10px 0;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(240, 98, 146, 0.4);
+}
+
+button:hover {
+    background-color: #ec407a;
+}
+
+.success-btn {
+    background-color: #ab47bc;
+}
+
+.success-btn:hover {
+    background-color: #9c27b0;
+}
+
+.results {
+    background-color: #fce4ec;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border-left: 4px solid #f06292;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    /* quitamos display:block y overflow-x:auto para eliminar el scroll */
+    background-color: #fffafa;
+    border: 2px solid #f8bbd0;
+    border-radius: 10px;
+    table-layout: fixed; /* hace que las columnas tengan ancho fijo proporcional */
+    font-size: 0.85rem; /* un poco más chica para que entre todo */
+    word-wrap: break-word; /* para que el texto largo se corte y no haga overflow */
+}
+
+th, td {
+    border: 1px solid #f8bbd0;
+    padding: 8px; /* un poco menos padding para que sea más compacto */
+    text-align: left;
+    min-width: 0; /* para que no obligue ancho mínimo y ajuste */
+    overflow-wrap: break-word; /* que corte texto largo */
+}
+
+th {
+    background-color: #f48fb1;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #fce4ec;
+}
+
+.query-result {
+    background-color: #f3e5f5;
+    border-left: 4px solid #ba68c8;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 6px;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #f5c6cb;
+    margin-top: 10px;
+}
+
+.info {
+    background-color: #fce4ec;
+    color: #880e4f;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #f8bbd0;
+    margin-bottom: 20px;
+}
+
+/* 🌸 responsive para tablets y móviles */
+@media (max-width: 768px) {
+    table {
+        font-size: 0.75rem;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    table {
+        font-size: 0.7rem;
+    }
+
+    th, td {
+        padding: 4px;
+    }
+}
