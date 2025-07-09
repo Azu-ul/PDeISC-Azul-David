@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>JS6</title>
+  <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+  <h1>Usuarios de la API</h1>
+  <button id="btnFetch">Cargar con fetch</button>
+  <button id="btnAxios">Cargar con axios</button>
+  <ul id="listaUsuarios"></ul>
+
+  <h2>Buscar usuario</h2>
+  <input type="text" id="buscador" placeholder="Buscar por nombre" />
+  <ul id="resultadosBusqueda"></ul>
+
+  <h2>Agregar usuario</h2>
+  <form id="formulario">
+    <input type="text" name="nombre" placeholder="Nombre" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <button type="submit">Enviar</button>
+  </form>
+  <p id="respuestaForm"></p>
+
+  <h2>API propia: Alumnos</h2>
+  <button id="btnAlumnos">Cargar alumnos</button>
+  <ul id="listaAlumnos"></ul>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>
