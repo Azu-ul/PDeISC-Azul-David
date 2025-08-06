@@ -1,0 +1,76 @@
+.lista-container {
+  max-width: 400px;
+  margin: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+}
+
+.lista-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.entrada {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.entrada input[type="text"] {
+  flex-grow: 1;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.entrada input[type="text"]:focus {
+  border-color: #3FA7C6;
+  outline: none;
+}
+
+.entrada button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3FA7C6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.entrada button:hover {
+  background-color: #287289;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+ul li {
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  background-color: #e1e1e1;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+ul li:hover {
+  background-color: #d4d4d4;
+}
+
+ul li.completada {
+  text-decoration: line-through;
+  color: #777;
+  background-color: #cfcfcf;
+}

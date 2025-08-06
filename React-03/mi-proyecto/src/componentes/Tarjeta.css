@@ -1,0 +1,30 @@
+.tarjeta {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 280px;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 30px;
+}
+
+.tarjeta-imagen {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.tarjeta-nombre {
+  font-size: 1.5rem;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.tarjeta-profesion {
+  font-size: 1.2rem;
+  color: #666666;
+  margin-bottom: 16px;
+}

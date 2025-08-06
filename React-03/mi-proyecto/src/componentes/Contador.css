@@ -1,0 +1,26 @@
+.contador-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 280px;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 30px;
+  color: #333333;
+}
+
+.boton {
+  background-color: #3fa7c6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
