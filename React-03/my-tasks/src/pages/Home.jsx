@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTasks } from '../context/TasksContext';
 
 export default function Home() {
-  const { tasks } = useTasks();
+  const { tasks, updateTask } = useTasks();
 
   const hasTasks = tasks && tasks.length > 0;
 
@@ -15,7 +15,7 @@ export default function Home() {
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    const fecha = new Date().toISOString().slice(0,19).replace(/[:T]/g,'-');
+    const fecha = new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-');
     a.href = url;
     a.download = `tareas-${fecha}.txt`;
     a.click();
@@ -47,22 +47,29 @@ export default function Home() {
       <div className="list-group list-group-flush">
         {hasTasks ? (
           sorted.map(t => (
-            <Link
-              to={`/task/${t.id}`}
+            <div
               key={t.id}
-              className="list-group-item list-group-item-action d-flex justify-content-between align-items-start"
+              className="list-group-item d-flex justify-content-between align-items-start"
             >
-              <div className="me-3">
-                <div className="fw-semibold">{t.title}</div>
-                <small className="text-muted">
-                  {t.description?.slice(0, 80) || 'Sin descripción'}
-                  {t.description && t.description.length > 80 ? '…' : ''}
-                </small>
+              <div className="d-flex align-items-center gap-2">
+                {/* Checkbox para marcar completa */}
+                <input
+                  type="checkbox"
+                  checked={t.completed}
+                  onChange={e => updateTask(t.id, { completed: e.target.checked })}
+                />
+                <div>
+                  <div className="fw-semibold">{t.title}</div>
+                  <small className="text-muted">
+                    {t.description?.slice(0, 80) || 'Sin descripción'}
+                    {t.description && t.description.length > 80 ? '…' : ''}
+                  </small>
+                </div>
               </div>
               <span className={`badge ${t.completed ? 'bg-success' : 'bg-secondary'}`}>
                 {t.completed ? 'Completa' : 'Incompleta'}
               </span>
-            </Link>
+            </div>
           ))
         ) : (
           <div className="p-4 text-center text-muted">
@@ -70,6 +77,7 @@ export default function Home() {
           </div>
         )}
       </div>
+
     </div>
   );
 }

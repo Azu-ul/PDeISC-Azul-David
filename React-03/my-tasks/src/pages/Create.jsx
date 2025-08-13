@@ -44,13 +44,18 @@ export default function Create() {
             <label className="form-label">Título *</label>
             <input
               type="text"
-              className="form-control"
+              className={`form-control ${error ? 'is-invalid' : ''}`}
               placeholder="Ej: Comprar pan"
               value={title}
-              onChange={e => setTitle(e.target.value)}
+              onChange={e => {
+                setTitle(e.target.value);
+                if (error) setError(''); // borra error al escribir
+              }}
               required
             />
+            {error && <div className="invalid-feedback">{error}</div>}
           </div>
+
 
           <div className="col-12">
             <label className="form-label">Descripción</label>
