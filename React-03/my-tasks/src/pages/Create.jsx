@@ -9,13 +9,18 @@ export default function Create() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [completed, setCompleted] = useState(false);
+  const [error, setError] = useState(''); // mensaje de validación
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim()) return;
+    if (/^\d/.test(title.trim())) {
+      setError('El título no puede comenzar con un número.');
+      return;
+    }
 
     const newTask = {
-      id: Date.now(),             // simple y único
+      id: Date.now(),
       title: title.trim(),
       description: description.trim(),
       completed,
@@ -23,7 +28,7 @@ export default function Create() {
     };
 
     addTask(newTask);
-    navigate(`/task/${newTask.id}`);
+    navigate('/');
   };
 
   return (

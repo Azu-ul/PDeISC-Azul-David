@@ -21,7 +21,23 @@ export function TasksProvider({ children }) {
 
   const getTaskById = (id) => tasks.find(t => String(t.id) === String(id));
 
-  const value = useMemo(() => ({ tasks, addTask, getTaskById }), [tasks]);
+  const updateTask = (id, updatedFields) => {
+    setTasks(prev =>
+      prev.map(t => t.id === id ? { ...t, ...updatedFields } : t)
+    );
+  };
+
+  const deleteTask = (id) => {
+    setTasks(prev => prev.filter(t => t.id !== id));
+  };
+
+  const value = useMemo(() => ({
+    tasks,
+    addTask,
+    getTaskById,
+    updateTask,   // <-- agregado
+    deleteTask    // <-- agregado
+  }), [tasks]);
 
   return <TasksContext.Provider value={value}>{children}</TasksContext.Provider>;
 }

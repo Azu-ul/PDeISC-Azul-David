@@ -31,7 +31,7 @@ export default function App() {
         </main>
 
         <footer className="win-statusbar text-center py-2">
-          <small>Hecho con React Router + Bootstrap</small>
+          <small>Azul Sofía David</small>
         </footer>
       </div>
     </TasksProvider>
