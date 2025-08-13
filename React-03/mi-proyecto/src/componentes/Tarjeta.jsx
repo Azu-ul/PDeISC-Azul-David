@@ -1,7 +1,13 @@
 import React from "react";
 import './Tarjeta.css';
 
-function Tarjeta({nombre, apellido, profesion, imagen}) {
+function Tarjeta(
+  {
+  nombre,
+  apellido,
+  profesion, 
+  imagen
+  }) {
   return (
     <div className="tarjeta">
       <img src={imagen} alt="Foto de perfil" className="tarjeta-imagen" />

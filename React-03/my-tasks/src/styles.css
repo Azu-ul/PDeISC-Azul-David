@@ -1,0 +1,56 @@
+:root{
+  --win-blue-1:#005a9e;
+  --win-blue-2:#1074c3;
+  --win-blue-3:#1e90ff;
+  --win-bg:#e9f2ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: "Georgia", serif;
+  background: var(--win-bg);
+  color: #0a2540;
+}
+
+.app-window {
+  background: linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
+}
+
+.win-titlebar {
+  background: linear-gradient(180deg, var(--win-blue-1), var(--win-blue-2));
+  color: #fff;
+  padding: .6rem 0;
+  border-bottom: 2px solid #003e73;
+}
+
+.win-statusbar {
+  background: #d6e9ff;
+  border-top: 1px solid #aacbff;
+  color: #003e73;
+}
+
+.win-card {
+  border: 2px solid #aacbff !important;
+  border-radius: 6px;
+}
+
+.card-header {
+  background: #e1efff;
+  border-bottom: 1px solid #c7dfff;
+}
+
+.btn-primary {
+  background-color: var(--win-blue-2);
+  border-color: var(--win-blue-2);
+}
+.btn-primary:hover { background-color: var(--win-blue-1); border-color: var(--win-blue-1); }
+
+a { text-decoration: none; }
+.list-group-item-action:hover {
+  background-color: #f0f7ff;
+}
+
+.badge.bg-secondary {
+  background-color: #6c7a89 !important;
+}

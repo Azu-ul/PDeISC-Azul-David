@@ -7,9 +7,11 @@ function ListaDeTareas() {
 
   const agregarTarea = () => {
     if (nuevaTarea.trim() !== '') {
-      setTareas([...tareas, { 
+      setTareas([...tareas, 
+        { 
         texto: nuevaTarea,
-        completada: false }]);
+        completada: false 
+        }]);
       setNuevaTarea('');
     }
   };
