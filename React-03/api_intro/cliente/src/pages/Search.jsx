@@ -47,20 +47,20 @@ export default function Search() {
   };
 
   return (
-    <div className='min-vh-100 d-flex align-items-center' style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
+    <div className='min-vh-100 d-flex align-items-center' style={{background: 'linear-gradient(135deg, #d7a9a9 0%, #ba7b7c 100%)', fontFamily: "'Georgia', serif"}}>
       <div className='container'>
         <div className='row justify-content-center'>
           <div className='col-md-10'>
             <div className='card shadow-lg border-0'>
-              <div className='card-header bg-gradient text-white text-center py-4' style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
+              <div className='card-header bg-gradient text-white text-center py-4' style={{background: 'linear-gradient(135deg, #c88e83 0%, #ba7b7c 100%)'}}>
                 <h3 className="mb-0 fw-bold">
                   <i className="fas fa-search me-2"></i>
                   Consultar Usuarios
                 </h3>
               </div>
-              <div className='card-body p-4'>
+              <div className='card-body p-4' style={{backgroundColor: '#f2e2e2'}}>
                 <div className='d-flex justify-content-end mb-4'>
-                  <Link to='/' className='btn btn-outline-primary px-4 py-2 rounded-pill fw-semibold'>
+                  <Link to='/' className='btn px-4 py-2 rounded-pill fw-semibold' style={{backgroundColor: '#e5c5c5', borderColor: '#ba7b7c', color: '#8a5a5b', border: '2px solid'}}>
                     <i className="fas fa-arrow-left me-2"></i>
                     Volver
                   </Link>
@@ -75,39 +75,49 @@ export default function Search() {
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                      style={{borderColor: '#d7a9a9'}}
                     />
                   </div>
                   <div className="col-md-3">
                     <button 
                       onClick={handleSearch}
-                      className="btn btn-warning btn-lg w-100 fw-semibold"
+                      className="btn btn-lg w-100 fw-semibold"
                       disabled={searching}
+                      style={{backgroundColor: '#c88e83', color: 'white', border: 'none'}}
                     >
                       <i className="fas fa-search me-2"></i>
                       {searching ? 'Buscando...' : 'Buscar'}
                     </button>
                   </div>
                   <div className="col-md-3">
+                    <button 
+                      onClick={clearSearch}
+                      className="btn btn-lg w-100 fw-semibold"
+                      style={{backgroundColor: '#e5c5c5', color: '#8a5a5b', border: '2px solid #ba7b7c'}}
+                    >
+                      <i className="fas fa-times me-2"></i>
+                      Limpiar
+                    </button>
                   </div>
                 </div>
 
                 {searching && (
                   <div className="text-center py-3">
-                    <div className="spinner-border text-warning" role="status">
+                    <div className="spinner-border" role="status" style={{color: '#ba7b7c'}}>
                       <span className="visually-hidden">Buscando...</span>
                     </div>
-                    <p className="mt-2">Buscando usuarios...</p>
+                    <p className="mt-2" style={{color: '#8a5a5b'}}>Buscando usuarios...</p>
                   </div>
                 )}
 
                 {!searching && results.length > 0 && (
                   <div className="table-responsive">
-                    <h5 className="mb-3 text-success">
-                      <i className="fas fa-check-circle me-2"></i>
+                    <h5 className="mb-3" style={{color: '#8a5a5b'}}>
+                      <i className="fas fa-check-circle me-2" style={{color: '#c88e83'}}></i>
                       Resultados encontrados: {results.length}
                     </h5>
                     <table className="table table-hover">
-                      <thead className="table-dark">
+                      <thead style={{backgroundColor: '#c88e83', color: 'white'}}>
                         <tr>
                           <th>ID</th>
                           <th>Nombre</th>
@@ -120,14 +130,14 @@ export default function Search() {
                       </thead>
                       <tbody>
                         {results.map(user => (
-                          <tr key={user.id}>
-                            <td>{user.id}</td>
-                            <td>{user.nombre}</td>
-                            <td>{user.apellido}</td>
-                            <td>{user.email}</td>
-                            <td>{user.celular}</td>
-                            <td>{user.direccion}</td>
-                            <td>{user.fecha_nacimiento}</td>
+                          <tr key={user.id} style={{backgroundColor: '#f8f0f0'}}>
+                            <td style={{color: '#8a5a5b'}}>{user.id}</td>
+                            <td style={{color: '#8a5a5b'}}>{user.nombre}</td>
+                            <td style={{color: '#8a5a5b'}}>{user.apellido}</td>
+                            <td style={{color: '#8a5a5b'}}>{user.email}</td>
+                            <td style={{color: '#8a5a5b'}}>{user.celular}</td>
+                            <td style={{color: '#8a5a5b'}}>{user.direccion}</td>
+                            <td style={{color: '#8a5a5b'}}>{user.fecha_nacimiento}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -137,8 +147,8 @@ export default function Search() {
 
                 {!searching && hasSearched && results.length === 0 && (
                   <div className="text-center py-5">
-                    <i className="fas fa-search fa-3x text-muted mb-3"></i>
-                    <h5>No se encontraron resultados</h5>
+                    <i className="fas fa-search fa-3x mb-3" style={{color: '#c88e83'}}></i>
+                    <h5 style={{color: '#8a5a5b'}}>No se encontraron resultados</h5>
                     <p className="text-muted">No hay usuarios que coincidan con "{searchTerm}"</p>
                     <p className="text-muted small">Intenta con otros términos de búsqueda</p>
                   </div>
@@ -146,8 +156,8 @@ export default function Search() {
 
                 {!searching && !hasSearched && (
                   <div className="text-center py-5">
-                    <i className="fas fa-search fa-3x text-info mb-3"></i>
-                    <h5>Buscar Usuarios</h5>
+                    <i className="fas fa-search fa-3x mb-3" style={{color: '#ba7b7c'}}></i>
+                    <h5 style={{color: '#8a5a5b'}}>Buscar Usuarios</h5>
                     <p className="text-muted">Ingresa un nombre, apellido o email para buscar usuarios</p>
                   </div>
                 )}
