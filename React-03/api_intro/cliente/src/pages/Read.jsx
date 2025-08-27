@@ -3,16 +3,19 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Overlay from "./Overlay";
 
+// Página para listar y eliminar usuarios
 export default function Read() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [overlay, setOverlay] = useState({ show: false, message: '', type: 'success' });
   const [confirmDelete, setConfirmDelete] = useState({ show: false, userId: null, userName: '' });
 
+  // Cargar usuarios al montar el componente
   useEffect(() => {
     fetchUsers();
   }, []);
 
+  // Función para obtener usuarios desde la API
   const fetchUsers = async () => {
     setLoading(true);
     try {
@@ -28,10 +31,12 @@ export default function Read() {
     setLoading(false);
   };
 
+  // Función para iniciar el proceso de eliminación
   const deleteUser = async (id, userName) => {
     setConfirmDelete({ show: true, userId: id, userName: userName });
   };
 
+  // Función para confirmar la eliminación
   const confirmDeleteUser = async () => {
     try {
       await axios.delete(`http://localhost:3000/usuario/${confirmDelete.userId}`);
@@ -45,10 +50,12 @@ export default function Read() {
     }
   };
 
+  // Función para cancelar la eliminación
   const cancelDelete = () => {
     setConfirmDelete({ show: false, userId: null, userName: '' });
   };
 
+  // Función para mostrar el overlay de mensajes
   const showOverlay = (message, type = 'success') => {
     setOverlay({ show: true, message, type });
   };
@@ -57,6 +64,7 @@ export default function Read() {
     setOverlay({ show: false, message: '', type: 'success' });
   };
 
+  // Render principal de la lista de usuarios
   return (
     <div className='min-vh-100 d-flex align-items-center' style={{background: 'linear-gradient(135deg, #d7a9a9 0%, #ba7b7c 100%)', fontFamily: "'Georgia', serif"}}>
       <div className='container'>
@@ -138,8 +146,10 @@ export default function Read() {
                       </tbody>
                     </table>
                   </div>
-                ) : (
-                  <div className="text-center py-5">
+                ) : 
+                  {/* Mensaje cuando no hay usuarios */}
+                (
+                  <div className="text-center py-5"> 
                     <i className="fas fa-user-slash fa-3x mb-3" style={{color: '#c88e83'}}></i>
                     <h5 style={{color: '#8a5a5b'}}>No hay usuarios registrados</h5>
                     <p className="text-muted">Comienza agregando tu primer usuario</p>

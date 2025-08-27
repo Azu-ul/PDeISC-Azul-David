@@ -16,7 +16,7 @@ export default function Home() {
                 </h1>
               </div>
 
-              {/* Body más compacto */}
+              {/* Body compacto */}
               <div className='card-body p-3 p-md-4' style={{ backgroundColor: '#f2e2e2' }}>
                 <div className="text-center mb-3">
                   <h4 className="mb-2 fw-semibold" style={{ color: '#ba7b7c' }}>¿Qué deseas hacer?</h4>
@@ -40,6 +40,8 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
+                  
+                  {/*  Segunda card para buscar usuarios */}
 
                   <div className="col-12 col-md-4">
                     <div className="card h-100 border-0 shadow-sm hover-card" style={{ transition: 'all 0.3s ease', backgroundColor: '#e5c5c5' }}>
@@ -56,6 +58,8 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
+
+                {/* Tercera card para buscar usuarios */}
 
                   <div className="col-12 col-md-4">
                     <div className="card h-100 border-0 shadow-sm hover-card" style={{ transition: 'all 0.3s ease', backgroundColor: '#e5c5c5' }}>

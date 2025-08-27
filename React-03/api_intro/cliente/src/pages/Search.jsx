@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Overlay from "./Overlay";
 
+// Página para buscar usuarios
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
@@ -10,18 +11,47 @@ export default function Search() {
   const [hasSearched, setHasSearched] = useState(false);
   const [overlay, setOverlay] = useState({ show: false, message: '', type: 'success' });
 
+  // Función para manejar la búsqueda
   const handleSearch = async () => {
     if (!searchTerm.trim()) {
       showOverlay('Por favor ingresa un término de búsqueda', 'error');
       return;
     }
     
+    // Iniciar búsqueda
     setSearching(true);
     setHasSearched(true);
     
+    // Realizar la solicitud a la API
     try {
       console.log('Buscando:', searchTerm);
-      const response = await axios.get(`http://localhost:3000/buscar?q=${encodeURIComponent(searchTerm)}`);
+      
+      // Detectar si es email, nombre y apellido, o solo nombre/apellido
+
+      const searchTerms = searchTerm.trim();
+      // Determinar si es un email o nombre/apellido
+      const isEmail = searchTerms.includes('@');
+      // Dividir por espacios para ver si hay múltiples palabras
+      const words = searchTerms.split(' ').filter(word => word.length > 0);
+      
+      // Construir parámetros de búsqueda
+      let searchParams = new URLSearchParams();
+      
+      // Lógica para decidir qué parámetros usar
+      if (isEmail) {
+        // Si contiene @, buscar por email
+        searchParams.append('email', searchTerms);
+      } else if (words.length >= 2) {
+        // Si hay 2 o más palabras, asumir que es nombre y apellido
+        searchParams.append('nombre', words[0]);
+        searchParams.append('apellido', words.slice(1).join(' '));
+      } else {
+        // Si es una sola palabra, buscar en todos los campos
+        searchParams.append('q', searchTerms);
+      }
+      
+      // Realizar la solicitud GET con los parámetros adecuados
+      const response = await axios.get(`http://localhost:3000/buscar?${searchParams.toString()}`);
       console.log('Resultados:', response.data);
       setResults(response.data || []);
     } catch (err) {
@@ -32,6 +62,7 @@ export default function Search() {
     setSearching(false);
   };
 
+  // Función para mostrar el overlay de mensajes
   const showOverlay = (message, type = 'success') => {
     setOverlay({ show: true, message, type });
   };
@@ -46,6 +77,7 @@ export default function Search() {
     setHasSearched(false);
   };
 
+  // Render principal de la página de búsqueda
   return (
     <div className='min-vh-100 d-flex align-items-center' style={{background: 'linear-gradient(135deg, #d7a9a9 0%, #ba7b7c 100%)', fontFamily: "'Georgia', serif"}}>
       <div className='container'>
@@ -159,6 +191,8 @@ export default function Search() {
                     <i className="fas fa-search fa-3x mb-3" style={{color: '#ba7b7c'}}></i>
                     <h5 style={{color: '#8a5a5b'}}>Buscar Usuarios</h5>
                     <p className="text-muted">Ingresa un nombre, apellido o email para buscar usuarios</p>
+                    <div className="mt-3 text-start" style={{maxWidth: '400px', margin: '0 auto'}}>
+                    </div>
                   </div>
                 )}
               </div>

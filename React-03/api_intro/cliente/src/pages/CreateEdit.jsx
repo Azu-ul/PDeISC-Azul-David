@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Overlay from "./Overlay";
 
+// Componente para crear o editar un usuario
 export default function CreateEdit() {
     const [values, setValues] = useState({
         nombre: '',
@@ -13,6 +14,7 @@ export default function CreateEdit() {
         email: ''
     });
 
+    // Estados para manejo de carga y overlay
     const [loading, setLoading] = useState(false);
     const [loadingUser, setLoadingUser] = useState(false);
     const [overlay, setOverlay] = useState({ show: false, message: '', type: 'success' });
@@ -23,28 +25,26 @@ export default function CreateEdit() {
     const isEditing = Boolean(id);
 
     // Cargar datos del usuario si estamos editando
-    useEffect(() => {
-        if (isEditing) {
-            fetchUser();
-        }
-    }, [id, isEditing]);
+    useEffect(() => { if (isEditing) { fetchUser(); }}, [id, isEditing]);
 
+    // Función para obtener datos del usuario a editar
     const fetchUser = async () => {
         setLoadingUser(true);
         try {
             console.log('Obteniendo usuario con ID:', id);
 
-            // Usar la ruta individual que existe en tu backend
+            // Llamada a la API para obtener el usuario por ID
             const response = await axios.get(`http://localhost:3000/usuario/${id}`);
             console.log('Datos del usuario:', response.data);
 
-            // response.data ya es el usuario individual, no un array
+            // Formatear fecha de nacimiento para input date
             const userData = { ...response.data };
             if (userData.fecha_nacimiento) {
                 const date = new Date(userData.fecha_nacimiento);
                 userData.fechaNacimiento = date.toISOString().split('T')[0];
             }
 
+            // Actualizar estado con los datos del usuario
             setValues({
                 nombre: userData.nombre || '',
                 apellido: userData.apellido || '',
@@ -53,6 +53,7 @@ export default function CreateEdit() {
                 fechaNacimiento: userData.fechaNacimiento || '',
                 email: userData.email || ''
             });
+            // Si el usuario no existe, redirigir a la lista
         } catch (err) {
             console.error('Error al obtener usuario:', err);
             if (err.response?.status === 404) {
@@ -65,8 +66,9 @@ export default function CreateEdit() {
         setLoadingUser(false);
     };
 
-    // Función de validación
+    // Función de validación del formulario 
     const validateForm = () => {
+
         // Validar nombre
         if (!values.nombre.trim()) {
             showOverlay('El nombre es requerido', 'error');
@@ -126,6 +128,7 @@ export default function CreateEdit() {
             return false;
         }
 
+        // La fecha debe ser anterior a hoy
         const fechaNac = new Date(values.fechaNacimiento);
         const hoy = new Date();
         if (fechaNac >= hoy) {
@@ -142,6 +145,7 @@ export default function CreateEdit() {
         return true;
     };
 
+    // Manejar envío del formulario
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -151,13 +155,17 @@ export default function CreateEdit() {
 
         setLoading(true);
 
+        // Definir URL y método según si es creación o edición
         const url = isEditing
             ? `http://localhost:3000/usuario/${id}`
             : 'http://localhost:3000/agregar_usuario';
+
+        // Definir método HTTP
         const method = isEditing ? 'put' : 'post';
 
         console.log(`${isEditing ? 'Actualizando' : 'Creando'} usuario:`, values);
 
+        // Llamada a la API para crear o actualizar el usuario
         axios[method](url, values)
             .then((res) => {
                 console.log('Respuesta del servidor:', res);
@@ -167,7 +175,7 @@ export default function CreateEdit() {
                     'success'
                 );
 
-                // Limpiar formulario solo si estamos creando
+                // Limpiar formulario si es creación
                 if (!isEditing) {
                     setValues({
                         nombre: '',
@@ -190,6 +198,7 @@ export default function CreateEdit() {
             });
     }
 
+    // Funciones para manejar el overlay
     const showOverlay = (message, type = 'success') => {
         setOverlay({ show: true, message, type });
     };
@@ -215,6 +224,7 @@ export default function CreateEdit() {
         );
     }
 
+    // Render del formulario ya sea para crear o editar
     return (
         <div className='min-vh-100 d-flex align-items-center' style={{ background: 'linear-gradient(135deg, #d7a9a9 0%, #ba7b7c 100%)', fontFamily: "'Georgia', serif" }}>
             <div className='container'>
@@ -364,6 +374,7 @@ export default function CreateEdit() {
                                     </div>
 
                                     <div className='d-grid'>
+                                        {/* Botón de envío */} 
                                         <button
                                             type='submit'
                                             className='btn btn-lg py-3 fw-bold shadow'
@@ -377,6 +388,7 @@ export default function CreateEdit() {
                                                     </div>
                                                     {isEditing ? 'Actualizando...' : 'Guardando...'}
                                                 </>
+                                            
                                             ) : (
                                                 <>
                                                     <i className="fas fa-save me-2"></i>
@@ -391,7 +403,7 @@ export default function CreateEdit() {
                     </div>
                 </div>
             </div>
-
+                {/* Componente Overlay para mensajes de éxito o error */}
             <Overlay
                 show={overlay.show}
                 type={overlay.type}

@@ -6,6 +6,7 @@ import CreateEdit from './pages/CreateEdit';
 import Read from './pages/Read';
 import Search from './pages/Search';
 
+// Componente principal de la aplicación con rutas
 export default function App() {
   return (
     <BrowserRouter>
