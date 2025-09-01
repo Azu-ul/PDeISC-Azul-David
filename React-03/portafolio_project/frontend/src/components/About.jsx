@@ -2,108 +2,171 @@ import React from 'react';
 
 const About = () => {
   return (
-    <section id="about" className="py-5 bg-light">
+    <section id="about" className="py-5 bg-white" style={{ fontFamily: 'Georgia, serif', minHeight: '100vh' }}>
       <div className="container">
-        <div className="row">
-          <div className="col-lg-8 mx-auto">
-            <div className="text-center mb-5">
-              <h2 className="display-5 fw-bold text-primary mb-3">Sobre Mí</h2>
-              <div className="bg-warning" style={{ height: '4px', width: '80px', margin: '0 auto' }}></div>
+        <div className="row justify-content-center">
+          <div className="col-lg-8">
+            <div className="text-center mb-5" style={{ paddingTop: '100px' }}>
+              <h2 
+                className="display-4 fw-normal mb-5" 
+                style={{ 
+                  color: '#2c2c2c',
+                  fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+                  letterSpacing: '-1px'
+                }}
+              >
+                About
+              </h2>
             </div>
             
-            <div className="row align-items-center">
-              <div className="col-md-4 text-center mb-4 mb-md-0">
-                <img 
-                  src="/api/placeholder/300/300" 
-                  alt="Foto profesional" 
-                  className="img-fluid rounded-3 shadow"
-                  style={{ maxWidth: '250px' }}
-                />
-              </div>
-              
-              <div className="col-md-8">
-                <h3 className="h4 text-primary mb-3">¡Hola! Soy un desarrollador apasionado por la tecnología</h3>
-                <p className="text-muted mb-3">
-                  Con más de 3 años de experiencia en desarrollo web, me especializo en crear 
-                  aplicaciones modernas y escalables. Mi enfoque se centra en escribir código 
-                  limpio, eficiente y mantenible.
-                </p>
-                <p className="text-muted mb-4">
-                  Me encanta trabajar con las últimas tecnologías y siempre estoy buscando 
-                  nuevos desafíos que me permitan crecer profesionalmente y aportar valor 
-                  a los proyectos en los que participo.
-                </p>
-                
-                <div className="row">
-                  <div className="col-sm-6 mb-3">
-                    <div className="d-flex align-items-center">
-                      <i className="fas fa-check-circle text-success me-2"></i>
-                      <span>Desarrollo Full Stack</span>
+            <div className="row">
+              <div className="col-12">
+                <div style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#666', textAlign: 'center' }}>
+                  <p className="mb-4">
+                    Soy un desarrollador creativo e innovador, estratega de branding y experto en diseño 
+                    con años de experiencia creando soluciones visuales impactantes para varios clientes 
+                    en numerosas verticales de la industria.
+                  </p>
+                  <p className="mb-5">
+                    Combino una amplia gama de experiencia en diseño gráfico con una comprensión profunda 
+                    de la psicología detrás del diseño para crear campañas efectivas y narrativas corporativas. 
+                    Soy experto en diseño de producción y creación de assets para medios modernos.
+                  </p>
+                </div>
+
+                {/* Skills en formato minimalista */}
+                <div className="row mt-5 pt-5">
+                  <div className="col-12">
+                    <div className="text-center mb-4">
+                      <h3 
+                        className="h4 fw-normal" 
+                        style={{ 
+                          color: '#2c2c2c', 
+                          letterSpacing: '1px',
+                          textTransform: 'uppercase',
+                          fontSize: '0.9rem'
+                        }}
+                      >
+                        Skills
+                      </h3>
                     </div>
-                  </div>
-                  <div className="col-sm-6 mb-3">
-                    <div className="d-flex align-items-center">
-                      <i className="fas fa-check-circle text-success me-2"></i>
-                      <span>Diseño Responsivo</span>
-                    </div>
-                  </div>
-                  <div className="col-sm-6 mb-3">
-                    <div className="d-flex align-items-center">
-                      <i className="fas fa-check-circle text-success me-2"></i>
-                      <span>API Development</span>
-                    </div>
-                  </div>
-                  <div className="col-sm-6 mb-3">
-                    <div className="d-flex align-items-center">
-                      <i className="fas fa-check-circle text-success me-2"></i>
-                      <span>Base de Datos</span>
+                    
+                    <div className="row justify-content-center">
+                      <div className="col-lg-8">
+                        <div className="d-flex flex-wrap justify-content-center gap-3">
+                          {[
+                            'JavaScript', 'React', 'Node.js', 'PostgreSQL', 
+                            'Express.js', 'HTML5', 'CSS3', 'Bootstrap',
+                            'Git', 'API REST', 'UX/UI Design'
+                          ].map((skill, index) => (
+                            <span 
+                              key={index}
+                              className="px-3 py-2 border rounded-0"
+                              style={{ 
+                                color: '#666',
+                                borderColor: '#ddd',
+                                fontSize: '0.9rem',
+                                letterSpacing: '0.5px',
+                                backgroundColor: 'transparent'
+                              }}
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                
-                <div className="mt-4">
-                  <a href="#contact" className="btn btn-primary me-3">
-                    <i className="fas fa-envelope me-2"></i>
-                    Hablemos
-                  </a>
-                  <a href="/cv.pdf" target="_blank" className="btn btn-outline-primary">
-                    <i className="fas fa-download me-2"></i>
-                    Descargar CV
-                  </a>
+
+                {/* Stats en formato minimalista */}
+                <div className="row mt-5 pt-5">
+                  <div className="col-md-3 col-6 text-center mb-4">
+                    <div className="p-3">
+                      <h3 
+                        className="display-6 fw-normal mb-2" 
+                        style={{ color: '#2c2c2c' }}
+                      >
+                        50+
+                      </h3>
+                      <p 
+                        className="mb-0" 
+                        style={{ 
+                          color: '#999', 
+                          fontSize: '0.9rem',
+                          letterSpacing: '1px',
+                          textTransform: 'uppercase'
+                        }}
+                      >
+                        Projects
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-3 col-6 text-center mb-4">
+                    <div className="p-3">
+                      <h3 
+                        className="display-6 fw-normal mb-2" 
+                        style={{ color: '#2c2c2c' }}
+                      >
+                        3+
+                      </h3>
+                      <p 
+                        className="mb-0" 
+                        style={{ 
+                          color: '#999', 
+                          fontSize: '0.9rem',
+                          letterSpacing: '1px',
+                          textTransform: 'uppercase'
+                        }}
+                      >
+                        Years
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-3 col-6 text-center mb-4">
+                    <div className="p-3">
+                      <h3 
+                        className="display-6 fw-normal mb-2" 
+                        style={{ color: '#2c2c2c' }}
+                      >
+                        20+
+                      </h3>
+                      <p 
+                        className="mb-0" 
+                        style={{ 
+                          color: '#999', 
+                          fontSize: '0.9rem',
+                          letterSpacing: '1px',
+                          textTransform: 'uppercase'
+                        }}
+                      >
+                        Clients
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-3 col-6 text-center mb-4">
+                    <div className="p-3">
+                      <h3 
+                        className="display-6 fw-normal mb-2" 
+                        style={{ color: '#2c2c2c' }}
+                      >
+                        ∞
+                      </h3>
+                      <p 
+                        className="mb-0" 
+                        style={{ 
+                          color: '#999', 
+                          fontSize: '0.9rem',
+                          letterSpacing: '1px',
+                          textTransform: 'uppercase'
+                        }}
+                      >
+                        Coffee
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Stats Section */}
-        <div className="row mt-5 pt-5">
-          <div className="col-md-3 col-6 text-center mb-4">
-            <div className="bg-white p-4 rounded-3 shadow-sm">
-              <i className="fas fa-code fa-2x text-primary mb-2"></i>
-              <h3 className="h2 fw-bold text-primary mb-1">50+</h3>
-              <p className="text-muted mb-0">Proyectos Completados</p>
-            </div>
-          </div>
-          <div className="col-md-3 col-6 text-center mb-4">
-            <div className="bg-white p-4 rounded-3 shadow-sm">
-              <i className="fas fa-users fa-2x text-success mb-2"></i>
-              <h3 className="h2 fw-bold text-success mb-1">20+</h3>
-              <p className="text-muted mb-0">Clientes Satisfechos</p>
-            </div>
-          </div>
-          <div className="col-md-3 col-6 text-center mb-4">
-            <div className="bg-white p-4 rounded-3 shadow-sm">
-              <i className="fas fa-clock fa-2x text-warning mb-2"></i>
-              <h3 className="h2 fw-bold text-warning mb-1">3+</h3>
-              <p className="text-muted mb-0">Años de Experiencia</p>
-            </div>
-          </div>
-          <div className="col-md-3 col-6 text-center mb-4">
-            <div className="bg-white p-4 rounded-3 shadow-sm">
-              <i className="fas fa-coffee fa-2x text-danger mb-2"></i>
-              <h3 className="h2 fw-bold text-danger mb-1">∞</h3>
-              <p className="text-muted mb-0">Tazas de Café</p>
             </div>
           </div>
         </div>

@@ -4,142 +4,214 @@ const Skills = () => {
   const skillCategories = [
     {
       title: "Frontend",
-      icon: "fas fa-laptop-code",
-      color: "primary",
       skills: [
-        { name: "HTML5", level: 95, icon: "fab fa-html5" },
-        { name: "CSS3", level: 90, icon: "fab fa-css3-alt" },
-        { name: "JavaScript", level: 88, icon: "fab fa-js-square" },
-        { name: "React", level: 85, icon: "fab fa-react" },
-        { name: "Bootstrap", level: 92, icon: "fab fa-bootstrap" }
+        { name: "HTML5", level: 95 },
+        { name: "CSS3", level: 90 },
+        { name: "JavaScript", level: 88 },
+        { name: "React", level: 85 },
+        { name: "Bootstrap", level: 92 }
       ]
     },
     {
       title: "Backend",
-      icon: "fas fa-server",
-      color: "success",
       skills: [
-        { name: "Node.js", level: 80, icon: "fab fa-node-js" },
-        { name: "Express.js", level: 85, icon: "fas fa-code" },
-        { name: "PostgreSQL", level: 75, icon: "fas fa-database" },
-        { name: "API REST", level: 88, icon: "fas fa-plug" },
-        { name: "JWT", level: 82, icon: "fas fa-key" }
+        { name: "Node.js", level: 80 },
+        { name: "Express.js", level: 85 },
+        { name: "PostgreSQL", level: 75 },
+        { name: "API REST", level: 88 },
+        { name: "JWT", level: 82 }
       ]
     },
     {
       title: "Herramientas",
-      icon: "fas fa-tools",
-      color: "warning",
       skills: [
-        { name: "Git", level: 90, icon: "fab fa-git-alt" },
-        { name: "GitHub", level: 85, icon: "fab fa-github" },
-        { name: "VS Code", level: 95, icon: "fas fa-code" },
-        { name: "Postman", level: 80, icon: "fas fa-paper-plane" },
-        { name: "Figma", level: 70, icon: "fab fa-figma" }
+        { name: "Git", level: 90 },
+        { name: "GitHub", level: 85 },
+        { name: "VS Code", level: 95 },
+        { name: "Postman", level: 80 },
+        { name: "Figma", level: 70 }
       ]
     }
   ];
 
   const ProgressBar = ({ skill }) => (
-    <div className="mb-3">
-      <div className="d-flex justify-content-between align-items-center mb-1">
-        <span className="d-flex align-items-center">
-          <i className={`${skill.icon} me-2 text-muted`}></i>
+    <div style={{ marginBottom: '30px' }}>
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+        marginBottom: '15px'
+      }}>
+        <span style={{
+          fontSize: '16px',
+          color: '#2c2c2c',
+          letterSpacing: '0.3px',
+          fontWeight: '400'
+        }}>
           {skill.name}
         </span>
-        <span className="fw-semibold">{skill.level}%</span>
+        <span style={{
+          fontSize: '14px',
+          color: '#999',
+          letterSpacing: '0.5px'
+        }}>
+          {skill.level}%
+        </span>
       </div>
-      <div className="progress" style={{ height: '8px' }}>
+      <div style={{ 
+        height: '1px', 
+        backgroundColor: '#eee',
+        position: 'relative'
+      }}>
         <div 
-          className="progress-bar bg-primary"
-          role="progressbar"
-          style={{ width: `${skill.level}%` }}
-          aria-valuenow={skill.level}
-          aria-valuemin="0"
-          aria-valuemax="100"
-        >
-        </div>
+          style={{ 
+            width: `${skill.level}%`,
+            height: '100%',
+            backgroundColor: '#2c2c2c',
+            transition: 'width 1s ease-in-out'
+          }}
+        />
       </div>
     </div>
   );
 
+  const softSkills = [
+    { name: "Resolución de Problemas", description: "Análisis y solución creativa de desafíos técnicos" },
+    { name: "Trabajo en Equipo", description: "Colaboración efectiva en entornos ágiles" },
+    { name: "Aprendizaje Continuo", description: "Actualización constante con nuevas tecnologías" },
+    { name: "Gestión del Tiempo", description: "Organización y cumplimiento de deadlines" }
+  ];
+
   return (
-    <section id="skills" className="py-5">
+    <section 
+      id="skills" 
+      className="py-5 bg-white" 
+      style={{ 
+        fontFamily: 'Georgia, serif',
+        minHeight: '100vh',
+        paddingTop: '120px !important'
+      }}
+    >
       <div className="container">
-        <div className="text-center mb-5">
-          <h2 className="display-5 fw-bold text-primary mb-3">Habilidades Técnicas</h2>
-          <div className="bg-warning" style={{ height: '4px', width: '80px', margin: '0 auto' }}></div>
-          <p className="lead text-muted mt-3 col-lg-8 mx-auto">
-            Estas son las tecnologías y herramientas con las que trabajo día a día 
-            para crear soluciones digitales eficientes y modernas.
-          </p>
-        </div>
-
-        <div className="row">
-          {skillCategories.map((category, index) => (
-            <div key={index} className="col-lg-4 col-md-6 mb-4">
-              <div className="card h-100 shadow-sm border-0">
-                <div className={`card-header bg-${category.color} text-white text-center py-3`}>
-                  <i className={`${category.icon} fa-2x mb-2`}></i>
-                  <h4 className="mb-0">{category.title}</h4>
-                </div>
-                <div className="card-body p-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <ProgressBar key={skillIndex} skill={skill} />
-                  ))}
-                </div>
-              </div>
+        <div className="row justify-content-center">
+          <div className="col-lg-10">
+            {/* Title Section */}
+            <div className="text-center mb-5">
+              <h2 
+                className="display-4 fw-normal mb-5" 
+                style={{ 
+                  color: '#2c2c2c',
+                  fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+                  letterSpacing: '-1px',
+                  marginBottom: '2rem'
+                }}
+              >
+                Skills
+              </h2>
+              <p style={{ 
+                fontSize: '1.2rem',
+                color: '#666',
+                lineHeight: '1.6',
+                letterSpacing: '0.3px',
+                maxWidth: '600px',
+                margin: '0 auto'
+              }}>
+                Technologies and tools I work with to create efficient and modern digital solutions.
+              </p>
             </div>
-          ))}
-        </div>
 
-        {/* Additional Skills Section */}
-        <div className="row mt-5">
-          <div className="col-12">
-            <h3 className="text-center mb-4">Otras Competencias</h3>
-            <div className="row">
-              <div className="col-md-6 mb-3">
-                <div className="d-flex align-items-center">
-                  <div className="bg-primary rounded-circle p-2 me-3" style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <i className="fas fa-lightbulb text-white"></i>
-                  </div>
-                  <div>
-                    <h5 className="mb-1">Resolución de Problemas</h5>
-                    <p className="text-muted mb-0">Análisis y solución creativa de desafíos técnicos</p>
+            {/* Skills Categories */}
+            <div className="row mb-5">
+              {skillCategories.map((category, index) => (
+                <div key={index} className="col-lg-4 mb-5">
+                  <div style={{
+                    backgroundColor: 'white',
+                    padding: '50px 40px',
+                    height: '100%',
+                    border: '1px solid #f0f0f0',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#fafafa';
+                    e.currentTarget.style.borderColor = '#e0e0e0';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'white';
+                    e.currentTarget.style.borderColor = '#f0f0f0';
+                  }}>
+                    <h3 style={{ 
+                      fontSize: '20px',
+                      fontWeight: '400',
+                      color: '#2c2c2c',
+                      marginBottom: '40px',
+                      letterSpacing: '0.5px',
+                      textAlign: 'center'
+                    }}>
+                      {category.title}
+                    </h3>
+                    <div>
+                      {category.skills.map((skill, skillIndex) => (
+                        <ProgressBar key={skillIndex} skill={skill} />
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-md-6 mb-3">
-                <div className="d-flex align-items-center">
-                  <div className="bg-success rounded-circle p-2 me-3" style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <i className="fas fa-users text-white"></i>
-                  </div>
-                  <div>
-                    <h5 className="mb-1">Trabajo en Equipo</h5>
-                    <p className="text-muted mb-0">Colaboración efectiva en entornos ágiles</p>
-                  </div>
+              ))}
+            </div>
+
+            {/* Soft Skills Section */}
+            <div className="row mt-5 pt-5" style={{ borderTop: '1px solid #eee' }}>
+              <div className="col-12">
+                <div className="text-center mb-5">
+                  <h3 style={{ 
+                    fontSize: '2rem', 
+                    fontWeight: '400',
+                    color: '#2c2c2c',
+                    marginBottom: '20px',
+                    letterSpacing: '0.8px'
+                  }}>
+                    Additional Competencies
+                  </h3>
                 </div>
-              </div>
-              <div className="col-md-6 mb-3">
-                <div className="d-flex align-items-center">
-                  <div className="bg-warning rounded-circle p-2 me-3" style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <i className="fas fa-rocket text-white"></i>
-                  </div>
-                  <div>
-                    <h5 className="mb-1">Aprendizaje Continuo</h5>
-                    <p className="text-muted mb-0">Actualización constante con nuevas tecnologías</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 mb-3">
-                <div className="d-flex align-items-center">
-                  <div className="bg-danger rounded-circle p-2 me-3" style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <i className="fas fa-clock text-white"></i>
-                  </div>
-                  <div>
-                    <h5 className="mb-1">Gestión del Tiempo</h5>
-                    <p className="text-muted mb-0">Organización y cumplimiento de deadlines</p>
-                  </div>
+
+                <div className="row">
+                  {softSkills.map((skill, index) => (
+                    <div key={index} className="col-md-6 mb-4">
+                      <div style={{ 
+                        padding: '30px',
+                        backgroundColor: 'white',
+                        border: '1px solid #f5f5f5',
+                        transition: 'all 0.3s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#fafafa';
+                        e.currentTarget.style.borderColor = '#e0e0e0';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'white';
+                        e.currentTarget.style.borderColor = '#f5f5f5';
+                      }}>
+                        <h4 style={{ 
+                          fontSize: '18px',
+                          fontWeight: '400',
+                          color: '#2c2c2c',
+                          marginBottom: '15px',
+                          letterSpacing: '0.3px'
+                        }}>
+                          {skill.name}
+                        </h4>
+                        <p style={{ 
+                          fontSize: '16px',
+                          color: '#666',
+                          marginBottom: '0',
+                          lineHeight: '1.6',
+                          letterSpacing: '0.2px'
+                        }}>
+                          {skill.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

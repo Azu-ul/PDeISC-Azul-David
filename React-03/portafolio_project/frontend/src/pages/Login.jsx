@@ -51,7 +51,7 @@ export default function Login() {
 
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', formData);
-      login(response.data); // Pasamos la respuesta completa del servidor
+      login(response.data);
       showOverlay('Inicio de sesión exitoso', 'success');
       setTimeout(() => navigate('/'), 1500);
     } catch (error) {
@@ -61,71 +61,178 @@ export default function Login() {
     }
   };
 
+  const inputStyle = {
+    width: '100%',
+    padding: '20px 0',
+    fontSize: '16px',
+    backgroundColor: 'transparent',
+    border: 'none',
+    borderBottom: '1px solid #ddd',
+    outline: 'none',
+    transition: 'border-color 0.3s ease',
+    color: '#2c2c2c',
+    letterSpacing: '0.3px'
+  };
+
+  const labelStyle = {
+    display: 'block',
+    marginBottom: '12px',
+    fontSize: '14px',
+    color: '#666',
+    letterSpacing: '0.5px',
+    textTransform: 'uppercase',
+    fontWeight: '400'
+  };
+
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6 col-lg-4">
-          <div className="card shadow">
-            <div className="card-body p-4">
-              <h3 className="text-center mb-4">Iniciar Sesión</h3>
+    <div style={{ 
+      minHeight: '100vh',
+      backgroundColor: '#f8f9fa',
+      paddingTop: '80px',
+      fontFamily: 'Georgia, serif',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-6 col-lg-5">
+            <div style={{
+              backgroundColor: 'white',
+              border: '1px solid #f0f0f0',
+              padding: '80px 60px'
+            }}>
+              <h2 style={{ 
+                textAlign: 'center', 
+                marginBottom: '60px',
+                fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
+                fontWeight: '400',
+                color: '#2c2c2c',
+                letterSpacing: '0.5px'
+              }}>
+                Sign In
+              </h2>
+              
               <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor='email' className="form-label">Email</label>
+                <div style={{ marginBottom: '40px' }}>
+                  <label style={labelStyle}>
+                    Email
+                  </label>
                   <input 
                     type='email' 
-                    className="form-control"
                     name='email' 
                     id='email' 
                     required 
                     disabled={loading} 
                     value={formData.email} 
                     onChange={handleInputChange} 
-                    placeholder="Ingresa tu email"
+                    placeholder="your.email@domain.com"
+                    style={inputStyle}
+                    onFocus={(e) => e.target.style.borderBottomColor = '#2c2c2c'}
+                    onBlur={(e) => e.target.style.borderBottomColor = '#ddd'}
                   />
                 </div>
-                <div className="mb-3">
-                  <label htmlFor='password' className="form-label">Contraseña</label>
+                
+                <div style={{ marginBottom: '50px' }}>
+                  <label style={labelStyle}>
+                    Password
+                  </label>
                   <input 
                     type='password' 
-                    className="form-control"
                     name='password' 
                     id='password' 
                     required 
                     disabled={loading} 
                     value={formData.password} 
                     onChange={handleInputChange}
-                    placeholder="Ingresa tu contraseña" 
+                    placeholder="Your password"
+                    style={inputStyle}
+                    onFocus={(e) => e.target.style.borderBottomColor = '#2c2c2c'}
+                    onBlur={(e) => e.target.style.borderBottomColor = '#ddd'}
                   />
                 </div>
+                
                 <button 
                   type='submit' 
-                  className="btn btn-primary w-100 mb-3"
                   disabled={loading}
+                  style={{
+                    width: '100%',
+                    padding: '18px',
+                    backgroundColor: '#2c2c2c',
+                    color: 'white',
+                    border: 'none',
+                    fontSize: '14px',
+                    letterSpacing: '2px',
+                    textTransform: 'uppercase',
+                    cursor: loading ? 'not-allowed' : 'pointer',
+                    transition: 'all 0.3s ease',
+                    opacity: loading ? 0.7 : 1,
+                    marginBottom: '40px',
+                    fontWeight: '400'
+                  }}
+                  onMouseEnter={(e) => !loading && (e.target.style.backgroundColor = '#1a1a1a')}
+                  onMouseLeave={(e) => !loading && (e.target.style.backgroundColor = '#2c2c2c')}
                 >
-                  {loading ? (
-                    <>
-                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                      Iniciando sesión...
-                    </>
-                  ) : (
-                    'Iniciar Sesión'
-                  )}
+                  {loading ? 'Signing in...' : 'Sign In'}
                 </button>
               </form>
               
-              <hr />
-              
-              <div className="text-center">
-                <p className="mb-2">¿No tienes una cuenta?</p>
-                <Link to="/register" className="btn btn-outline-primary btn-sm">
-                  Registrarse
+              <div style={{ 
+                textAlign: 'center',
+                paddingTop: '30px',
+                borderTop: '1px solid #eee'
+              }}>
+                <p style={{ 
+                  marginBottom: '20px',
+                  color: '#666',
+                  fontSize: '16px',
+                  letterSpacing: '0.3px'
+                }}>
+                  Don't have an account?
+                </p>
+                <Link 
+                  to="/register" 
+                  style={{
+                    color: '#2c2c2c',
+                    textDecoration: 'none',
+                    fontSize: '14px',
+                    letterSpacing: '1px',
+                    textTransform: 'uppercase',
+                    borderBottom: '1px solid #2c2c2c',
+                    paddingBottom: '2px',
+                    transition: 'all 0.3s ease',
+                    fontWeight: '400'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.color = '#666';
+                    e.target.style.borderColor = '#666';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.color = '#2c2c2c';
+                    e.target.style.borderColor = '#2c2c2c';
+                  }}
+                >
+                  Create Account
                 </Link>
               </div>
               
-              <div className="text-center mt-3">
-                <p className="mb-2">¿Olvidaste tu contraseña?</p>
-                <Link to="/reset-password" className="btn btn-outline-secondary btn-sm">
-                  Cambiar Contraseña
+              <div style={{ 
+                textAlign: 'center',
+                marginTop: '30px'
+              }}>
+                <Link 
+                  to="/reset-password" 
+                  style={{
+                    color: '#999',
+                    textDecoration: 'none',
+                    fontSize: '14px',
+                    letterSpacing: '0.5px',
+                    transition: 'color 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = '#666'}
+                  onMouseLeave={(e) => e.target.style.color = '#999'}
+                >
+                  Forgot your password?
                 </Link>
               </div>
             </div>
@@ -136,7 +243,7 @@ export default function Login() {
       <Overlay
         show={overlay.show}
         type={overlay.type}
-        title={overlay.type === 'success' ? 'Éxito' : 'Error'}
+        title={overlay.type === 'success' ? 'Success' : 'Error'}
         message={overlay.message}
         onClose={closeOverlay}
       />

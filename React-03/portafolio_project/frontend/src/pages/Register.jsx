@@ -25,13 +25,11 @@ export default function Register() {
   };
 
   const validateForm = async () => {
-    // Validar campos requeridos
     if (!formData.nombre.trim() || !formData.apellido.trim() || !formData.email.trim() || !formData.password.trim()) {
       showOverlay('Por favor completa todos los campos obligatorios.', 'error');
       return false;
     }
 
-    // Validar longitud del nombre y apellido
     if (formData.nombre.trim().length < 2) {
       showOverlay('El nombre debe tener al menos 2 caracteres.', 'error');
       return false;
@@ -42,19 +40,16 @@ export default function Register() {
       return false;
     }
     
-    // Validar que nombre y apellido no contengan números
     if (/[0-9]/.test(formData.nombre) || /[0-9]/.test(formData.apellido)) {
       showOverlay('El nombre y el apellido no pueden contener números.', 'error');
       return false;
     }
 
-    // Validar formato de email
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(formData.email)) {
       showOverlay('Ingresa un email válido.', 'error');
       return false;
     }
 
-    // Validar contraseña
     if (formData.password.length < 6) {
       showOverlay('La contraseña debe tener al menos 6 caracteres.', 'error');
       return false;
@@ -65,7 +60,6 @@ export default function Register() {
       return false;
     }
 
-    // Verificar si el email ya existe
     try {
       const emailExists = await axios.get(`http://localhost:5000/api/auth/check-email-exists?email=${formData.email}`);
       if (emailExists.data.exists) {
@@ -95,11 +89,9 @@ export default function Register() {
     setLoading(true);
 
     try {
-      // Registrar usuario
       await axios.post('http://localhost:5000/api/auth/register', formData);
       showOverlay('Usuario registrado con éxito.', 'success');
       
-      // Auto-login después del registro exitoso
       const loginResponse = await axios.post('http://localhost:5000/api/auth/login', {
         email: formData.email,
         password: formData.password
@@ -115,100 +107,200 @@ export default function Register() {
     }
   };
 
+  const inputStyle = {
+    width: '100%',
+    padding: '20px 0',
+    fontSize: '16px',
+    backgroundColor: 'transparent',
+    border: 'none',
+    borderBottom: '1px solid #ddd',
+    outline: 'none',
+    transition: 'border-color 0.3s ease',
+    color: '#2c2c2c',
+    letterSpacing: '0.3px'
+  };
+
+  const labelStyle = {
+    display: 'block',
+    marginBottom: '12px',
+    fontSize: '14px',
+    color: '#666',
+    letterSpacing: '0.5px',
+    textTransform: 'uppercase',
+    fontWeight: '400'
+  };
+
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-8 col-lg-6">
-          <div className="card shadow">
-            <div className="card-body p-4">
-              <h3 className="text-center mb-4">Registro de Usuario</h3>
+    <div style={{ 
+      minHeight: '100vh',
+      backgroundColor: '#f8f9fa',
+      paddingTop: '80px',
+      paddingBottom: '40px',
+      fontFamily: 'Georgia, serif',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-8 col-lg-7">
+            <div style={{
+              backgroundColor: 'white',
+              border: '1px solid #f0f0f0',
+              padding: '80px 60px'
+            }}>
+              <h2 style={{ 
+                textAlign: 'center', 
+                marginBottom: '60px',
+                fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
+                fontWeight: '400',
+                color: '#2c2c2c',
+                letterSpacing: '0.5px'
+              }}>
+                Create Account
+              </h2>
+              
               <form onSubmit={handleSubmit}>
                 <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor='nombre' className="form-label">Nombre *</label>
+                  <div className="col-md-6" style={{ marginBottom: '40px' }}>
+                    <label style={labelStyle}>First Name</label>
                     <input 
                       type='text' 
-                      className="form-control"
                       name='nombre' 
                       id='nombre' 
                       required 
                       disabled={loading} 
                       value={formData.nombre} 
                       onChange={handleInputChange}
-                      placeholder="Ingresa tu nombre"
+                      placeholder="Your first name"
+                      style={inputStyle}
+                      onFocus={(e) => e.target.style.borderBottomColor = '#2c2c2c'}
+                      onBlur={(e) => e.target.style.borderBottomColor = '#ddd'}
                     />
                   </div>
-                  <div className="col-md-6 mb-3">
-                    <label htmlFor='apellido' className="form-label">Apellido *</label>
+                  
+                  <div className="col-md-6" style={{ marginBottom: '40px' }}>
+                    <label style={labelStyle}>Last Name</label>
                     <input 
                       type='text' 
-                      className="form-control"
                       name='apellido' 
                       id='apellido' 
                       required 
                       disabled={loading} 
                       value={formData.apellido} 
                       onChange={handleInputChange}
-                      placeholder="Ingresa tu apellido"
+                      placeholder="Your last name"
+                      style={inputStyle}
+                      onFocus={(e) => e.target.style.borderBottomColor = '#2c2c2c'}
+                      onBlur={(e) => e.target.style.borderBottomColor = '#ddd'}
                     />
                   </div>
                 </div>
                 
-                <div className="mb-3">
-                  <label htmlFor='email' className="form-label">Email *</label>
+                <div style={{ marginBottom: '40px' }}>
+                  <label style={labelStyle}>Email</label>
                   <input 
                     type='email' 
-                    className="form-control"
                     name='email' 
                     id='email' 
                     required 
                     disabled={loading} 
                     value={formData.email} 
                     onChange={handleInputChange}
-                    placeholder="Ingresa tu email"
+                    placeholder="your.email@domain.com"
+                    style={inputStyle}
+                    onFocus={(e) => e.target.style.borderBottomColor = '#2c2c2c'}
+                    onBlur={(e) => e.target.style.borderBottomColor = '#ddd'}
                   />
                 </div>
                 
-                <div className="mb-3">
-                  <label htmlFor='password' className="form-label">Contraseña *</label>
+                <div style={{ marginBottom: '30px' }}>
+                  <label style={labelStyle}>Password</label>
                   <input 
                     type='password' 
-                    className="form-control"
                     name='password' 
                     id='password' 
                     required 
                     disabled={loading} 
                     value={formData.password} 
                     onChange={handleInputChange}
-                    placeholder="Mínimo 6 caracteres con al menos un número"
+                    placeholder="Minimum 6 characters with a number"
+                    style={inputStyle}
+                    onFocus={(e) => e.target.style.borderBottomColor = '#2c2c2c'}
+                    onBlur={(e) => e.target.style.borderBottomColor = '#ddd'}
                   />
-                  <div className="form-text">
-                    La contraseña debe tener al menos 6 caracteres y contener un número.
+                  <div style={{
+                    fontSize: '12px',
+                    color: '#999',
+                    marginTop: '12px',
+                    letterSpacing: '0.3px'
+                  }}>
+                    Password must be at least 6 characters and contain a number.
                   </div>
                 </div>
                 
                 <button 
                   type='submit' 
-                  className="btn btn-primary w-100 mb-3"
                   disabled={loading}
+                  style={{
+                    width: '100%',
+                    padding: '18px',
+                    backgroundColor: '#2c2c2c',
+                    color: 'white',
+                    border: 'none',
+                    fontSize: '14px',
+                    letterSpacing: '2px',
+                    textTransform: 'uppercase',
+                    cursor: loading ? 'not-allowed' : 'pointer',
+                    transition: 'all 0.3s ease',
+                    opacity: loading ? 0.7 : 1,
+                    marginBottom: '40px',
+                    marginTop: '30px',
+                    fontWeight: '400'
+                  }}
+                  onMouseEnter={(e) => !loading && (e.target.style.backgroundColor = '#1a1a1a')}
+                  onMouseLeave={(e) => !loading && (e.target.style.backgroundColor = '#2c2c2c')}
                 >
-                  {loading ? (
-                    <>
-                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                      Creando cuenta...
-                    </>
-                  ) : (
-                    'Crear Cuenta'
-                  )}
+                  {loading ? 'Creating account...' : 'Create Account'}
                 </button>
               </form>
               
-              <hr />
-              
-              <div className="text-center">
-                <p className="mb-2">¿Ya tienes una cuenta?</p>
-                <Link to="/login" className="btn btn-outline-primary btn-sm">
-                  Iniciar Sesión
+              <div style={{ 
+                textAlign: 'center',
+                paddingTop: '30px',
+                borderTop: '1px solid #eee'
+              }}>
+                <p style={{ 
+                  marginBottom: '20px',
+                  color: '#666',
+                  fontSize: '16px',
+                  letterSpacing: '0.3px'
+                }}>
+                  Already have an account?
+                </p>
+                <Link 
+                  to="/login" 
+                  style={{
+                    color: '#2c2c2c',
+                    textDecoration: 'none',
+                    fontSize: '14px',
+                    letterSpacing: '1px',
+                    textTransform: 'uppercase',
+                    borderBottom: '1px solid #2c2c2c',
+                    paddingBottom: '2px',
+                    transition: 'all 0.3s ease',
+                    fontWeight: '400'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.color = '#666';
+                    e.target.style.borderColor = '#666';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.color = '#2c2c2c';
+                    e.target.style.borderColor = '#2c2c2c';
+                  }}
+                >
+                  Sign In
                 </Link>
               </div>
             </div>
@@ -219,7 +311,7 @@ export default function Register() {
       <Overlay
         show={overlay.show}
         type={overlay.type}
-        title={overlay.type === 'success' ? 'Éxito' : 'Error'}
+        title={overlay.type === 'success' ? 'Success' : 'Error'}
         message={overlay.message}
         onClose={closeOverlay}
       />

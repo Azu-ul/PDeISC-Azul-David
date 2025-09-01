@@ -63,33 +63,183 @@ export default function ResetPassword() {
     }
   };
 
+  const inputStyle = {
+    width: '100%',
+    padding: '20px 0',
+    fontSize: '16px',
+    backgroundColor: 'transparent',
+    border: 'none',
+    borderBottom: '1px solid #ddd',
+    outline: 'none',
+    transition: 'border-color 0.3s ease',
+    color: '#2c2c2c',
+    letterSpacing: '0.3px'
+  };
+
+  const labelStyle = {
+    display: 'block',
+    marginBottom: '12px',
+    fontSize: '14px',
+    color: '#666',
+    letterSpacing: '0.5px',
+    textTransform: 'uppercase',
+    fontWeight: '400'
+  };
+
   return (
-    <div style={{ position: 'relative' }}>
-      <h3>Resetear Contraseña</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='email'>Email</label>
-          <input type='email' name='email' id='email' required disabled={loading} value={formData.email} onChange={handleInputChange} />
+    <div style={{ 
+      minHeight: '100vh',
+      backgroundColor: '#f8f9fa',
+      paddingTop: '80px',
+      fontFamily: 'Georgia, serif',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-6 col-lg-5">
+            <div style={{
+              backgroundColor: 'white',
+              border: '1px solid #f0f0f0',
+              padding: '80px 60px'
+            }}>
+              <h2 style={{ 
+                textAlign: 'center', 
+                marginBottom: '60px',
+                fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
+                fontWeight: '400',
+                color: '#2c2c2c',
+                letterSpacing: '0.5px'
+              }}>
+                Reset Password
+              </h2>
+
+              <form onSubmit={handleSubmit}>
+                <div style={{ marginBottom: '40px' }}>
+                  <label style={labelStyle}>Email</label>
+                  <input 
+                    type='email' 
+                    name='email' 
+                    id='email' 
+                    required 
+                    disabled={loading} 
+                    value={formData.email} 
+                    onChange={handleInputChange}
+                    placeholder="your.email@domain.com"
+                    style={inputStyle}
+                    onFocus={(e) => e.target.style.borderBottomColor = '#2c2c2c'}
+                    onBlur={(e) => e.target.style.borderBottomColor = '#ddd'}
+                  />
+                </div>
+
+                <div style={{ marginBottom: '40px' }}>
+                  <label style={labelStyle}>New Password</label>
+                  <input 
+                    type='password' 
+                    name='newPassword' 
+                    id='newPassword' 
+                    required 
+                    disabled={loading} 
+                    value={formData.newPassword} 
+                    onChange={handleInputChange}
+                    placeholder="New password"
+                    style={inputStyle}
+                    onFocus={(e) => e.target.style.borderBottomColor = '#2c2c2c'}
+                    onBlur={(e) => e.target.style.borderBottomColor = '#ddd'}
+                  />
+                </div>
+
+                <div style={{ marginBottom: '30px' }}>
+                  <label style={labelStyle}>Confirm Password</label>
+                  <input 
+                    type='password' 
+                    name='confirmPassword' 
+                    id='confirmPassword' 
+                    required 
+                    disabled={loading} 
+                    value={formData.confirmPassword} 
+                    onChange={handleInputChange}
+                    placeholder="Confirm your password"
+                    style={inputStyle}
+                    onFocus={(e) => e.target.style.borderBottomColor = '#2c2c2c'}
+                    onBlur={(e) => e.target.style.borderBottomColor = '#ddd'}
+                  />
+                </div>
+
+                <button 
+                  type='submit' 
+                  disabled={loading}
+                  style={{
+                    width: '100%',
+                    padding: '18px',
+                    backgroundColor: '#2c2c2c',
+                    color: 'white',
+                    border: 'none',
+                    fontSize: '14px',
+                    letterSpacing: '2px',
+                    textTransform: 'uppercase',
+                    cursor: loading ? 'not-allowed' : 'pointer',
+                    transition: 'all 0.3s ease',
+                    opacity: loading ? 0.7 : 1,
+                    marginBottom: '40px',
+                    marginTop: '30px',
+                    fontWeight: '400'
+                  }}
+                  onMouseEnter={(e) => !loading && (e.target.style.backgroundColor = '#1a1a1a')}
+                  onMouseLeave={(e) => !loading && (e.target.style.backgroundColor = '#2c2c2c')}
+                >
+                  {loading ? 'Resetting...' : 'Reset Password'}
+                </button>
+              </form>
+              
+              <div style={{ 
+                textAlign: 'center',
+                paddingTop: '30px',
+                borderTop: '1px solid #eee'
+              }}>
+                <p style={{ 
+                  marginBottom: '20px',
+                  color: '#666',
+                  fontSize: '16px',
+                  letterSpacing: '0.3px'
+                }}>
+                  Remember your password?
+                </p>
+                <Link 
+                  to="/login"
+                  style={{
+                    color: '#2c2c2c',
+                    textDecoration: 'none',
+                    fontSize: '14px',
+                    letterSpacing: '1px',
+                    textTransform: 'uppercase',
+                    borderBottom: '1px solid #2c2c2c',
+                    paddingBottom: '2px',
+                    transition: 'all 0.3s ease',
+                    fontWeight: '400'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.color = '#666';
+                    e.target.style.borderColor = '#666';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.color = '#2c2c2c';
+                    e.target.style.borderColor = '#2c2c2c';
+                  }}
+                >
+                  Back to Login
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <label htmlFor='newPassword'>Nueva Contraseña</label>
-          <input type='password' name='newPassword' id='newPassword' required disabled={loading} value={formData.newPassword} onChange={handleInputChange} />
-        </div>
-        <div>
-          <label htmlFor='confirmPassword'>Confirmar Contraseña</label>
-          <input type='password' name='confirmPassword' id='confirmPassword' required disabled={loading} value={formData.confirmPassword} onChange={handleInputChange} />
-        </div>
-        <button type='submit' disabled={loading}>
-          {loading ? 'Reseteando...' : 'Resetear Contraseña'}
-        </button>
-      </form>
-      <hr />
-      <p>¿Recordaste tu contraseña?</p>
-      <Link to="/login">Volver al Login</Link>
+      </div>
+
       <Overlay
         show={overlay.show}
         type={overlay.type}
-        title={overlay.type === 'success' ? 'Éxito' : 'Error'}
+        title={overlay.type === 'success' ? 'Success' : 'Error'}
         message={overlay.message}
         onClose={closeOverlay}
       />

@@ -17,37 +17,32 @@ export default function Overlay({
         switch(type) {
             case 'success':
                 return {
-                    headerClass: 'bg-success',
-                    icon: 'fa-check-circle',
-                    buttonClass: 'btn-success',
+                    borderColor: '#28a745',
+                    titleColor: '#28a745',
                     defaultTitle: 'Éxito'
                 };
             case 'error':
                 return {
-                    headerClass: 'bg-danger',
-                    icon: 'fa-times-circle',
-                    buttonClass: 'btn-danger',
+                    borderColor: '#dc3545',
+                    titleColor: '#dc3545',
                     defaultTitle: 'Error'
                 };
             case 'warning':
                 return {
-                    headerClass: 'bg-warning text-dark',
-                    icon: 'fa-exclamation-triangle',
-                    buttonClass: 'btn-warning',
+                    borderColor: '#ffc107',
+                    titleColor: '#856404',
                     defaultTitle: 'Advertencia'
                 };
             case 'confirm':
                 return {
-                    headerClass: 'bg-primary',
-                    icon: 'fa-question-circle',
-                    buttonClass: 'btn-primary',
+                    borderColor: '#333',
+                    titleColor: '#333',
                     defaultTitle: 'Confirmación'
                 };
             default:
                 return {
-                    headerClass: 'bg-primary',
-                    icon: 'fa-info-circle',
-                    buttonClass: 'btn-primary',
+                    borderColor: '#333',
+                    titleColor: '#333',
                     defaultTitle: 'Información'
                 };
         }
@@ -57,42 +52,124 @@ export default function Overlay({
 
     return (
         <div 
-            className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
-            style={{ backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 9999 }}
+            style={{ 
+                position: 'fixed',
+                top: '0',
+                left: '0',
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'rgba(248, 249, 250, 0.95)',
+                zIndex: 9999,
+                fontFamily: 'Georgia, serif'
+            }}
         >
-            <div className="card shadow-lg border-0" style={{ minWidth: '300px', maxWidth: '500px' }}>
-                <div className={`card-header text-white text-center py-3 ${config.headerClass}`}>
-                    <h5 className="mb-0">
-                        <i className={`fas ${config.icon} me-2`}></i>
+            <div style={{
+                backgroundColor: 'white',
+                minWidth: '320px',
+                maxWidth: '500px',
+                border: `2px solid ${config.borderColor}`,
+                boxShadow: 'none'
+            }}>
+                {/* Header */}
+                <div style={{
+                    padding: '30px 40px 20px 40px',
+                    borderBottom: `1px solid ${config.borderColor}`,
+                    textAlign: 'center'
+                }}>
+                    <h3 style={{
+                        margin: '0',
+                        fontSize: '20px',
+                        fontWeight: '400',
+                        color: config.titleColor,
+                        letterSpacing: '0.5px'
+                    }}>
                         {title || config.defaultTitle}
-                    </h5>
+                    </h3>
                 </div>
-                <div className="card-body text-center p-4">
-                    <p className="mb-4">{message}</p>
+
+                {/* Body */}
+                <div style={{
+                    padding: '30px 40px',
+                    textAlign: 'center'
+                }}>
+                    <p style={{
+                        margin: '0 0 30px 0',
+                        fontSize: '16px',
+                        color: '#666',
+                        lineHeight: '1.6',
+                        letterSpacing: '0.3px'
+                    }}>
+                        {message}
+                    </p>
                     
                     {type === 'confirm' ? (
-                        <div className="d-flex gap-2 justify-content-center">
+                        <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
                             <button 
                                 onClick={onConfirm}
-                                className="btn btn-danger px-4 py-2 rounded-pill fw-semibold"
+                                style={{
+                                    padding: '12px 30px',
+                                    backgroundColor: '#dc3545',
+                                    color: 'white',
+                                    border: 'none',
+                                    fontSize: '14px',
+                                    letterSpacing: '1px',
+                                    textTransform: 'uppercase',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.3s ease',
+                                    fontWeight: '400'
+                                }}
+                                onMouseEnter={(e) => e.target.style.backgroundColor = '#c82333'}
+                                onMouseLeave={(e) => e.target.style.backgroundColor = '#dc3545'}
                             >
-                                <i className="fas fa-check me-2"></i>
                                 {confirmText}
                             </button>
                             <button 
                                 onClick={onCancel}
-                                className="btn btn-secondary px-4 py-2 rounded-pill fw-semibold"
+                                style={{
+                                    padding: '12px 30px',
+                                    backgroundColor: 'transparent',
+                                    color: '#666',
+                                    border: '1px solid #ddd',
+                                    fontSize: '14px',
+                                    letterSpacing: '1px',
+                                    textTransform: 'uppercase',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.3s ease',
+                                    fontWeight: '400'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.backgroundColor = '#f8f9fa';
+                                    e.target.style.borderColor = '#999';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.backgroundColor = 'transparent';
+                                    e.target.style.borderColor = '#ddd';
+                                }}
                             >
-                                <i className="fas fa-times me-2"></i>
                                 {cancelText}
                             </button>
                         </div>
                     ) : (
                         <button 
                             onClick={onClose}
-                            className={`btn ${config.buttonClass} px-4 py-2 rounded-pill fw-semibold`}
+                            style={{
+                                padding: '12px 30px',
+                                backgroundColor: '#333',
+                                color: 'white',
+                                border: 'none',
+                                fontSize: '14px',
+                                letterSpacing: '1px',
+                                textTransform: 'uppercase',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease',
+                                fontWeight: '400'
+                            }}
+                            onMouseEnter={(e) => e.target.style.backgroundColor = '#555'}
+                            onMouseLeave={(e) => e.target.style.backgroundColor = '#333'}
                         >
-                            <i className="fas fa-times me-2"></i>
                             Cerrar
                         </button>
                     )}
