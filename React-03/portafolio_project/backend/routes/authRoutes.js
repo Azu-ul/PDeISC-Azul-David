@@ -8,5 +8,6 @@ router.post('/login', authController.login);
 router.put('/change-password', authController.authenticateToken, authController.changePassword);
 router.put('/reset-password', authController.resetPassword);
 router.get('/me', authController.authenticateToken, authController.getLoggedInUser);
+router.get('/check-email-exists', authController.checkEmailExists);
 
 export default router;

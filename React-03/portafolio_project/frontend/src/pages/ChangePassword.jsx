@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Overlay from '../components/Overlay';
 import axios from 'axios';
 
 export default function ChangePassword() {
@@ -7,9 +8,33 @@ export default function ChangePassword() {
     newPassword: '',
     confirmPassword: ''
   });
-  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [overlay, setOverlay] = useState({ show: false, message: '', type: 'success' });
   const navigate = useNavigate();
+
+  const showOverlay = (message, type) => {
+    setOverlay({ show: true, message, type });
+  };
+
+  const closeOverlay = () => {
+    setOverlay({ ...overlay, show: false });
+  };
+
+  const validateForm = () => {
+    if (!formData.newPassword || !formData.confirmPassword) {
+      showOverlay('Por favor completa todos los campos.', 'error');
+      return false;
+    }
+    if (formData.newPassword.length < 6 || !/\d/.test(formData.newPassword)) {
+      showOverlay('La contraseña debe tener al menos 6 caracteres y un número.', 'error');
+      return false;
+    }
+    if (formData.newPassword !== formData.confirmPassword) {
+      showOverlay('Las contraseñas no coinciden.', 'error');
+      return false;
+    }
+    return true;
+  };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,8 +42,7 @@ export default function ChangePassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.newPassword !== formData.confirmPassword) {
-      setMessage('Las contraseñas no coinciden.');
+    if (!validateForm()) {
       return;
     }
     setLoading(true);
@@ -30,17 +54,17 @@ export default function ChangePassword() {
           Authorization: `Bearer ${token}`
         }
       });
-      setMessage('Contraseña actualizada con éxito');
+      showOverlay('Contraseña actualizada con éxito.', 'success');
       setTimeout(() => navigate('/'), 1500);
     } catch (error) {
-      setMessage(error.response?.data?.error || 'Error al cambiar la contraseña');
+      showOverlay(error.response?.data?.error || 'Error al cambiar la contraseña.', 'error');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
       <h3>Cambiar Contraseña</h3>
       <form onSubmit={handleSubmit}>
         <div>
@@ -55,7 +79,13 @@ export default function ChangePassword() {
           {loading ? 'Actualizando...' : 'Cambiar Contraseña'}
         </button>
       </form>
-      {message && <p>{message}</p>}
+      <Overlay
+        show={overlay.show}
+        type={overlay.type}
+        title={overlay.type === 'success' ? 'Éxito' : 'Error'}
+        message={overlay.message}
+        onClose={closeOverlay}
+      />
     </div>
   );
 }

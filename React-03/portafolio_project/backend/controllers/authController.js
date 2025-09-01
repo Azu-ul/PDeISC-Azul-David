@@ -133,6 +133,21 @@ const authController = {
         .json({ error: "Error del servidor al obtener datos del usuario." });
     }
   },
-};
+
+  checkEmailExists: async (req, res) => {
+    const { email } = req.query;
+    try {
+      const query = "SELECT COUNT(*) FROM usuarios WHERE email = $1";
+      const result = await pool.query(query, [email]);
+      const exists = result.rows[0].count > 0;
+      res.json({ exists });
+    } catch (error) {
+      console.error("Error al verificar el email:", error);
+      res
+        .status(500)
+        .json({ error: "Error del servidor al verificar el email." });
+    }
+  }
+};  
 
 export default authController;

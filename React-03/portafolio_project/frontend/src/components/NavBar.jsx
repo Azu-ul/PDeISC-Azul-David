@@ -1,17 +1,34 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext.jsx';
+import React, { useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import Overlay from './Overlay';
 
-const Navbar = () => {
+const NavBar = () => {
   const { user, isAdmin, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [showConfirmOverlay, setShowConfirmOverlay] = useState(false);
 
+  // Muestra el overlay de confirmación
   const handleLogout = () => {
+    setShowConfirmOverlay(true);
+  };
+
+  // Cierra el overlay y realiza el logout
+  const confirmLogout = () => {
     logout();
+    setShowConfirmOverlay(false);
     navigate('/');
   };
 
-   return (
+  // Cierra el overlay sin hacer nada
+  const cancelLogout = () => {
+    setShowConfirmOverlay(false);
+  };
+
+  const isMiCuentaPage = location.pathname === '/mi-cuenta';
+
+  return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
@@ -32,12 +49,14 @@ const Navbar = () => {
           <ul className="navbar-nav ms-auto">
             {user ? (
               <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/mi-cuenta">
-                    Mi Cuenta
-                  </Link>
-                </li>
-                {isAdmin && (
+                {!isMiCuentaPage && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/mi-cuenta">
+                      Mi Cuenta
+                    </Link>
+                  </li>
+                )}
+                {isAdmin() && (
                   <li className="nav-item">
                     <Link className="nav-link" to="/admin">
                       Editar
@@ -67,8 +86,20 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
+      
+      {/* Overlay de confirmación de logout */}
+      <Overlay
+        show={showConfirmOverlay}
+        type="confirm"
+        title="Confirmar Salida"
+        message="¿Estás seguro de que quieres cerrar tu sesión?"
+        confirmText="Sí, salir"
+        cancelText="Cancelar"
+        onConfirm={confirmLogout}
+        onCancel={cancelLogout}
+      />
     </nav>
   );
 };
 
-export default Navbar;
+export default NavBar;
