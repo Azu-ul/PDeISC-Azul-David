@@ -1,13 +1,13 @@
 import express from 'express';
 import authController from '../controllers/authController.js';
 
-const router = express.Router();
+const app = express();
 
-router.post('/register', authController.register);
-router.post('/login', authController.login);
-router.put('/change-password', authController.authenticateToken, authController.changePassword);
-router.put('/reset-password', authController.resetPassword);
-router.get('/me', authController.authenticateToken, authController.getLoggedInUser);
-router.get('/check-email-exists', authController.checkEmailExists);
+app.post('/register', authController.register);
+app.post('/login', authController.login);
+app.put('/change-password', authController.authenticateToken, authController.changePassword);
+app.put('/reset-password', authController.resetPassword);
+app.get('/me', authController.authenticateToken, authController.getLoggedInUser);
+app.get('/check-email-exists', authController.checkEmailExists);
 
-export default router;
+export default app;

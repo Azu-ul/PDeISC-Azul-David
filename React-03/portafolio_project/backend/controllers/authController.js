@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import pool from "../config/db.js";
 
-const JWT_SECRET = process.env.JWT_SECRET || "your_secret_key";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const authController = {
   register: async (req, res) => {
@@ -63,6 +63,9 @@ const authController = {
   },
 
   changePassword: async (req, res) => {
+    console.log("ChangePassword route hit!", req.user);
+    console.log("Token received:", req.headers.authorization);
+
     const { newPassword, confirmPassword } = req.body;
     const userId = req.user.id;
 
@@ -147,7 +150,7 @@ const authController = {
         .status(500)
         .json({ error: "Error del servidor al verificar el email." });
     }
-  }
-};  
+  },
+};
 
 export default authController;

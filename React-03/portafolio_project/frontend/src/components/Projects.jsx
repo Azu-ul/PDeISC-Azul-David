@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import '../styles/main.css';
 
 const Projects = () => {
@@ -8,61 +9,29 @@ const Projects = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get('http://localhost:5000/api/portfolio');
+        if (!response.data) throw new Error('No se encontraron proyectos');
+        setProjects(response.data);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        setError('Error al cargar los proyectos');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProjects();
   }, []);
 
-  const fetchProjects = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/portfolio');
-      setProjects(response.data);
-    } catch (error) {
-      console.error('Error fetching projects:', error);
-      setError('Error loading projects');
-      setProjects(getExampleProjects());
-    } finally {
-      setLoading(false);
+  const getImageUrl = (imageUrl) => {
+    if (!imageUrl || imageUrl.trim() === '') {
+      return null;
     }
+    return imageUrl;
   };
-
-  const getExampleProjects = () => [
-    {
-      id: 1,
-      title: "E-commerce Platform",
-      description: "Modern e-commerce platform built with React, Node.js and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.",
-      url: "https://github.com/usuario/ecommerce-react",
-      image: "/api/placeholder/600/400",
-      category: "fullstack",
-      technologies: ["React", "Node.js", "PostgreSQL", "Stripe"]
-    },
-    {
-      id: 2,
-      title: "Analytics Dashboard",
-      description: "Interactive analytics dashboard with real-time data visualization and advanced filtering capabilities.",
-      url: "https://github.com/usuario/dashboard-analytics",
-      image: "/api/placeholder/600/400",
-      category: "frontend",
-      technologies: ["React", "Chart.js", "Bootstrap", "API Integration"]
-    },
-    {
-      id: 3,
-      title: "Task Management API",
-      description: "RESTful API for task management with user authentication, role-based access control, and comprehensive documentation.",
-      url: "https://github.com/usuario/task-api",
-      image: "/api/placeholder/600/400",
-      category: "backend",
-      technologies: ["Node.js", "Express", "PostgreSQL", "JWT"]
-    },
-    {
-      id: 4,
-      title: "Portfolio Website",
-      description: "Responsive portfolio website with modern design, contact form integration, and content management system.",
-      url: "https://github.com/usuario/portfolio",
-      image: "/api/placeholder/600/400",
-      category: "frontend",
-      technologies: ["React", "Bootstrap", "Node.js", "Email.js"]
-    }
-  ];
 
   if (loading) {
     return (
@@ -81,13 +50,25 @@ const Projects = () => {
     );
   }
 
+  if (error) {
+    return (
+      <section id="projects" className="py-5 bg-white">
+        <div className="container">
+          <div className="text-center">
+            <p style={{ color: '#dc3545' }}>Error: {error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section 
       id="projects" 
       className="py-5 bg-white" 
       style={{ 
         fontFamily: 'Georgia, serif', 
-        minHeight: '100vh',
+        minHeight: '50vh',
         paddingTop: '120px !important'
       }}
     >
@@ -98,7 +79,7 @@ const Projects = () => {
               <h2 
                 className="display-4 fw-normal mb-5" 
                 style={{ 
-                  color: '#2c2c2c',
+                  color: '#F79995',
                   fontSize: 'clamp(2.5rem, 6vw, 5rem)',
                   letterSpacing: '-1px'
                 }}
@@ -117,33 +98,50 @@ const Projects = () => {
             <div className="row">
               {projects.length > 0 ? (
                 projects.map((project, index) => (
-                  <div key={project.id} className="col-lg-6 mb-5">
-                    <div 
-                      className="project-item h-100"
-                      style={{
-                        borderTop: index < 2 ? '1px solid #eee' : 'none',
-                        paddingTop: index < 2 ? '2rem' : '0'
-                      }}
-                    >
-                      {/* Imagen del proyecto */}
+                  <motion.div 
+                    key={project.id} 
+                    className="col-lg-6 mb-5"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                    whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                  >
+                    <div className="project-item h-100">
+                      {/* Imagen del proyecto - modificado */}
                       <div className="mb-4">
-                        <img 
-                          src={project.image} 
-                          alt={project.title}
-                          className="img-fluid w-100"
-                          style={{ 
-                            height: '300px', 
-                            objectFit: 'cover',
-                            filter: 'grayscale(100%)',
-                            transition: 'all 0.3s ease'
-                          }}
-                          onMouseOver={(e) => {
-                            e.target.style.filter = 'grayscale(0%)';
-                          }}
-                          onMouseOut={(e) => {
-                            e.target.style.filter = 'grayscale(100%)';
-                          }}
-                        />
+                        {getImageUrl(project.image) ? (
+                          <img 
+                            src={getImageUrl(project.image)}
+                            alt={project.title}
+                            className="img-fluid w-100"
+                            style={{ 
+                              height: '300px', 
+                              objectFit: 'cover',
+                              filter: 'grayscale(100%)',
+                              transition: 'all 0.3s ease'
+                            }}
+                            onMouseOver={(e) => {
+                              e.target.style.filter = 'grayscale(0%)';
+                            }}
+                            onMouseOut={(e) => {
+                              e.target.style.filter = 'grayscale(100%)';
+                            }}
+                          />
+                        ) : (
+                          <div 
+                            className="w-100" 
+                            style={{ 
+                              height: '300px',
+                              backgroundColor: '#f8f9fa',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              color: '#999'
+                            }}
+                          >
+                            No image available
+                          </div>
+                        )}
                       </div>
 
                       {/* Contenido del proyecto */}
@@ -179,9 +177,9 @@ const Projects = () => {
                                 className="px-2 py-1"
                                 style={{
                                   fontSize: '0.8rem',
-                                  color: '#999',
-                                  border: '1px solid #eee',
-                                  backgroundColor: 'transparent',
+                                  color: '#F79995',
+                                  border: '1px solid #F79995',
+                                  backgroundColor: 'rgba(247, 153, 149, 0.05)',
                                   letterSpacing: '0.5px'
                                 }}
                               >
@@ -200,12 +198,12 @@ const Projects = () => {
                               rel="noopener noreferrer" 
                               className="text-decoration-none"
                               style={{
-                                color: '#2c2c2c',
+                                color: '#F79995',
                                 fontSize: '0.9rem',
                                 letterSpacing: '1px',
                                 textTransform: 'uppercase',
                                 fontWeight: '400',
-                                borderBottom: '1px solid #2c2c2c',
+                                borderBottom: '1px solid #F79995',
                                 paddingBottom: '2px',
                                 transition: 'all 0.3s ease'
                               }}
@@ -214,8 +212,8 @@ const Projects = () => {
                                 e.target.style.borderColor = '#666';
                               }}
                               onMouseOut={(e) => {
-                                e.target.style.color = '#2c2c2c';
-                                e.target.style.borderColor = '#2c2c2c';
+                                e.target.style.color = '#F79995';
+                                e.target.style.borderColor = '#F79995';
                               }}
                             >
                               View Project →
@@ -224,56 +222,13 @@ const Projects = () => {
                         )}
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))
               ) : (
                 <div className="col-12 text-center py-5">
                   <p style={{ color: '#999', fontSize: '1.1rem' }}>No projects available</p>
                 </div>
               )}
-            </div>
-
-            {/* Sección adicional */}
-            <div className="row mt-5 pt-5" style={{ borderTop: '1px solid #eee' }}>
-              <div className="col-12 text-center">
-                <p 
-                  className="mb-4" 
-                  style={{ 
-                    color: '#666', 
-                    fontSize: '1.1rem',
-                    lineHeight: '1.7'
-                  }}
-                >
-                  Want to see more of my work? <br />
-                  Check out my GitHub for additional projects and contributions.
-                </p>
-                <a 
-                  href="https://github.com/tu-usuario" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn btn-outline-dark rounded-0 px-4 py-3"
-                  style={{
-                    fontSize: '0.9rem',
-                    letterSpacing: '2px',
-                    textTransform: 'uppercase',
-                    fontWeight: '400',
-                    border: '2px solid #2c2c2c',
-                    backgroundColor: 'transparent',
-                    color: '#2c2c2c',
-                    transition: 'all 0.3s ease'
-                  }}
-                  onMouseOver={(e) => {
-                    e.target.style.backgroundColor = '#2c2c2c';
-                    e.target.style.color = 'white';
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.style.backgroundColor = 'transparent';
-                    e.target.style.color = '#2c2c2c';
-                  }}
-                >
-                  View GitHub
-                </a>
-              </div>
             </div>
           </div>
         </div>

@@ -56,7 +56,8 @@ const MiCuenta = () => {
       style={{ 
         fontFamily: 'Georgia, serif', 
         minHeight: '100vh',
-        paddingTop: '120px !important'
+        paddingTop: '160px',  // Aumentado de calc(120px + 2rem) a 160px
+        marginTop: '100px'
       }}
     >
       <div className="container">
@@ -69,6 +70,7 @@ const MiCuenta = () => {
                   color: '#2c2c2c',
                   fontSize: 'clamp(2.5rem, 6vw, 5rem)',
                   letterSpacing: '-1px'
+                  
                 }}
               >
                 My Account
@@ -229,12 +231,12 @@ const MiCuenta = () => {
                         href="#"
                         className="text-decoration-none"
                         style={{
-                          color: '#2c2c2c',
+                          color: '#F79995',
                           fontSize: '0.9rem',
                           letterSpacing: '1px',
                           textTransform: 'uppercase',
                           fontWeight: '400',
-                          borderBottom: '1px solid #2c2c2c',
+                          borderBottom: '1px solid #F79995',
                           paddingBottom: '2px',
                           transition: 'all 0.3s ease'
                         }}
@@ -243,8 +245,8 @@ const MiCuenta = () => {
                           e.target.style.borderColor = '#666';
                         }}
                         onMouseOut={(e) => {
-                          e.target.style.color = '#2c2c2c';
-                          e.target.style.borderColor = '#2c2c2c';
+                          e.target.style.color = '#F79995';
+                          e.target.style.borderColor = '#F79995';
                         }}
                       >
                         Change Password →

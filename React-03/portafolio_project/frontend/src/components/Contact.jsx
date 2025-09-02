@@ -1,13 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Contact = () => {
+  const [contactData, setContactData] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
-  const [loading, setLoading] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
   const [status, setStatus] = useState({ show: false, type: '', message: '' });
+
+  useEffect(() => {
+    const fetchContactData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/content/contact');
+        if (!response.ok) throw new Error('Error al cargar los datos de contacto');
+        const data = await response.json();
+        setContactData(data);
+      } catch (error) {
+        console.error('Error fetching contact data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchContactData();
+  }, []);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -43,7 +64,7 @@ const Contact = () => {
       return;
     }
 
-    setLoading(true);
+    setFormLoading(true);
     
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
@@ -67,9 +88,47 @@ const Contact = () => {
         message: 'Error sending message. Please try again.' 
       });
     } finally {
-      setLoading(false);
+      setFormLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <section 
+        id="contact" 
+        className="py-5 bg-white" 
+        style={{ 
+          fontFamily: 'Georgia, serif', 
+          minHeight: '100vh',
+          paddingTop: '120px !important'
+        }}
+      >
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-6">
+              <div className="text-center">
+                <div className="spinner-border text-dark" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="contact" className="py-5 bg-white">
+        <div className="container">
+          <div className="text-center">
+            <p style={{ color: '#dc3545' }}>Error: {error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section 
@@ -88,12 +147,12 @@ const Contact = () => {
               <h2 
                 className="display-4 fw-normal mb-5" 
                 style={{ 
-                  color: '#2c2c2c',
+                  color: '#F79995',
                   fontSize: 'clamp(2.5rem, 6vw, 5rem)',
                   letterSpacing: '-1px'
                 }}
               >
-                Contact Me
+                {contactData.title || 'Contact Me'}
               </h2>
             </div>
             
@@ -135,7 +194,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    disabled={loading}
+                    disabled={formLoading}
                     placeholder="Your Name..."
                     style={{
                       backgroundColor: 'transparent',
@@ -170,7 +229,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    disabled={loading}
+                    disabled={formLoading}
                     placeholder="Your Email Address..."
                     style={{
                       backgroundColor: 'transparent',
@@ -205,7 +264,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    disabled={loading}
+                    disabled={formLoading}
                     placeholder="Your Message..."
                     style={{
                       backgroundColor: 'transparent',
@@ -222,28 +281,28 @@ const Contact = () => {
                 <div className="text-center mt-5">
                   <button 
                     type="submit" 
-                    className="btn btn-outline-dark rounded-0 px-5 py-3"
-                    disabled={loading}
+                    className="btn rounded-0 px-5 py-3"
+                    disabled={formLoading}
                     style={{
                       fontSize: '0.9rem',
                       letterSpacing: '2px',
                       textTransform: 'uppercase',
                       fontWeight: '400',
-                      border: '2px solid #2c2c2c',
                       backgroundColor: 'transparent',
-                      color: '#2c2c2c',
+                      border: '2px solid #F79995',
+                      color: '#F79995',
                       transition: 'all 0.3s ease'
                     }}
                     onMouseOver={(e) => {
-                      e.target.style.backgroundColor = '#2c2c2c';
+                      e.target.style.backgroundColor = '#F79995';
                       e.target.style.color = 'white';
                     }}
                     onMouseOut={(e) => {
                       e.target.style.backgroundColor = 'transparent';
-                      e.target.style.color = '#2c2c2c';
+                      e.target.style.color = '#F79995';
                     }}
                   >
-                    {loading ? 'Sending...' : 'Send Message'}
+                    {formLoading ? 'Sending...' : 'Send Message'}
                   </button>
                 </div>
               </form>
@@ -257,23 +316,53 @@ const Contact = () => {
                     <strong>Email</strong>
                   </p>
                   <a 
-                    href="mailto:tu.email@ejemplo.com" 
+                    href={`mailto:${contactData.email}`} 
                     className="text-decoration-none"
-                    style={{ color: '#2c2c2c', fontSize: '1rem' }}
+                    style={{ 
+                      color: '#2c2c2c', 
+                      fontSize: '1rem',
+                      transition: 'color 0.3s ease'
+                    }}
+                    onMouseOver={(e) => e.target.style.color = '#F79995'}
+                    onMouseOut={(e) => e.target.style.color = '#2c2c2c'}
                   >
-                    tu.email@ejemplo.com
+                    {contactData.email}
                   </a>
                 </div>
                 <div className="col-md-6 mb-3">
                   <p className="mb-1" style={{ color: '#666', fontSize: '0.9rem' }}>
-                    <strong>Phone</strong>
+                    <strong>Website</strong>
                   </p>
                   <a 
-                    href="tel:+5491112345678" 
+                    href={contactData.website} 
                     className="text-decoration-none"
                     style={{ color: '#2c2c2c', fontSize: '1rem' }}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    +54 9 11 1234-5678
+                    {contactData.website}
+                  </a>
+                </div>
+                <div className="col-md-6 mb-3">
+                  <p className="mb-1" style={{ color: '#666', fontSize: '0.9rem' }}>
+                    <strong>Location</strong>
+                  </p>
+                  <p style={{ color: '#2c2c2c', fontSize: '1rem', margin: 0 }}>
+                    {contactData.location}
+                  </p>
+                </div>
+                <div className="col-md-6 mb-3">
+                  <p className="mb-1" style={{ color: '#666', fontSize: '0.9rem' }}>
+                    <strong>LinkedIn</strong>
+                  </p>
+                  <a 
+                    href={contactData.linkedin}
+                    className="text-decoration-none"
+                    style={{ color: '#2c2c2c', fontSize: '1rem' }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {contactData.linkedin}
                   </a>
                 </div>
               </div>

@@ -1,9 +1,9 @@
 import express from 'express';
-import portfolioController from '../controllers/portfolioController.js';
+import * as adminController from '../controllers/adminController.js';
 
 const router = express.Router();
 
 // Ruta para obtener todos los proyectos
-router.get('/', portfolioController.getProjects);
+router.get('/', adminController.getAllProjects);
 
 export default router;
