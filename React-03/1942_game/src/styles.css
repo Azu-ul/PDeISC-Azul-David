@@ -1,0 +1,392 @@
+/* Base reset and font setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Pixelify Sans", monospace;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: black;
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Game container - responsive base */
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: black;
+  padding: 10px;
+}
+
+/* Game wrapper - maintains aspect ratio */
+.game-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  max-height: 650px;
+  aspect-ratio: 1 / 1;
+  background-image: url(../public/assets/mapas/starfall.gif);
+  overflow: hidden;
+  border: 2px solid #333;
+  box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
+}
+
+/* NES screen base */
+.nes-screen {
+  width: 100%;
+  height: 100%;
+  background-image: url(../public/assets/mapas/starfall.gif);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  font-size: 16px;
+}
+
+/* Sprite rendering */
+.sprite {
+  position: absolute;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  will-change: transform;
+}
+
+/* Base typography - scales with container */
+.nes-screen div, 
+.nes-screen p, 
+.nes-screen h1, 
+.nes-screen h2, 
+.nes-screen h3, 
+.nes-screen h4, 
+.nes-screen h5,
+.nes-screen span {
+  font-family: "Pixelify Sans", monospace;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+}
+
+/* Heading sizes - using em for scalability */
+.nes-screen h1 { 
+  font-size: 2em; 
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.8);
+}
+.nes-screen h2 { 
+  font-size: 1.5em; 
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+}
+.nes-screen h3 { 
+  font-size: 1.25em; 
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+}
+.nes-screen h4 { 
+  font-size: 1.125em; 
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
+}
+.nes-screen h5 {
+  font-size: 1em;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
+}
+
+/* Button and interactive elements */
+button, 
+.interactive-button,
+div[style*="cursor: pointer"] {
+  transition: all 0.15s ease !important;
+  user-select: none;
+  font-size: 1em;
+  padding: 0.75em 1.5em;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  text-align: center;
+  min-width: 12em;
+  font-family: "Pixelify Sans", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+button:hover, 
+.interactive-button:hover,
+div[style*="cursor: pointer"]:hover {
+  background: white;
+  color: black;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:active, 
+.interactive-button:active,
+div[style*="cursor: pointer"]:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Input fields */
+.form-control, 
+input[type="text"] {
+  background: black;
+  color: white;
+  border: 2px solid white;
+  font-family: "Pixelify Sans", monospace;
+  text-transform: uppercase;
+  text-align: center;
+  outline: none;
+  transition: all 0.2s ease;
+  font-size: 1em;
+  padding: 0.5em;
+}
+
+.form-control:focus, 
+input[type="text"]:focus {
+  background: #111;
+  color: white;
+  border-color: #ffff00;
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+/* Screen-specific responsive adjustments */
+
+/* TABLET LANDSCAPE (768px - 1024px) */
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .nes-screen {
+    font-size: 14px;
+    padding: 15px;
+  }
+  
+  .game-wrapper {
+    max-width: 90vmin;
+    max-height: 90vmin;
+  }
+}
+
+/* TABLET PORTRAIT & MOBILE LANDSCAPE (480px - 767px) */
+@media screen and (max-width: 767px) and (min-width: 480px) {
+  .nes-screen {
+    font-size: 12px;
+    padding: 10px;
+  }
+  
+  .game-wrapper {
+    max-width: 95vmin;
+    max-height: 95vmin;
+    border: 1px solid #333;
+  }
+  
+  /* Adjust spacing for smaller screens */
+  .nes-screen div[style*="gap"] {
+    gap: 10px !important;
+  }
+  
+  /* Smaller padding for buttons */
+  button, .interactive-button {
+    padding: 0.5em 1em;
+    min-width: 10em;
+  }
+  
+  /* Compact input fields */
+  input[type="text"] {
+    width: 4em !important;
+    height: 2.5em !important;
+    font-size: 0.9em;
+  }
+}
+
+/* MOBILE PORTRAIT (up to 479px) */
+@media screen and (max-width: 479px) {
+  .game-container {
+    padding: 5px;
+  }
+  
+  .nes-screen {
+    font-size: 10px;
+    padding: 8px;
+  }
+  
+  .game-wrapper {
+    width: 98vmin;
+    height: 98vmin;
+    border: 1px solid #333;
+  }
+  
+  /* Very compact buttons */
+  button, .interactive-button {
+    padding: 0.4em 0.8em;
+    min-width: 8em;
+    font-size: 0.9em;
+  }
+  
+  /* Tiny input fields */
+  input[type="text"] {
+    width: 3.5em !important;
+    height: 2.2em !important;
+    font-size: 0.8em;
+  }
+  
+  /* Tighter spacing */
+  .nes-screen div[style*="gap"] {
+    gap: 8px !important;
+  }
+  
+  .nes-screen div[style*="marginBottom"] {
+    margin-bottom: 10px !important;
+  }
+}
+
+/* VERY SMALL SCREENS (up to 320px) */
+@media screen and (max-width: 320px) {
+  .nes-screen {
+    font-size: 9px;
+    padding: 5px;
+  }
+  
+  button, .interactive-button {
+    padding: 0.3em 0.6em;
+    min-width: 7em;
+    font-size: 0.8em;
+  }
+  
+  input[type="text"] {
+    width: 3em !important;
+    height: 2em !important;
+    font-size: 0.7em;
+  }
+}
+
+/* SHORT SCREENS (height-based queries) */
+@media screen and (max-height: 500px) {
+  .nes-screen {
+    font-size: 11px;
+  }
+  
+  .nes-screen h1 { font-size: 1.6em; }
+  .nes-screen h2 { font-size: 1.3em; }
+  .nes-screen h3 { font-size: 1.1em; }
+  .nes-screen h4 { font-size: 1em; }
+}
+
+@media screen and (max-height: 400px) {
+  .nes-screen {
+    font-size: 9px;
+    padding: 5px;
+  }
+  
+  button, .interactive-button {
+    padding: 0.2em 0.5em;
+  }
+}
+
+/* Force landscape orientation for very small screens */
+@media screen and (max-width: 480px) and (orientation: portrait) {
+  .orientation-notice {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: "Pixelify Sans", monospace;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .orientation-notice h2 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    color: #ffff00;
+  }
+  
+  .orientation-notice p {
+    font-size: 1em;
+    line-height: 1.4;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .sprite {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Performance optimizations */
+.sprite, 
+.position-absolute {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hide scrollbars */
+.nes-screen::-webkit-scrollbar {
+  display: none;
+}
+
+.nes-screen {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animations */
+@keyframes parpadeo {
+  0% { opacity: 1; }
+  25% { opacity: 0.3; }
+  50% { opacity: 1; }
+  75% { opacity: 0.3; }
+  100% { opacity: 0.3; }
+}
+
+@keyframes pulso {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.1; }
+}
+
+/* Font smoothing */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Touch improvements */
+@media (hover: none) and (pointer: coarse) {
+  button, 
+  .interactive-button,
+  div[style*="cursor: pointer"] {
+    min-height: 44px; /* Minimum touch target size */
+    padding: 0.6em 1.2em;
+  }
+}
