@@ -9,7 +9,7 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
   
   // Estado del juego
   const [gameState, setGameState] = useState({
-    player: { x: 380, y: 550, width: 40, height: 40, speed: 4, lastShot: 0 },
+    player: { x: 380, y: 550, width: 40, height: 40, speed: 4, lastShot: 0, mouthOpen: false },
     aliens: [],
     bullets: [],
     explosions: [],
@@ -24,8 +24,8 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
     moveInterval: 500,
     direction: 'right',
     scoreSaved: false,
-    enemyShotFrequency: 0.0008, // Probabilidad base de disparo enemigo
-    maxEnemyBullets: 3 // Máximo de balas enemigas simultáneas
+    enemyShotCooldown: 2000, // Cooldown entre disparos enemigos (ms)
+    lastAlienShooter: -1 // Índice del último alien que disparó
   });
 
   const [userInteracted, setUserInteracted] = useState(false);
@@ -116,9 +116,8 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
   // Calcular dificultad basada en el nivel
   const getDifficultySettings = useCallback((level) => {
     return {
-      enemyShotFrequency: Math.min(0.0008 + (level - 1) * 0.0004, 0.003), // Aumenta gradualmente
-      maxEnemyBullets: Math.min(3 + Math.floor((level - 1) / 2), 8), // Más balas cada 2 niveles
-      alienSpeed: Math.max(500 - (level - 1) * 50, 200), // Más rápidos cada nivel
+      enemyShotCooldown: Math.max(3000 - (level - 1) * 300, 1000), // Reduce cooldown gradualmente
+      alienSpeed: Math.max(600 - (level - 1) * 75, 250), // Más rápidos cada nivel  
       pointsPerAlien: 100 + (level - 1) * 25 // Más puntos por nivel
     };
   }, []);
@@ -167,7 +166,7 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
       ...prev,
       aliens,
       barriers,
-      player: { x: 380, y: 550, width: 40, height: 40, speed: 4, lastShot: 0 },
+      player: { x: 380, y: 550, width: 40, height: 40, speed: 4, lastShot: 0, mouthOpen: false },
       bullets: [],
       explosions: [],
       level: newLevel,
@@ -178,8 +177,8 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
       moveInterval: difficulty.alienSpeed,
       direction: 'right',
       scoreSaved: false,
-      enemyShotFrequency: difficulty.enemyShotFrequency,
-      maxEnemyBullets: difficulty.maxEnemyBullets
+      enemyShotCooldown: difficulty.enemyShotCooldown,
+      lastAlienShooter: -1
     }));
   }, [gameState.level, getDifficultySettings]);
 
@@ -189,10 +188,11 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
     ctx.beginPath();
     
     if (mouthOpen) {
-      // Boca apuntando hacia arriba
-      ctx.arc(x + size/2, y + size/2, size/2, 1.2 * Math.PI, 1.8 * Math.PI);
+      // Boca abierta apuntando hacia arriba (disparando)
+      ctx.arc(x + size/2, y + size/2, size/2, 0.25 * Math.PI, 1.75 * Math.PI);
       ctx.lineTo(x + size/2, y + size/2);
     } else {
+      // Círculo completo cuando no dispara
       ctx.arc(x + size/2, y + size/2, size/2, 0, 2 * Math.PI);
     }
     
@@ -323,10 +323,22 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
             }],
             player: {
               ...prev.player,
-              lastShot: currentTime
+              lastShot: currentTime,
+              mouthOpen: true
             }
           }));
           playSound('shoot');
+          
+          // Cerrar boca después de 150ms
+          setTimeout(() => {
+            setGameState(prev => ({
+              ...prev,
+              player: {
+                ...prev.player,
+                mouthOpen: false
+              }
+            }));
+          }, 150);
         }
         break;
     }
@@ -398,7 +410,19 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
           fromPlayer: true
         });
         newGameState.player.lastShot = currentTime;
+        newGameState.player.mouthOpen = true;
         playSound('shoot');
+        
+        // Cerrar boca después de 150ms
+        setTimeout(() => {
+          setGameState(prev => ({
+            ...prev,
+            player: {
+              ...prev.player,
+              mouthOpen: false
+            }
+          }));
+        }, 150);
       }
 
       // Mover alienígenas
@@ -437,20 +461,29 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
         newGameState.lastMoveTime = currentTime;
       }
 
-      // Disparo enemigo mejorado con límite de balas
-      const enemyBullets = newGameState.bullets.filter(b => !b.fromPlayer);
-      if (Math.random() < newGameState.enemyShotFrequency && 
-          aliveAliens.length > 0 && 
-          enemyBullets.length < newGameState.maxEnemyBullets) {
-        const randomAlien = aliveAliens[Math.floor(Math.random() * aliveAliens.length)];
+      // Disparo enemigo mejorado - uno a la vez con cooldown
+      if (currentTime - newGameState.lastEnemyShot >= newGameState.enemyShotCooldown && aliveAliens.length > 0) {
+        // Elegir un alien diferente al último que disparó
+        let availableAliens = aliveAliens.filter((_, index) => index !== newGameState.lastAlienShooter);
+        if (availableAliens.length === 0) availableAliens = aliveAliens;
+        
+        const randomIndex = Math.floor(Math.random() * availableAliens.length);
+        const shootingAlien = availableAliens[randomIndex];
+        
+        // Encontrar el índice original del alien que va a disparar
+        const originalIndex = newGameState.aliens.findIndex(alien => alien === shootingAlien);
+        
         newGameState.bullets.push({
-          x: randomAlien.x + 18,
-          y: randomAlien.y + 40,
+          x: shootingAlien.x + 18,
+          y: shootingAlien.y + 40,
           width: 4,
           height: 10,
-          speed: 3,
+          speed: 3 + Math.floor(newGameState.level / 3), // Velocidad aumenta ligeramente con nivel
           fromPlayer: false
         });
+        
+        newGameState.lastEnemyShot = currentTime;
+        newGameState.lastAlienShooter = originalIndex;
       }
 
       // Mover balas
@@ -506,7 +539,7 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
         return true;
       });
 
-      // Colisiones bala enemiga - MEJORADO: También con barreras
+      // Colisiones bala enemiga - CON BARRERAS INCLUIDAS
       newGameState.bullets = newGameState.bullets.filter(bullet => {
         if (bullet.fromPlayer) return true;
 
@@ -536,7 +569,7 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
           return false;
         }
 
-        // NUEVO: Colisión con barreras
+        // Colisión con barreras
         for (let i = 0; i < newGameState.barriers.length; i++) {
           const barrier = newGameState.barriers[i];
           if (barrier.health <= 0) continue;
@@ -612,9 +645,10 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
         newGameState.bullets = [];
         newGameState.explosions = [];
         newGameState.moveInterval = difficulty.alienSpeed;
-        newGameState.enemyShotFrequency = difficulty.enemyShotFrequency;
-        newGameState.maxEnemyBullets = difficulty.maxEnemyBullets;
+        newGameState.enemyShotCooldown = difficulty.enemyShotCooldown;
         newGameState.lastMoveTime = Date.now();
+        newGameState.lastEnemyShot = 0;
+        newGameState.lastAlienShooter = -1;
         
         // Bonus por completar nivel
         newGameState.score += 500 * newGameState.level;
@@ -657,8 +691,7 @@ const GameCanvas = ({ isTwoPlayerMode = false, currentPlayer = 1, onPlayerDeath 
       }
 
       // Jugador
-      const mouthOpen = Date.now() % 500 < 250;
-      drawPacman(ctx, newGameState.player.x, newGameState.player.y, 40, mouthOpen);
+      drawPacman(ctx, newGameState.player.x, newGameState.player.y, 40, newGameState.player.mouthOpen);
 
       // Alienígenas
       newGameState.aliens.forEach(alien => {

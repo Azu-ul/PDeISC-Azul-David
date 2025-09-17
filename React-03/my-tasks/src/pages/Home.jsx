@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import { useTasks } from '../context/TasksContext';
 
 export default function Home() {
+  // Obtener las tareas y la función para actualizar el estado
+  // desde el contexto de tareas
   const { tasks, updateTask } = useTasks();
 
+  // Verificar si hay tareas para mostrar
+  // Esto se usa para habilitar/deshabilitar el botón de exportación
   const hasTasks = tasks && tasks.length > 0;
 
   const handleExportTxt = () => {
@@ -58,17 +62,26 @@ export default function Home() {
                   checked={t.completed}
                   onChange={e => updateTask(t.id, { completed: e.target.checked })}
                 />
-                <div>
-                  <div className="fw-semibold">{t.title}</div>
-                  <small className="text-muted">
-                    {t.description?.slice(0, 80) || 'Sin descripción'}
-                    {t.description && t.description.length > 80 ? '…' : ''}
-                  </small>
+
+                <div style={{
+                  textDecoration: t.completed ? 'line-through' : 'none',
+                  color: t.completed ? '#6c757d' : 'inherit'
+                }}>
+                  <div>
+                    <div className="fw-semibold">{t.title}</div>
+                    <small className="text-muted">
+                      {t.description?.slice(0, 80) || 'Sin descripción'}
+                      {t.description && t.description.length > 80 ? '…' : ''}
+                    </small>
+                  </div>
                 </div>
+
+
               </div>
-              <span className={`badge ${t.completed ? 'bg-success' : 'bg-secondary'}`}>
-                {t.completed ? 'Completa' : 'Incompleta'}
-              </span>
+              <Link to={`/task/${t.id}`} className="btn btn-sm btn-outline-primary">
+                Detalle
+              </Link>
+
             </div>
           ))
         ) : (

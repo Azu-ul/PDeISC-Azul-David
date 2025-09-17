@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useTasks } from '../context/TasksContext';
+import { useTasks } from '../context/TasksContext'; // Importar el contexto de tareas
 
+// Componente para mostrar el detalle de una tarea
 export default function Detail() {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const { getTaskById, updateTask, deleteTask } = useTasks();
+  const navigate = useNavigate(); //
+  const { getTaskById, updateTask, deleteTask } = useTasks(); 
 
+  // Estados para manejar la edición 
   const [editing, setEditing] = useState(false);
   const [editTitle, setEditTitle] = useState('');
   const [editDescription, setEditDescription] = useState('');
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [error, setError] = useState('');
 
   const task = getTaskById(id);
 
+  //Editar título y descripción
+  // Si la tarea existe, inicializar los campos de edición
   useEffect(() => {
     if (task) {
       setEditTitle(task.title);
@@ -21,6 +26,7 @@ export default function Detail() {
     }
   }, [task]);
 
+  // Si la tarea no existe, mostrar un mensaje y volver al inicio
   if (!task) {
     return (
       <div className="alert alert-warning">
@@ -29,47 +35,34 @@ export default function Detail() {
     );
   }
 
+  // Manejar la eliminación de la tarea
+  // Muestra un mensaje de confirmación antes de eliminar
   const handleDelete = () => setShowConfirmDelete(true);
   const confirmDelete = () => {
     deleteTask(task.id);
     navigate('/');
   };
 
-  const handleExportOne = () => {
-    const content =
-      `ID: ${task.id}
-Título: ${task.title}
-Descripción: ${task.description || 'Sin descripción'}
-Estado: ${task.completed ? 'Completa' : 'Incompleta'}
-Creada: ${new Date(task.createdAt).toLocaleString()}
-`;
-    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `tarea-${task.id}.txt`;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
+  // Renderizar el detalle de la tarea
+  // Permite editar el título y la descripción, marcar como completa/incompleta, y borrar la tarea
   return (
     <div className="card shadow-sm win-card">
       <div className="card-header d-flex justify-content-between align-items-center">
         <span className="fw-bold">Detalle de Tarea</span>
         <div className="d-flex gap-2">
           <Link to="/" className="btn btn-sm btn-outline-primary">Volver</Link>
-          <button className="btn btn-sm btn-primary" onClick={handleExportOne}>Exportar .txt</button>
           <button className="btn btn-sm btn-warning" onClick={() => setEditing(true)}>Editar</button>
           <button
             className={`btn btn-sm ${task.completed ? 'btn-secondary' : 'btn-success'}`}
             onClick={() => updateTask(task.id, { completed: !task.completed })}
-          >
+          > 
             {task.completed ? 'Marcar como incompleta' : 'Marcar como completa'}
-          </button>
+          </button> 
           <button className="btn btn-sm btn-danger" onClick={handleDelete}>Borrar</button>
         </div>
       </div>
-
+      
+      {/* Confirmación para borrar tarea */}
       <div className="card-body">
         {showConfirmDelete && (
           <div className="alert alert-warning d-flex justify-content-between align-items-center">
@@ -80,6 +73,10 @@ Creada: ${new Date(task.createdAt).toLocaleString()}
             </div>
           </div>
         )}
+
+        {/* Formulario de edición */}
+        {/* Si está en modo edición, mostrar el formulario para editar título y descripción */}
+        {/* Si no está en modo edición, mostrar el detalle de la tarea */}
 
         {editing ? (
           <form
@@ -114,7 +111,7 @@ Creada: ${new Date(task.createdAt).toLocaleString()}
               <button type="button" className="btn btn-outline-secondary" onClick={() => setEditing(false)}>Cancelar</button>
             </div>
           </form>
-        ) : (
+        ) : ( 
           <>
             <h2 className="h5">{task.title}</h2>
             <p style={{ whiteSpace: 'pre-wrap' }}>{task.description || 'Sin descripción'}</p>
